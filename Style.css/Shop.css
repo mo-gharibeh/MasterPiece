@@ -1,0 +1,89 @@
+.search-section {
+    background-image: url('/img/images.jpeg');
+    background-size: cover;
+    background-position: center;
+    padding: 100px 0;
+    text-align: center;
+    color: white;
+  }
+  .search-section h1 {
+    font-size: 2.5rem;
+    margin-bottom: 20px;
+  }
+  .search-section .search-bar {
+    background: rgba(255, 255, 255, 0.9);
+    border-radius: 5px;
+    padding: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  .search-section .search-bar input,
+  .search-section .search-bar select,
+  .search-section .search-bar button {
+    margin: 5px;
+  }
+  .results-section {
+    padding: 20px 0;
+  }
+  .result-card {
+    display: flex;
+    align-items: center;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    padding: 10px;
+    margin-bottom: 10px;
+  }
+  .result-card img {
+    height: 100px;
+    margin-right: 20px;
+  }
+  .result-card .details {
+    flex-grow: 1;
+  }
+  .map-section {
+    text-align: center;
+    margin: 20px 0;
+  }
+  .map-section img {
+    width: 100%;
+    max-width: 600px;
+    border-radius: 5px;
+  }
+  .numbered-list {
+    list-style-type: decimal;
+    padding-left: 20px;
+  }
+  .numbered-list li {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+  }
+  .numbered-list li img {
+    height: 100px;
+    margin-right: 20px;
+  }
+
+  /* navbar and footer */
+.navbar .logo, .footer-logo {
+    width: 50px;
+    height: 50px;
+}
+
+.bg-dark {
+    background-color: #2c3e50 !important;
+}
+
+#map {
+    height: 200px;
+    background-color: #2c3e50;
+    display: flex;
+    justify-content: center;
+}
+
+.footer {
+    position: relative;
+    bottom: 0;
+    width: 100%;
+    padding: 20px 0;
+}

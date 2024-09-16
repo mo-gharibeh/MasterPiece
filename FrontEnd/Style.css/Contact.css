@@ -1,0 +1,65 @@
+body {
+    background-color: #f8f9fa;
+}
+
+.feedback-form .card {
+    background-color: #2c3e50;
+    color: white;
+}
+
+.feedback-form .card .form-control {
+    background-color: #34495e;
+    color: white;
+    border: none;
+}
+
+.feedback-form .card .form-control::placeholder {
+    color: #bdc3c7;
+}
+
+.feedback-form .card .btn-primary {
+    background-color: #f1c40f;
+    border: none;
+}
+
+.faq .card-header {
+    background-color: #ffffff;
+    border-bottom: 1px solid #ddd;
+}
+
+.faq .card-header .btn-link {
+    color: #000000;
+    text-decoration: none;
+    width: 100%;
+    text-align: left;
+}
+
+.faq .card-body {
+    background-color: #ffffff;
+}
+.faq{
+    margin-bottom: 10px;
+}
+/* navbar and footer */
+.navbar .logo, .footer-logo {
+    width: 50px;
+    height: 50px;
+}
+
+.bg-dark {
+    background-color: #2c3e50 !important;
+}
+
+#map {
+    height: 200px;
+    background-color: #2c3e50;
+    display: flex;
+    justify-content: center;
+}
+
+.footer {
+    position: relative;
+    bottom: 0;
+    width: 100%;
+    padding: 20px 0;
+}

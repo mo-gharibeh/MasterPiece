@@ -1,0 +1,393 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <title>My Profile Settings</title>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <meta content="" name="keywords">
+    <meta content="" name="description">
+
+    <!-- Favicon -->
+    <link href="img/favicon.ico" rel="icon">
+
+    <!-- Google Web Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Heebo:wght@400;500;600&family=Inter:wght@700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600&display=swap" rel="stylesheet">
+    
+    <!-- Icon Font Stylesheet -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css" rel="stylesheet">
+
+    <!-- Libraries Stylesheet -->
+    <link href="lib/animate/animate.min.css" rel="stylesheet">
+    <link href="lib/owlcarousel/assets/owl.carousel.min.css" rel="stylesheet">
+
+    <!-- Customized Bootstrap Stylesheet -->
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Template Stylesheet -->
+    <link href="css/style.css" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Montserrat', sans-serif;
+            background-color: #f4f4f9;
+            margin: 0;
+            padding: 0;
+        }
+
+        /* Cover Photo */
+        .profile-cover {
+            background: url('https://www.shutterstock.com/image-photo/motorcycle-parked-alone-on-asphalt-260nw-2153911847.jpg') no-repeat center center/cover;
+            height: 300px;
+            position: relative;
+        }
+
+        /* Personal Photo */
+        .profile-picture {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            border: 4px solid white;
+            position: absolute;
+            bottom: -75px;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+
+        /* User Info Section */
+        .profile-info {
+            text-align: center;
+            padding: 100px 20px 20px;
+        }
+
+        .profile-info h1 {
+            font-size: 28px;
+            margin: 0;
+            color: #333;
+        }
+
+        .profile-info p {
+            color: #777;
+            font-size: 16px;
+            margin-top: 10px;
+        }
+
+        .profile-buttons {
+            margin-top: 20px;
+        }
+
+        .profile-buttons button {
+            /* background-color: #4CAF50; */
+            border: none;
+            padding: 10px 20px;
+            color: white;
+            cursor: pointer;
+            font-size: 16px;
+            border-radius: 5px;
+            margin: 0 5px;
+        }
+
+        /* User's Photos Section */
+        .profile-gallery {
+            padding: 40px 20px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .gallery-title {
+            text-align: center;
+            font-size: 24px;
+            margin-bottom: 30px;
+            color: #333;
+        }
+
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+        }
+
+        .gallery-item {
+            position: relative;
+        }
+
+        .gallery-item img {
+            width: 100%;
+            height: 250px;
+            object-fit: cover;
+            border-radius: 8px;
+            transition: transform 0.3s;
+        }
+
+        .gallery-item:hover img {
+            transform: scale(1.05);
+        }
+
+        .gallery-item .gallery-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            opacity: 0;
+            transition: opacity 0.3s;
+            border-radius: 8px;
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 18px;
+        }
+
+        .gallery-item:hover .gallery-overlay {
+            opacity: 1;
+        }
+
+        /* Footer */
+        .footer {
+            background-color: #333;
+            color: white;
+            padding: 30px 0;
+            text-align: center;
+            font-size: 14px;
+        }
+
+        @media (max-width: 768px) {
+            .profile-picture {
+                width: 120px;
+                height: 120px;
+            }
+            .profile-info h1 {
+                font-size: 24px;
+            }
+        }
+
+        .plus-sign {
+            font-size: 24px;
+            font-weight: bold;
+            width: 40px;
+            height: 40px;
+            border-radius: 40%;
+            background-color: #0E2E50;
+            color: white;
+            text-align: center;
+            line-height: 40px;
+            cursor: pointer;
+            position: relative;
+        }
+
+        
+
+    </style>
+
+</head>
+
+<body>
+    <div class="container-xxl bg-white p-0">
+        <!-- Spinner Start -->
+        <div id="spinner" class="show bg-white position-fixed translate-middle w-100 vh-100 top-50 start-50 d-flex align-items-center justify-content-center">
+            <div class="spinner-border text-primary" style="width: 3rem; height: 3rem;" role="status">
+                <span class="sr-only">Loading...</span>
+            </div>
+        </div>
+        <!-- Spinner End -->
+
+
+        <!-- Navbar Start -->
+        <div class="container-fluid nav-bar bg-transparent">
+            <nav class="navbar navbar-expand-lg bg-white navbar-light py-0 px-4">
+                <a href="index.html" class="navbar-brand d-flex align-items-center text-center">
+                    <div class="icon p-2 me-2">
+                        <img class="img-fluid" src="img/icon-deal.png" alt="Icon" style="width: 30px; height: 30px;">
+                    </div>
+                    <h1 class="m-0 text-primary">MotoStation</h1>
+                </a>
+                <button type="button" class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarCollapse">
+                    <div class="navbar-nav ms-auto">
+                        <a href="index.html" class="nav-item nav-link ">Home</a>
+                        <a href="about.html" class="nav-item nav-link">About</a>
+                        <div class="nav-item dropdown">
+                            <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Services</a>
+                            <div class="dropdown-menu rounded-0 m-0">
+                                <a href="shops.html" class="dropdown-item">Shops</a>
+                                <a href="rent.html" class="dropdown-item">Rent</a>
+                                <a href="event.html" class="dropdown-item">Events</a>
+                                <!-- <a href="property-agent.html" class="dropdown-item">Property Agent</a> -->
+                            </div>
+                        </div>
+                        <!-- <div class="nav-item dropdown">
+                            <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Pages</a>
+                            <div class="dropdown-menu rounded-0 m-0">                                
+                                <a href="#" class="dropdown-item">404 Error</a>
+                            </div>
+                        </div> -->
+                        <a href="contact.html" class="nav-item nav-link">Contact Us</a>
+                        <a href="messages.html" class="nav-item nav-link">Messages</a>
+                        <div class="nav-item dropdown">
+                            <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Profile</a>
+                            <div class="dropdown-menu rounded-0 m-0">
+                                <a href="profile.html" class="dropdown-item active">Profile</a>
+                                <a href="index.html" class="dropdown-item">LOG OUT</a>
+                                <!-- <a href="property-agent.html" class="dropdown-item">Property Agent</a> -->
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- <a href="register.html" class="btn btn-primary px-3 d-none d-lg-flex active">LOG OUT</a> -->
+                </div>
+            </nav>
+        </div>
+        <!-- Navbar End -->
+        
+        <!-- Cover Photo Section -->
+    <div class="profile-cover">
+        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRA5K6G_sHTcvx3n3-FVqr3rSpQBDN4HhW3JQ&s" alt="User Profile" class="profile-picture">
+    </div>
+
+    <!-- User Info Section -->
+    <div class="profile-info">
+        <h1>Mohammad Hussain</h1>
+        <p>Motorcycle Enthusiast & Web Developer</p>
+        <div class="profile-buttons">
+            <a href="profileSettings.html"><button class="btn btn-primary">Edit Profile</button></a>
+            <a href="viewer.html" class="view-button btn btn-primary">
+                👁️ 
+            </a>
+            <!-- <a href="profileSettings.html"><button class="btn btn-primary">Upload Photo</button></a> -->
+        </div>
+    </div>
+
+    <!-- User's Photos Section -->
+    <div class="profile-gallery">
+        <h2 class="gallery-title">My Photos</h2>
+        <div class="plus-sign">+</div>
+        <br>
+        <div class="gallery-grid">
+            <!-- Photo 1 -->
+            <div class="gallery-item">
+                <img src="https://images.contentstack.io/v3/assets/blt62d40591b3650da3/blt7cc7c424194b72d7/638662e95834861044c23661/motorcycle-gravel-road_card-image.jpg?auto=webp&width=400" alt="User Photo">
+                <div class="gallery-overlay">View Photo</div>
+            </div>
+            <!-- Photo 2 -->
+            <div class="gallery-item">
+                <img src="https://www.adventurebikerider.com/wp-content/uploads/2020/12/Legal-Feature-Image.jpg" alt="User Photo">
+                <div class="gallery-overlay">View Photo</div>
+            </div>
+            <!-- Photo 3 -->
+            <div class="gallery-item">
+                <img src="https://www.adventurebikerider.com/wp-content/uploads/2020/07/IMG_7437-768x512.jpg" alt="User Photo">
+                <div class="gallery-overlay">View Photo</div>
+            </div>
+            <!-- Add more photos as needed -->
+        </div>
+    </div>
+        
+    <!-- Footer Start -->
+    <div class="container-fluid bg-dark text-white-50 footer pt-5 mt-5 wow fadeIn" data-wow-delay="0.1s">
+        <div class="container py-5">
+            <div class="row g-5">
+                <div class="col-lg-3 col-md-6">
+                    <h5 class="text-white mb-4">Get In Touch</h5>
+                    <p class="mb-2"><i class="fa fa-map-marker-alt me-3"></i>30 Street, Irbid, Jordan</p>
+                    <p class="mb-2"><i class="fa fa-phone-alt me-3"></i>+962 7 8060 8076</p>
+                    <p class="mb-2"><i class="fa fa-envelope me-3"></i>motostation@gmail.com</p>
+                    <div class="d-flex pt-2">
+                        <a class="btn btn-outline-light btn-social" href=""><i class="fab fa-twitter"></i></a>
+                        <a class="btn btn-outline-light btn-social" href=""><i class="fab fa-facebook-f"></i></a>
+                        <a class="btn btn-outline-light btn-social" href=""><i class="fab fa-youtube"></i></a>
+                        <a class="btn btn-outline-light btn-social" href=""><i class="fab fa-linkedin-in"></i></a>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-6">
+                    <h5 class="text-white mb-4">Quick Links</h5>
+                    <a class="btn btn-link text-white-50" href="about.html">About Us</a>
+                    <a class="btn btn-link text-white-50" href="contact.html">Contact Us</a>
+                    <a class="btn btn-link text-white-50" href="shop.html">    Shops</a>
+                    <a class="btn btn-link text-white-50" href="rent.html">    Rent</a>
+                    <a class="btn btn-link text-white-50" href="event.html">    Events</a>
+                    <a class="btn btn-link text-white-50" href="privacy.html">Privacy Policy</a>
+                    <a class="btn btn-link text-white-50" href="term.html">Terms & Condition</a>
+                </div>
+                <div class="col-lg-3 col-md-6">
+                    <h5 class="text-white mb-4">Photo Gallery</h5>
+                    <div class="row g-2 pt-2">
+                        <div class="col-4">
+                            <img class="img-fluid rounded bg-light p-1" src="img/01.jpg" alt="">
+                        </div>
+                        <div class="col-4">
+                            <img class="img-fluid rounded bg-light p-1" src="img/02.jpg" alt="">
+                        </div>
+                        <!-- <div class="col-4">
+                            <img class="img-fluid rounded bg-light p-1" src="img/property-3.jpg" alt="">
+                        </div>
+                        <div class="col-4">
+                            <img class="img-fluid rounded bg-light p-1" src="img/property-4.jpg" alt="">
+                        </div>
+                        <div class="col-4">
+                            <img class="img-fluid rounded bg-light p-1" src="img/property-5.jpg" alt="">
+                        </div>
+                        <div class="col-4">
+                            <img class="img-fluid rounded bg-light p-1" src="img/property-6.jpg" alt="">
+                        </div> -->
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-6">
+                    <h5 class="text-white mb-4">Newsletter</h5>
+                    <p>Stay updated with the latest motorcycle deals, news, and exclusive offers by subscribing to our newsletter.</p>
+                    <div class="position-relative mx-auto" style="max-width: 400px;">
+                        <input class="form-control bg-transparent w-100 py-3 ps-4 pe-5" type="text" placeholder="Your email">
+                        <button type="button" class="btn btn-primary py-2 position-absolute top-0 end-0 mt-2 me-2" >SignUp</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="container">
+            <div class="copyright">
+                <div class="row">
+                    <div class="col-md-6 text-center text-md-start mb-3 mb-md-0">
+                        &copy; <a class="border-bottom" href="index.html">MotoStation</a>, All Right Reserved. 
+                        
+                        <!--/*** This template is free as long as you keep the footer author’s credit link/attribution link/backlink. If you'd like to use the template without the footer author’s credit link/attribution link/backlink, you can purchase the Credit Removal License from "https://htmlcodex.com/credit-removal". Thank you for your support. ***/-->
+                        Designed By <a class="border-bottom" href="https://htmlcodex.com">HTML Codex</a>
+                    </div>
+                    <div class="col-md-6 text-center text-md-end">
+                        <div class="footer-menu">
+                            <a href="index.html">Home</a>
+                            <a href="">Cookies</a>
+                            <a href="contact.html">Help</a>
+                            <a href="contact.html">FQAs</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Footer End -->
+
+
+    <!-- Back to Top -->
+    <a href="#" class="btn btn-lg btn-primary btn-lg-square back-to-top"><i class="bi bi-arrow-up"></i></a>
+</div>
+
+    
+    <!-- JavaScript Libraries -->
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="lib/wow/wow.min.js"></script>
+    <script src="lib/easing/easing.min.js"></script>
+    <script src="lib/waypoints/waypoints.min.js"></script>
+    <script src="lib/owlcarousel/owl.carousel.min.js"></script>
+
+    <!-- Template Javascript -->
+    <script src="js/main.js"></script>
+    
+</body>
+
+</html>

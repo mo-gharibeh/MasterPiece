@@ -1,0 +1,110 @@
+-- جدول المستخدمين
+CREATE TABLE Users (
+    UserID INT PRIMARY KEY IDENTITY(1,1),
+    UserName NVARCHAR(100) NOT NULL,
+    Email NVARCHAR(100) NOT NULL UNIQUE,
+    PasswordHash NVARCHAR(256) NOT NULL,
+    ProfileImageURL NVARCHAR(255) NULL,
+    Role NVARCHAR(50) NOT NULL DEFAULT 'User',
+    CreatedDate DATETIME DEFAULT GETDATE(),
+    LastLoginDate DATETIME NULL
+);
+
+-- جدول المحلات التجارية
+CREATE TABLE Stores (
+    StoreID INT PRIMARY KEY IDENTITY(1,1),
+    StoreName NVARCHAR(100) NOT NULL,
+    Address NVARCHAR(255) NOT NULL,
+    Phone NVARCHAR(20) NOT NULL,
+    Email NVARCHAR(100) NULL,
+    WorkingHours NVARCHAR(50) NULL,
+    StoreImageURL NVARCHAR(255) NULL,
+    CreatedDate DATETIME DEFAULT GETDATE()
+);
+
+-- جدول الدراجات
+CREATE TABLE Motorcycles (
+    MotorcycleID INT PRIMARY KEY IDENTITY(1,1),
+    UserID INT FOREIGN KEY REFERENCES Users(UserID),
+    Title NVARCHAR(100) NOT NULL,
+    Description NVARCHAR(MAX) NOT NULL,
+    Price DECIMAL(18, 2) NOT NULL,
+    IsForSale BIT NOT NULL,
+    IsForRent BIT NOT NULL,
+    Location NVARCHAR(255) NOT NULL,
+    MotorcycleImageURL NVARCHAR(255) NULL,
+    CreatedDate DATETIME DEFAULT GETDATE()
+);
+
+-- جدول الفعاليات
+CREATE TABLE Events (
+    EventID INT PRIMARY KEY IDENTITY(1,1),
+    UserID INT FOREIGN KEY REFERENCES Users(UserID),
+    Title NVARCHAR(100) NOT NULL,
+    Description NVARCHAR(MAX) NOT NULL,
+    Location NVARCHAR(255) NOT NULL,
+    EventDate DATETIME NOT NULL,
+    CreatedDate DATETIME DEFAULT GETDATE()
+);
+
+-- جدول المنشورات في المجتمع
+CREATE TABLE Posts (
+    PostID INT PRIMARY KEY IDENTITY(1,1),
+    UserID INT FOREIGN KEY REFERENCES Users(UserID),
+    Content NVARCHAR(MAX) NOT NULL,
+    ImageURL NVARCHAR(255) NULL,
+    CreatedDate DATETIME DEFAULT GETDATE(),
+    LikesCount INT DEFAULT 0,
+    CommentsCount INT DEFAULT 0
+);
+
+-- جدول التعليقات في المجتمع
+CREATE TABLE Comments (
+    CommentID INT PRIMARY KEY IDENTITY(1,1),
+    PostID INT FOREIGN KEY REFERENCES Posts(PostID),
+    UserID INT FOREIGN KEY REFERENCES Users(UserID),
+    CommentText NVARCHAR(MAX) NOT NULL,
+    CreatedDate DATETIME DEFAULT GETDATE()
+);
+
+-- جدول الإعجابات في المجتمع
+CREATE TABLE Likes (
+    LikeID INT PRIMARY KEY IDENTITY(1,1),
+    PostID INT FOREIGN KEY REFERENCES Posts(PostID),
+    UserID INT FOREIGN KEY REFERENCES Users(UserID)
+);
+
+-- جدول المتابعين في المجتمع
+CREATE TABLE Followers (
+    FollowerID INT PRIMARY KEY IDENTITY(1,1),
+    UserID INT FOREIGN KEY REFERENCES Users(UserID),
+    FollowedUserID INT FOREIGN KEY REFERENCES Users(UserID)
+);
+
+-- جدول المفضلات
+CREATE TABLE Favorites (
+    FavoriteID INT PRIMARY KEY IDENTITY(1,1),
+    UserID INT FOREIGN KEY REFERENCES Users(UserID),
+    MotorcycleID INT NULL FOREIGN KEY REFERENCES Motorcycles(MotorcycleID),
+    StoreID INT NULL FOREIGN KEY REFERENCES Stores(StoreID),
+    EventID INT NULL FOREIGN KEY REFERENCES Events(EventID)
+);
+
+-- جدول التنبيهات
+CREATE TABLE Notifications (
+    NotificationID INT PRIMARY KEY IDENTITY(1,1),
+    UserID INT FOREIGN KEY REFERENCES Users(UserID),
+    NotificationText NVARCHAR(MAX) NOT NULL,
+    IsRead BIT DEFAULT 0,
+    CreatedDate DATETIME DEFAULT GETDATE()
+);
+
+-- جدول المعاملات
+CREATE TABLE Transactions (
+    TransactionID INT PRIMARY KEY IDENTITY(1,1),
+    UserID INT FOREIGN KEY REFERENCES Users(UserID),
+    MotorcycleID INT NULL FOREIGN KEY REFERENCES Motorcycles(MotorcycleID),
+    TransactionType NVARCHAR(50) NOT NULL, -- Sale or Rent
+    Amount DECIMAL(18, 2) NOT NULL,
+    TransactionDate DATETIME DEFAULT GETDATE()
+);

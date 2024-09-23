@@ -1,0 +1,50 @@
+1. جدول Users:
+UserID (Primary Key, int, Identity)
+Username (nvarchar, Unique)
+Email (nvarchar, Unique)
+PasswordHash (nvarchar)
+FirstName (nvarchar)
+LastName (nvarchar)
+PhoneNumber (nvarchar)
+Role (nvarchar) – لتحديد صلاحيات المستخدم (مثل: Admin، User)
+CreatedDate (datetime)
+IsActive (bit)
+2. جدول Motorcycles:
+MotorcycleID (Primary Key, int, Identity)
+UserID (Foreign Key, int) – يربط الدراجة بالمستخدم الذي قام بإضافتها.
+Title (nvarchar) – اسم الدراجة أو عنوان العرض.
+Description (nvarchar) – وصف الدراجة.
+Price (decimal) – سعر البيع أو الإيجار.
+IsForSale (bit) – تحديد ما إذا كانت الدراجة للبيع أو للإيجار.
+ImageURL (nvarchar) – رابط صورة الدراجة.
+Location (nvarchar) – موقع الدراجة أو مكان الإيجار.
+CreatedDate (datetime)
+3. جدول Stores:
+StoreID (Primary Key, int, Identity)
+Name (nvarchar) – اسم المحل التجاري.
+Address (nvarchar) – عنوان المحل.
+PhoneNumber (nvarchar) – رقم الهاتف.
+Email (nvarchar) – البريد الإلكتروني للمحل.
+WebsiteURL (nvarchar) – رابط موقع المحل الإلكتروني.
+OpeningHours (nvarchar) – ساعات العمل.
+CreatedDate (datetime)
+4. جدول Events:
+EventID (Primary Key, int, Identity)
+UserID (Foreign Key, int) – يربط الفعالية بالمستخدم الذي قام بإنشائها.
+Title (nvarchar) – عنوان الفعالية.
+Description (nvarchar) – وصف الفعالية.
+Location (nvarchar) – موقع الفعالية.
+EventDate (datetime) – تاريخ ووقت الفعالية.
+CreatedDate (datetime)
+5. جدول MotorcycleImages:
+ImageID (Primary Key, int, Identity)
+MotorcycleID (Foreign Key, int) – يربط الصورة بالدراجة المرتبطة بها.
+ImageURL (nvarchar) – رابط الصورة.
+CreatedDate (datetime)
+6. جدول Favorites:
+FavoriteID (Primary Key, int, Identity)
+UserID (Foreign Key, int) – المستخدم الذي قام بوضع العنصر في المفضلة.
+MotorcycleID (Foreign Key, int, nullable) – مرجع للدراجة المفضلة (اختياري).
+StoreID (Foreign Key, int, nullable) – مرجع للمحل المفضل (اختياري).
+EventID (Foreign Key, int, nullable) – مرجع للفعالية المفضلة (اختياري).
+CreatedDate (datetime)

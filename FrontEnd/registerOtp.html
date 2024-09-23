@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <!-- Button to trigger the modal -->
+<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#otpModal">
+    Verify OTP
+</button>
+
+<!-- OTP Modal -->
+<div class="modal fade" id="otpModal" tabindex="-1" role="dialog" aria-labelledby="otpModalLabel" aria-hidden="true">
+<div class="modal-dialog" role="document">
+    <div class="modal-content">
+    <div class="modal-header">
+        <h5 class="modal-title" id="otpModalLabel">OTP Confirmation</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+    <div class="modal-body">
+        <form id="otpForm">
+        <div class="form-group">
+            <label for="otp">Enter OTP</label>
+            <input type="text" class="form-control" id="otp" placeholder="Enter OTP" required>
+        </div>
+        <button type="submit" class="btn btn-primary">Submit OTP</button>
+        </form>
+    </div>
+    </div>
+</div>
+</div>
+
+<!-- OTP Submission Script -->
+<script>
+document.getElementById('otpForm').addEventListener('submit', function (e) {
+    e.preventDefault();
+    
+    const otp = document.getElementById('otp').value;
+
+    // Call the backend to validate OTP
+    fetch('/api/user/confirm-otp', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ otp }),
+    })
+    .then(response => response.json())
+    .then(data => {
+        if (data.success) {
+            alert('OTP confirmed!');
+            // Redirect user to login or dashboard
+            window.location.href = "/dashboard";
+        } else {
+            alert('Invalid OTP');
+        }
+    });
+});
+</script>
+
+</body>
+</html>

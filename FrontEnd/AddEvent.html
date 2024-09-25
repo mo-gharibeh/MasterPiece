@@ -110,52 +110,39 @@
         <!-- Search End -->
 
 
-
-        <!-- Services Section Start -->
-        <div class="container py-5">
-            <div class="text-center mb-5">
-                <h1 class="display-5">Our Services</h1>
-                <p class="lead text-primary">Manage your motorcycle-related business with ease</p>
-            </div>
-            <div class="row g-4">
-                <!-- Card 1: Add Product -->
-                <div class="col-lg-4 col-md-6">
-                    <div class="card h-100 text-center shadow-sm">
-                        <div class="card-body">
-                            <i class="fas fa-box fa-3x mb-3 text-primary"></i>
-                            <h5 class="card-title">Add Product</h5>
-                            <p class="card-text">Upload and showcase new products for sale or rent in your shop.</p>
-                            <a href="AddProduct.html" class="btn btn-primary">Get Started</a>
-                        </div>
+        <!-- Event Form Start -->
+        <div class="container my-5">
+            <h2 class="text-center mb-4">Add New Event</h2>
+            <form id="eventForm" action="/api/events" method="POST">
+                <div class="row mb-3">
+                    <div class="col">
+                        <label for="eventName" class="form-label">Event Name</label>
+                        <input type="text" class="form-control" id="eventName" name="eventName" placeholder="Enter event name" required>
+                    </div>
+                    <div class="col">
+                        <label for="eventDate" class="form-label">Event Date</label>
+                        <input type="date" class="form-control" id="eventDate" name="eventDate" required>
                     </div>
                 </div>
-
-                <!-- Card 2: Add Shop -->
-                <div class="col-lg-4 col-md-6">
-                    <div class="card h-100 text-center shadow-sm">
-                        <div class="card-body">
-                            <i class="fas fa-store fa-3x mb-3 text-primary"></i>
-                            <h5 class="card-title">Add Shop</h5>
-                            <p class="card-text">Create your own shop to sell or rent motorcycles and accessories.</p>
-                            <a onclick="goToAddStore()" class="btn btn-primary">Get Started</a>
-                        </div>
+                <div class="mb-3">
+                    <label for="eventDescription" class="form-label">Event Description</label>
+                    <textarea class="form-control" id="eventDescription" name="eventDescription" rows="4" placeholder="Enter event description" required></textarea>
+                </div>
+                <div class="row mb-3">
+                    <div class="col">
+                        <label for="eventLocation" class="form-label">Location</label>
+                        <input type="text" class="form-control" id="eventLocation" name="eventLocation" placeholder="Enter location" required>
+                    </div>
+                    <div class="col">
+                        <label for="eventOrganizer" class="form-label">Organizer</label>
+                        <input type="text" class="form-control" id="eventOrganizer" name="eventOrganizer" placeholder="Enter organizer name" required>
                     </div>
                 </div>
-
-                <!-- Card 3: Add Event -->
-                <div class="col-lg-4 col-md-6">
-                    <div class="card h-100 text-center shadow-sm">
-                        <div class="card-body">
-                            <i class="fas fa-calendar-alt fa-3x mb-3 text-primary"></i>
-                            <h5 class="card-title">Add Event</h5>
-                            <p class="card-text">Organize motorcycle events, rallies, and meetups effortlessly.</p>
-                            <a onclick="goToAddEvent()" class="btn btn-primary">Get Started</a>
-                        </div>
-                    </div>
-                </div>
-            </div>
+                <button type="submit" class="btn btn-primary">Submit Event</button>
+            </form>
         </div>
-        <!-- Services Section End -->
+        <!-- Event Form End -->
+
 
 
         
@@ -242,6 +229,7 @@
 <!-- Footer End -->
 
 
+
         <!-- Back to Top -->
         <a href="#" class="btn btn-lg btn-primary btn-lg-square back-to-top"><i class="bi bi-arrow-up"></i></a>
     </div>
@@ -259,9 +247,6 @@
         
     <!-- Template Javascript -->
     <script src="js/main.js"></script>
-    <!-- Page JavaScript -->
-    <script src="Services.js"></script>
-
 </body>
 
 </html>

@@ -23,6 +23,12 @@ CREATE TABLE Users (
 ALTER TABLE Users
 ADD PasswordSalt VARBINARY(MAX) NULL;
 
+ALTER TABLE Users
+ADD PhoneNumber NVARCHAR(20)NULL ;
+
+ALTER TABLE Users
+ADD Location NVARCHAR(50) NULL;
+
 -- جدول المحلات التجارية
 CREATE TABLE Stores (
     StoreID INT PRIMARY KEY IDENTITY(1,1),
@@ -224,3 +230,35 @@ VALUES
 ('Helmet', 'Helmets for rider safety', 'https://m.media-amazon.com/images/I/61xv8k5p1gL._AC_UF1000,1000_QL80_.jpg', 1),
 ('Protection', 'Protective gear and armor', 'https://m.media-amazon.com/images/I/61G0KfBVEoL._AC_SX679_.jpg', 1),
 ('Accessories', 'Motorcycle accessories and parts', 'https://images-cdn.ubuy.co.in/635a5543abac6f2be33f9b67-kithelp-bike-accessories-set-for-adult.jpg', 1);
+
+-- Inserting 4 products for the 'Motorcycle' category (CategoryID = 1)
+INSERT INTO Products (CategoryID, ProductName, Description, SellerID, ProductType, Price, RentalPrice, RentalDuration, StockQuantity, ImageURL, Brand, ProductCondition)
+VALUES
+(1, 'Honda CB200X', 'Honda CB200X sports motorcycle', 6, 'Sale', 1500.00, NULL, NULL, 5, 'https://www.honda2wheelersindia.com/assets/images/products/Motorcycle/CB200__dev23.jpg', 'Honda', 'New'),
+(1, 'Yamaha R3', 'Yamaha R3 sports motorcycle', 6, 'Rent', NULL, 100.00, 7, 2, 'https://example.com/yamaha-r3.jpg', 'Yamaha', 'Used'),
+(1, 'Suzuki Gixxer', 'Suzuki Gixxer standard motorcycle', 6, 'Sale', 1200.00, NULL, NULL, 3, 'https://example.com/suzuki-gixxer.jpg', 'Suzuki', 'New'),
+(1, 'Kawasaki Ninja', 'Kawasaki Ninja 400 sports motorcycle', 6, 'Rent', NULL, 150.00, 10, 4, 'https://example.com/kawasaki-ninja.jpg', 'Kawasaki', 'Used');
+
+-- Inserting 4 products for the 'Helmet' category (CategoryID = 2)
+INSERT INTO Products (CategoryID, ProductName, Description, SellerID, ProductType, Price, RentalPrice, RentalDuration, StockQuantity, ImageURL, Brand, ProductCondition)
+VALUES
+(2, 'HJC CL-17 Full Face', 'HJC full face helmet', 6, 'Sale', 100.00, NULL, NULL, 10, 'https://m.media-amazon.com/images/I/61xv8k5p1gL._AC_UF1000,1000_QL80_.jpg', 'HJC', 'New'),
+(2, 'Shoei RF-1200', 'Shoei premium helmet', 6, 'Sale', 300.00, NULL, NULL, 5, 'https://example.com/shoei-rf1200.jpg', 'Shoei', 'New'),
+(2, 'Bell Qualifier', 'Bell budget full face helmet', 6, 'Sale', 150.00, NULL, NULL, 8, 'https://example.com/bell-qualifier.jpg', 'Bell', 'New'),
+(2, 'Arai Corsair X', 'Arai high-end helmet', 6, 'Sale', 400.00, NULL, NULL, 3, 'https://example.com/arai-corsair.jpg', 'Arai', 'New');
+
+-- Inserting 4 products for the 'Protection' category (CategoryID = 3)
+INSERT INTO Products (CategoryID, ProductName, Description, SellerID, ProductType, Price, RentalPrice, RentalDuration, StockQuantity, ImageURL, Brand, ProductCondition)
+VALUES
+(3, 'Alpinestars Jacket', 'Alpinestars motorcycle jacket with armor', 6, 'Sale', 200.00, NULL, NULL, 7, 'https://m.media-amazon.com/images/I/61G0KfBVEoL._AC_SX679_.jpg', 'Alpinestars', 'New'),
+(3, 'Dainese Gloves', 'Dainese protective gloves', 6, 'Sale', 50.00, NULL, NULL, 15, 'https://example.com/dainese-gloves.jpg', 'Dainese', 'New'),
+(3, 'Fox Racing Boots', 'Fox Racing motorcycle boots', 6, 'Sale', 180.00, NULL, NULL, 6, 'https://example.com/fox-racing-boots.jpg', 'Fox Racing', 'New'),
+(3, 'Klim Pants', 'Klim protective pants', 6, 'Sale', 120.00, NULL, NULL, 4, 'https://example.com/klim-pants.jpg', 'Klim', 'New');
+
+-- Inserting 4 products for the 'Accessories' category (CategoryID = 4)
+INSERT INTO Products (CategoryID, ProductName, Description, SellerID, ProductType, Price, RentalPrice, RentalDuration, StockQuantity, ImageURL, Brand, ProductCondition)
+VALUES
+(4, 'Motorcycle Cover', 'Protective cover for motorcycles', 6, 'Sale', 30.00, NULL, NULL, 20, 'https://images-cdn.ubuy.co.in/635a5543abac6f2be33f9b67-kithelp-bike-accessories-set-for-adult.jpg', 'Generic', 'New'),
+(4, 'Phone Mount', 'Universal phone mount for motorcycles', 6, 'Sale', 15.00, NULL, NULL, 25, 'https://example.com/phone-mount.jpg', 'Generic', 'New'),
+(4, 'Saddlebags', 'Waterproof saddlebags for motorcycles', 6, 'Sale', 80.00, NULL, NULL, 10, 'https://example.com/saddlebags.jpg', 'Generic', 'New'),
+(4, 'Motorcycle Stand', 'Adjustable motorcycle stand', 6, 'Sale', 60.00, NULL, NULL, 12, 'https://example.com/motorcycle-stand.jpg', 'Generic', 'New');

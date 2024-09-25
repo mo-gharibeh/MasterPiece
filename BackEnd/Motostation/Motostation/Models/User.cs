@@ -29,6 +29,10 @@ public partial class User
 
     public byte[]? PasswordSalt { get; set; }
 
+    public string? PhoneNumber { get; set; }
+
+    public string? Location { get; set; }
+
     public virtual ICollection<Comment> Comments { get; set; } = new List<Comment>();
 
     public virtual ICollection<Event> Events { get; set; } = new List<Event>();

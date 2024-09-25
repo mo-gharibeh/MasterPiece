@@ -109,57 +109,63 @@
         </div>
         <!-- Search End -->
 
-
-
-        <!-- Services Section Start -->
-        <div class="container py-5">
-            <div class="text-center mb-5">
-                <h1 class="display-5">Our Services</h1>
-                <p class="lead text-primary">Manage your motorcycle-related business with ease</p>
+        <!-- Subscription Cards Section -->
+    <div class="container my-5">
+        <h2 class="text-center mb-5">Our Subscription Plans</h2>
+        <div class="row justify-content-center">
+            <!-- Free Subscription Card -->
+            <div class="col-md-4 mb-4">
+                <div class="card subscription-card">
+                    <div class="card-header text-center">
+                        <h4>Free Plan</h4>
+                    </div>
+                    <div class="card-body text-center">
+                        <h1 class="card-title">$0</h1>
+                        <p class="card-text">- Upload products</p>
+                        <p class="card-text">- Browse the website</p>
+                        <p class="card-text">- No ability to upload shops or events</p>
+                        
+                        <!-- <a href="register.html" class="btn btn-subscribe">Sign Up</a> -->
+                    </div>
+                </div>
             </div>
-            <div class="row g-4">
-                <!-- Card 1: Add Product -->
-                <div class="col-lg-4 col-md-6">
-                    <div class="card h-100 text-center shadow-sm">
-                        <div class="card-body">
-                            <i class="fas fa-box fa-3x mb-3 text-primary"></i>
-                            <h5 class="card-title">Add Product</h5>
-                            <p class="card-text">Upload and showcase new products for sale or rent in your shop.</p>
-                            <a href="AddProduct.html" class="btn btn-primary">Get Started</a>
-                        </div>
+
+            <!-- One-time Paid Subscription Card -->
+            <div class="col-md-4 mb-4">
+                <div class="card subscription-card">
+                    <div class="card-header text-center">
+                        <h4>One-time Plan</h4>
+                    </div>
+                    <div class="card-body text-center">
+                        <h1 class="card-title">$100</h1>
+                        <p class="card-text">- Upload products</p>
+                        <p class="card-text">- Upload 1 Shop</p>
+                        <p class="card-text">- Upload 1 Event</p>
+                        <a onclick="OneTimePlane()" class="btn btn-primary">Subscribe</a>
                     </div>
                 </div>
+            </div>
 
-                <!-- Card 2: Add Shop -->
-                <div class="col-lg-4 col-md-6">
-                    <div class="card h-100 text-center shadow-sm">
-                        <div class="card-body">
-                            <i class="fas fa-store fa-3x mb-3 text-primary"></i>
-                            <h5 class="card-title">Add Shop</h5>
-                            <p class="card-text">Create your own shop to sell or rent motorcycles and accessories.</p>
-                            <a onclick="goToAddStore()" class="btn btn-primary">Get Started</a>
-                        </div>
+            <!-- Monthly Subscription Card -->
+            <div class="col-md-4 mb-4">
+                <div class="card subscription-card">
+                    <div class="card-header text-center">
+                        <h4>Monthly Plan</h4>
                     </div>
-                </div>
-
-                <!-- Card 3: Add Event -->
-                <div class="col-lg-4 col-md-6">
-                    <div class="card h-100 text-center shadow-sm">
-                        <div class="card-body">
-                            <i class="fas fa-calendar-alt fa-3x mb-3 text-primary"></i>
-                            <h5 class="card-title">Add Event</h5>
-                            <p class="card-text">Organize motorcycle events, rallies, and meetups effortlessly.</p>
-                            <a onclick="goToAddEvent()" class="btn btn-primary">Get Started</a>
-                        </div>
+                    <div class="card-body text-center">
+                        <h1 class="card-title">$50/month</h1>
+                        <p class="card-text">- Upload products</p>
+                        <p class="card-text">- Unlimited Shop Uploads</p>
+                        <p class="card-text">- Unlimited Event Uploads</p>
+                        <a href="register.html" class="btn btn-primary">Subscribe</a>
                     </div>
                 </div>
             </div>
         </div>
-        <!-- Services Section End -->
+    </div>
 
 
-        
-<!-- Footer Start -->
+    <!-- Footer Start -->
 <div class="container-fluid bg-dark text-white-50 footer pt-5 mt-5 wow fadeIn" data-wow-delay="0.1s">
     <div class="container py-5">
         <div class="row g-5">
@@ -259,9 +265,7 @@
         
     <!-- Template Javascript -->
     <script src="js/main.js"></script>
-    <!-- Page JavaScript -->
-    <script src="Services.js"></script>
-
+    <script src="Subscriptions.js"></script>
 </body>
 
 </html>

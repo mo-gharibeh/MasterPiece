@@ -108,57 +108,53 @@
             </div>
         </div>
         <!-- Search End -->
-
-
-
-        <!-- Services Section Start -->
-        <div class="container py-5">
-            <div class="text-center mb-5">
-                <h1 class="display-5">Our Services</h1>
-                <p class="lead text-primary">Manage your motorcycle-related business with ease</p>
-            </div>
-            <div class="row g-4">
-                <!-- Card 1: Add Product -->
-                <div class="col-lg-4 col-md-6">
-                    <div class="card h-100 text-center shadow-sm">
-                        <div class="card-body">
-                            <i class="fas fa-box fa-3x mb-3 text-primary"></i>
-                            <h5 class="card-title">Add Product</h5>
-                            <p class="card-text">Upload and showcase new products for sale or rent in your shop.</p>
-                            <a href="AddProduct.html" class="btn btn-primary">Get Started</a>
-                        </div>
+<!-- Add Store Form Start -->
+<div class="container mt-5">
+    <h2 class="text-center mb-4">Add New Store</h2>
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            <div class="card p-4">
+                <form action="add_store.php" method="POST" enctype="multipart/form-data">
+                    <div class="mb-3">
+                        <label for="storeName" class="form-label">Store Name</label>
+                        <input type="text" class="form-control" id="storeName" name="storeName" required>
                     </div>
-                </div>
-
-                <!-- Card 2: Add Shop -->
-                <div class="col-lg-4 col-md-6">
-                    <div class="card h-100 text-center shadow-sm">
-                        <div class="card-body">
-                            <i class="fas fa-store fa-3x mb-3 text-primary"></i>
-                            <h5 class="card-title">Add Shop</h5>
-                            <p class="card-text">Create your own shop to sell or rent motorcycles and accessories.</p>
-                            <a onclick="goToAddStore()" class="btn btn-primary">Get Started</a>
-                        </div>
+                    <div class="mb-3">
+                        <label for="address" class="form-label">Address</label>
+                        <input type="text" class="form-control" id="address" name="address" required>
                     </div>
-                </div>
-
-                <!-- Card 3: Add Event -->
-                <div class="col-lg-4 col-md-6">
-                    <div class="card h-100 text-center shadow-sm">
-                        <div class="card-body">
-                            <i class="fas fa-calendar-alt fa-3x mb-3 text-primary"></i>
-                            <h5 class="card-title">Add Event</h5>
-                            <p class="card-text">Organize motorcycle events, rallies, and meetups effortlessly.</p>
-                            <a onclick="goToAddEvent()" class="btn btn-primary">Get Started</a>
-                        </div>
+                    <div class="mb-3">
+                        <label for="phone" class="form-label">Phone</label>
+                        <input type="text" class="form-control" id="phone" name="phone" required>
                     </div>
-                </div>
+                    <div class="mb-3">
+                        <label for="email" class="form-label">Email</label>
+                        <input type="email" class="form-control" id="email" name="email">
+                    </div>
+                    <div class="mb-3">
+                        <label for="workingHours" class="form-label">Working Hours</label>
+                        <input type="text" class="form-control" id="workingHours" name="workingHours">
+                    </div>
+                    <div class="mb-3">
+                        <label for="storeImage" class="form-label">Store Image</label>
+                        <input type="file" class="form-control" id="storeImage" name="storeImage">
+                    </div>
+                    <div class="mb-3">
+                        <label for="location" class="form-label">Location</label>
+                        <input type="text" class="form-control" id="location" name="location">
+                    </div>
+                    <!-- <div class="mb-3">
+                        <label for="managerID" class="form-label">Manager ID</label>
+                        <input type="number" class="form-control" id="managerID" name="managerID" required>
+                    </div> -->
+                    <button type="submit" class="btn btn-primary w-100">Add Store</button>
+                </form>
             </div>
         </div>
-        <!-- Services Section End -->
+    </div>
+</div>
+<!-- Add Store Form End -->
 
-
-        
 <!-- Footer Start -->
 <div class="container-fluid bg-dark text-white-50 footer pt-5 mt-5 wow fadeIn" data-wow-delay="0.1s">
     <div class="container py-5">
@@ -259,9 +255,6 @@
         
     <!-- Template Javascript -->
     <script src="js/main.js"></script>
-    <!-- Page JavaScript -->
-    <script src="Services.js"></script>
-
 </body>
 
 </html>

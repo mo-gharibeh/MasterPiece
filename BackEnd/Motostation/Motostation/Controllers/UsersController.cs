@@ -24,6 +24,33 @@ namespace Motostation.Controllers
             _cache = cache;
         }
 
+        [HttpGet("id")]
+        public IActionResult GetUserById(int id)
+        {
+            var user = _db.Users.Find(id);
+            return Ok(user);
+        }
+
+        [HttpPut("updateRole/{id}")]
+        public IActionResult UpdateUserRole(int id)
+        {
+            // البحث عن المستخدم باستخدام UserID
+            var user = _db.Users.Find(id);
+            if (user == null)
+            {
+                return NotFound("User not found");
+            }
+
+            // تحديث الدور إلى 'Manager'
+            user.Role = "Manager";
+
+            // حفظ التغييرات في قاعدة البيانات
+            _db.SaveChanges();
+
+            return Ok(new { message = "User role updated to Manager successfully!" });
+        }
+
+
         [HttpPost("register")]
         public IActionResult Register([FromForm] RegisterDto model) // Using FromForm to map form data
         {
@@ -34,7 +61,7 @@ namespace Motostation.Controllers
                 if (existingUser != null)
                 {
                     return BadRequest(new { success = false, message = "Email already exists" });
-                }
+                 }
 
                 // Generate password hash and salt
                 byte[] passwordHash, passwordSalt;

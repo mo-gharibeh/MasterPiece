@@ -14,13 +14,13 @@ async function GitAllCategories(){
         <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.3s">
             <div class="property-item rounded overflow-hidden">
                 <div class="position-relative overflow-hidden">
-                    <a onclick="saveCategoryId(${element.categoryId})"><img class="img-fluid" src="${element.imageUrl}" alt=""></a>
+                    <a onclick="saveCategoryId(${element.categoryId}, '${element.categoryName}')"><img class="img-fluid" src="${element.imageUrl}" alt=""></a>
                     <!-- <div class="bg-primary rounded text-white position-absolute start-0 top-0 m-4 py-1 px-3">For Sell</div> -->
                     <div class="bg-white rounded-top text-primary position-absolute start-0 bottom-0 mx-4 pt-1 px-3">${element.categoryName}</div>
                 </div>
                 <div class="p-4 pb-0">
                     <!-- <h5 class="text-primary mb-3">$3,345</h5> -->
-                    <a class="d-block h5 mb-2" onclick="saveCategoryId(${element.categoryId})">${element.description}</a>
+                    <a class="d-block h5 mb-2" onclick="saveCategoryId(${element.categoryId}, ${element.categoryName})">${element.description}</a>
                     <!-- <p><i class="fa fa-map-marker-alt text-primary me-2"></i>123 Street, Amman, Jordan</p> -->
                 </div>                                    
             </div>
@@ -32,8 +32,9 @@ async function GitAllCategories(){
 
 GitAllCategories();
 
-function saveCategoryId(id){
+function saveCategoryId(id, name){
     localStorage.setItem("categoryId", id);
+    localStorage.setItem("categoryName", name);
     window.location.href = "rent.html";  // Redirect to Property Listing page after saving category id in local storage.
 }
 

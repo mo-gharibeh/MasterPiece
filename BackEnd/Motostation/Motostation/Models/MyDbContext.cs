@@ -415,7 +415,9 @@ public partial class MyDbContext : DbContext
             entity.Property(e => e.Email).HasMaxLength(100);
             entity.Property(e => e.FullName).HasMaxLength(200);
             entity.Property(e => e.LastLoginDate).HasColumnType("datetime");
+            entity.Property(e => e.Location).HasMaxLength(50);
             entity.Property(e => e.Password).HasMaxLength(256);
+            entity.Property(e => e.PhoneNumber).HasMaxLength(20);
             entity.Property(e => e.ProfileImageUrl).HasColumnName("ProfileImageURL");
             entity.Property(e => e.Role)
                 .HasMaxLength(50)

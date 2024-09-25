@@ -106,21 +106,21 @@
             <div class="container">
                 <div class="row g-5">
                     <div class="col-lg-6">
-                        <img class="img-fluid rounded" src="img/01.jpg" alt="Product Image">
+                        <img id="productImage" class="img-fluid rounded" src="" alt="Product Image">
                     </div>
                     <div class="col-lg-6">
-                        <h1 class="mb-3">Product Name</h1>
-                        <p><strong>Category:</strong> Motorcycle / Helmet / Protection / Accessories</p>
-                        <p><strong>Brand:</strong> Product Brand</p>
-                        <p><strong>Condition:</strong> New / Used</p>
-                        <p><strong>Type:</strong> Sale / Rent</p>
-                        <p><strong>Price:</strong> $1200.00</p>
-                        <p><strong>Rental Price:</strong> $50/day</p>
-                        <p><strong>Stock Quantity:</strong> 5 available</p>
-                        <p><strong>Description:</strong> Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur pharetra, justo a luctus viverra, mauris neque tincidunt ligula, eget scelerisque lectus justo in risus.</p>
-                        <p><strong>Seller:</strong> John Doe</p>
-                        <p><strong>Contact Seller:</strong> example@seller.com | +123 456 7890</p>
-                        <a href="#" class="btn btn-primary">Contact Seller</a>
+                        <h1 class="mb-3" id="productName">Product Name</h1>
+                        <p><strong>Category:</strong> <span id="productCategory">Motorcycle / Helmet / Protection / Accessories</span></p>
+                        <p><strong>Brand:</strong> <span id="productBrand">Product Brand</span></p>
+                        <p><strong>Condition:</strong> <span id="productCondition">New / Used</span></p>
+                        <p><strong>Type:</strong> <span id="productType">Sale / Rent</span></p>
+                        <p><strong>Price:</strong> <span id="productPrice">$0.00</span></p>
+                        <p id="rentalPriceContainer"><strong>Rental Price:</strong> <span id="rentalPrice">$0/day</span></p>
+                        <p><strong>Stock Quantity:</strong> <span id="stockQuantity">0 available</span></p>
+                        <p><strong>Description:</strong> <span id="productDescription">Lorem ipsum dolor sit amet...</span></p>
+                        <p><strong>Seller:</strong> <span id="sellerName">John Doe</span></p>
+                        <p><strong>Contact Seller:</strong> <span id="sellerContact">example@seller.com | +123 456 7890</span></p>
+                        <a href="tel:0778945623" class="btn btn-primary">Contact Seller</a>
                     </div>
                 </div>
             </div>
@@ -283,6 +283,9 @@
 
     <!-- Template Javascript -->
     <script src="js/main.js"></script>
+
+    <!-- page Javascript -->
+    <script src="ProductDetails.js"></script>
 </body>
 
 </html>

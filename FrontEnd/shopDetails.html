@@ -106,16 +106,16 @@
             <div class="container">
                 <div class="row g-5">
                     <div class="col-lg-6">
-                        <img class="img-fluid rounded" src="img/06.jpg" alt="Store Image">
+                        <img class="img-fluid rounded" id="storeImage" src="img/06.jpg" alt="Store Image">
                     </div>
                     <div class="col-lg-6">
-                        <h1 class="mb-3">Store Name</h1>
-                        <p><strong>Address:</strong> 123 Main Street, City, Country</p>
-                        <p><strong>Phone:</strong> +123 456 7890</p>
-                        <p><strong>Email:</strong> example@store.com</p>
-                        <p><strong>Working Hours:</strong> Mon-Fri 9:00 AM - 5:00 PM</p>
-                        <p><strong>Location:</strong> [Store Location Details]</p>
-                        <p><strong>Description:</strong> Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur pharetra, justo a luctus viverra, mauris neque tincidunt ligula, eget scelerisque lectus justo in risus.</p>
+                        <h1 class="mb-3" id="storeName">Store Name</h1>
+                        <p><strong>Address:</strong> <span id="storeAddress">123 Main Street, City, Country</span></p>
+                        <p><strong>Phone:</strong> <span id="storePhone">+123 456 7890</span></p>
+                        <p><strong>Email:</strong> <span id="storeEmail">example@store.com</span></p>
+                        <p><strong>Working Hours:</strong> <span id="storeWorkingHours">Mon-Fri 9:00 AM - 5:00 PM</span></p>
+                        <!-- <p><strong>Location:</strong> <span id="storeLocation">[Store Location Details]</span></p>
+                        <p><strong>Description:</strong> <span id="storeDescription">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur pharetra, justo a luctus viverra, mauris neque tincidunt ligula, eget scelerisque lectus justo in risus.</span></p> -->
                     </div>
                 </div>
             </div>
@@ -290,6 +290,7 @@
 
     <!-- Template Javascript -->
     <script src="js/main.js"></script>
+    <script src="shopDetails.js"></script>
 </body>
 
 </html>

@@ -113,7 +113,7 @@
         <!-- Event Form Start -->
         <div class="container my-5">
             <h2 class="text-center mb-4">Add New Event</h2>
-            <form id="eventForm" action="/api/events" method="POST">
+            <form id="eventForm" >
                 <div class="row mb-3">
                     <div class="col">
                         <label for="eventName" class="form-label">Event Name</label>
@@ -133,12 +133,12 @@
                         <label for="eventLocation" class="form-label">Location</label>
                         <input type="text" class="form-control" id="eventLocation" name="eventLocation" placeholder="Enter location" required>
                     </div>
-                    <div class="col">
+                    <!-- <div class="col">
                         <label for="eventOrganizer" class="form-label">Organizer</label>
                         <input type="text" class="form-control" id="eventOrganizer" name="eventOrganizer" placeholder="Enter organizer name" required>
-                    </div>
+                    </div> -->
                 </div>
-                <button type="submit" class="btn btn-primary">Submit Event</button>
+                <button type="submit" onclick="addEventDetailes()" class="btn btn-primary">Submit Event</button>
             </form>
         </div>
         <!-- Event Form End -->
@@ -247,6 +247,8 @@
         
     <!-- Template Javascript -->
     <script src="js/main.js"></script>
+    <script src="AddEvent.js"></script>
+
 </body>
 
 </html>

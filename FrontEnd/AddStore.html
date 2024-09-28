@@ -114,7 +114,7 @@
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card p-4">
-                <form action="add_store.php" method="POST" enctype="multipart/form-data">
+                <form>
                     <div class="mb-3">
                         <label for="storeName" class="form-label">Store Name</label>
                         <input type="text" class="form-control" id="storeName" name="storeName" required>
@@ -141,13 +141,13 @@
                     </div>
                     <div class="mb-3">
                         <label for="location" class="form-label">Location</label>
-                        <input type="text" class="form-control" id="location" name="location">
+                        <input type="text" class="form-control" id="storeLocation " name="storeLocation ">
                     </div>
                     <!-- <div class="mb-3">
                         <label for="managerID" class="form-label">Manager ID</label>
                         <input type="number" class="form-control" id="managerID" name="managerID" required>
                     </div> -->
-                    <button type="submit" class="btn btn-primary w-100">Add Store</button>
+                    <button type="button" onclick="getStoreDetails()"  class="btn btn-primary w-100">Add Store</button>
                 </form>
             </div>
         </div>
@@ -255,6 +255,8 @@
         
     <!-- Template Javascript -->
     <script src="js/main.js"></script>
+
+    <script src="AddStore.js"></script>
 </body>
 
 </html>

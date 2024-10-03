@@ -13,6 +13,7 @@ namespace Motostation.Controllers
     public class UsersController : ControllerBase
     {
         private readonly MyDbContext _db;
+        private readonly TokenGenerator _tokenGenerator;
         private readonly IEmailService _emailService; // Add email service
         private readonly IMemoryCache _cache;
 
@@ -24,11 +25,106 @@ namespace Motostation.Controllers
             _cache = cache;
         }
 
-        [HttpGet("id")]
+        [HttpGet("{id}")]
         public IActionResult GetUserById(int id)
         {
             var user = _db.Users.Find(id);
             return Ok(user);
+        }
+
+        [HttpGet("posts/userId/{id}")]
+        public IActionResult grtPost(int id)
+        {
+            var userPosts = _db.Posts.Where(s => s.UserId == id ).ToList();
+            return Ok(userPosts);
+        }
+
+        [HttpPut("editProfile/{id}")]
+        public IActionResult PutUser(int id, [FromForm] EditProfileDto editDto)
+        {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+
+            // Handle file upload if a new profile image is provided
+            if (editDto.ProfileImageUrl != null)
+            {
+                var uploadsFolderPath = Path.Combine(Directory.GetCurrentDirectory(), "Uploads");
+                if (!Directory.Exists(uploadsFolderPath))
+                {
+                    Directory.CreateDirectory(uploadsFolderPath);
+                }
+
+                var filePath = Path.Combine(uploadsFolderPath, editDto.ProfileImageUrl.FileName);
+                using (var stream = new FileStream(filePath, FileMode.Create))
+                {
+                    editDto.ProfileImageUrl.CopyTo(stream); // Synchronous file copy
+                }
+            }
+
+            // Retrieve the user from the database
+            var user = _db.Users.Find(id);
+            if (user == null)
+            {
+                return NotFound("User not found.");
+            }
+
+            // Update the user's details
+            user.FullName = editDto.FullName ?? user.FullName;
+            user.PhoneNumber = editDto.PhoneNumber ?? user.PhoneNumber;
+            user.Location = editDto.Location ?? user.Location;
+
+            // Update the profile image URL if a new image was uploaded
+            if (editDto.ProfileImageUrl != null)
+            {
+                user.ProfileImageUrl = editDto.ProfileImageUrl.FileName; // Save only the file name in the database
+            }
+
+            // Save changes to the database
+            _db.Users.Update(user);
+            _db.SaveChanges();
+
+            return Ok(new { message = "Profile updated successfully" });
+        }
+
+
+        // API for adding Posts to the database from body 
+        [HttpPost("addPost")]
+        public IActionResult AddPost([FromForm] AddPostDto postDto)
+        {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+            // Handle file upload if a new profile image is provided
+            if (postDto.ImageUrl != null)
+            {
+                var uploadsFolderPath = Path.Combine(Directory.GetCurrentDirectory(), "Uploads");
+                if (!Directory.Exists(uploadsFolderPath))
+                {
+                    Directory.CreateDirectory(uploadsFolderPath);
+                }
+
+                var filePath = Path.Combine(uploadsFolderPath, postDto.ImageUrl.FileName);
+                using (var stream = new FileStream(filePath, FileMode.Create))
+                {
+                    postDto.ImageUrl.CopyTo(stream); // Synchronous file copy
+                }
+
+                var post = new Post
+                {
+                    UserId = postDto.UserId,
+                    Content = postDto.Content,
+                    ImageUrl = postDto.ImageUrl.FileName, // Save only the file name in the database
+                };
+                // Save the post to the database
+                _db.Posts.Add(post);
+                _db.SaveChanges();
+
+            }
+            return Ok(new { message = "Post added successfully" });
+
         }
 
         [HttpPut("updateRole/{id}")]
@@ -61,7 +157,7 @@ namespace Motostation.Controllers
                 if (existingUser != null)
                 {
                     return BadRequest(new { success = false, message = "Email already exists" });
-                 }
+                }
 
                 // Generate password hash and salt
                 byte[] passwordHash, passwordSalt;
@@ -120,5 +216,30 @@ namespace Motostation.Controllers
         }
 
 
+
+        [HttpPost("login")]
+        public IActionResult Login([FromBody] LoginRequest login)
+        {
+            // التحقق من بيانات الاعتماد (اسم المستخدم وكلمة المرور)
+            var user = _db.Users
+                .FirstOrDefault(u => u.UserName == login.UserName && u.Password == login.Password);
+
+            if (user == null)
+            {
+                return Unauthorized("Invalid credentials.");
+            }
+
+            // إعادة الدور
+            var userRole = user.Role;  // يمكن أن يكون User أو Manager
+
+            return Ok(new { Role = userRole, UserId = user.UserId });
+        }
     }
+
+
+    public class LoginRequest
+    {
+        public string UserName { get; set; }
+        public string Password { get; set; }
+    } 
 }

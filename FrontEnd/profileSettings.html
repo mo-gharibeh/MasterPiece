@@ -149,36 +149,37 @@
             <div class="col-lg-8">
                 <div class="bg-light rounded p-4 mb-4">
                     <h4>Personal Information</h4>
-                    <form>
+                    <form id="editForm" >
+                        <br>
                         <div class="row g-3 mb-3">
-                            <div class="col-md-6">
-                                <label for="firstName" class="form-label">First Name</label>
-                                <input type="text" class="form-control" id="firstName" value="Mohammad">
+                            <div class="mb-3">
+                                <label for="firstName" class="form-label">Your Name</label>
+                                <input type="text" class="form-control" id="firstName" name="FullName" placeholder="Enter Full Name" >
                             </div>
-                            <div class="col-md-6">
+                            <!-- <div class="col-md-6">
                                 <label for="lastName" class="form-label">Last Name</label>
-                                <input type="text" class="form-control" id="lastName" value="Hussain">
-                            </div>
+                                <input type="text" class="form-control" id="lastName" placeholder="Last Name" >
+                            </div> -->
                         </div>
                         <div class="row g-3 mb-3">
-                            <div class="col-md-6">
+                            <!-- <div class="col-md-6">
                                 <label for="email" class="form-label">Email</label>
-                                <input type="email" class="form-control" id="email" value="motostation@gmail.com">
-                            </div>
-                            <div class="col-md-6">
+                                <input type="email" class="form-control" id="email" placeholder="Email" >
+                            </div> -->
+                            <div class="mb-3">
                                 <label for="phone" class="form-label">Phone Number</label>
-                                <input type="text" class="form-control" id="phone" value="+962 7 8060 8076">
+                                <input type="text" class="form-control" id="phone" name="PhoneNumber" placeholder="Enter Your Number" >
                             </div>
                         </div>
                         <div class="mb-3">
                             <label for="address" class="form-label">Address</label>
-                            <input type="text" class="form-control" id="address" value="30 Street, Irbid, Jordan">
+                            <input type="text" class="form-control" id="address" name="Location" placeholder="Address">
                         </div>
                         <div>
                             <label for="img">Edit Image</label>
-                            <input type="file" >
+                            <input type="file" class="form-control" id="img" name="ProfileImageUrl" >
                         </div>
-                        <button type="submit" class="btn btn-primary">Update Profile</button>
+                        <button type="submit" onclick="saveChanges()" class="btn btn-primary">Update Profile</button>
                         <br>
                     </form>
                 </div>
@@ -303,17 +304,17 @@
             </div>
         
             <script>
-                const signUpButton = document.getElementById('signUp');
-                const signInButton = document.getElementById('signIn');
-                const container = document.getElementById('containerr');
+                // const signUpButton = document.getElementById('signUp');
+                // const signInButton = document.getElementById('signIn');
+                // const container = document.getElementById('containerr');
 
-                signUpButton.addEventListener('click', () => {
-                    container.classList.add("right-panel-active");
-                });
+                // signUpButton.addEventListener('click', () => {
+                //     container.classList.add("right-panel-active");
+                // });
 
-                signInButton.addEventListener('click', () => {
-                    container.classList.remove("right-panel-active");
-                });
+                // signInButton.addEventListener('click', () => {
+                //     container.classList.remove("right-panel-active");
+                // });
             </script>
             <!-- JavaScript Libraries -->
             <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
@@ -325,6 +326,7 @@
         
             <!-- Template Javascript -->
             <script src="js/main.js"></script>
+            <script src="profileSettings.js"></script>
             
         </body>
         

@@ -1,6 +1,7 @@
+const userRole = localStorage.getItem('userRole');
+
 function goToAddStore(){
-    const token = localStorage.getItem('token');
-    if ( token == null){
+    if ( userRole == "User"){
         window.location.href = 'Subscriptions.html';
         
     }
@@ -10,8 +11,8 @@ function goToAddStore(){
 }
 
 function goToAddEvent(){
-    const token = localStorage.getItem('token');
-    if ( token == null){
+
+    if ( userRole == "User"){
         window.location.href = 'Subscriptions.html';
         
     }

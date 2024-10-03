@@ -1,6 +1,31 @@
 
+//
+function weeklyPlan(){
+    localStorage.setItem("amount", 15);
+    localStorage.setItem("subscriptionType", "7 days");
+    window.location.href = "Paypal.html";  
+}
 
-async function OneTimePlane(userId) {
+
+function monthlyPlan(){
+    localStorage.setItem("amount", 50);
+    localStorage.setItem("subscriptionType", "30 days");
+    window.location.href = "Paypal.html"; 
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+async function RoleChange(userId) {
     try {
         debugger
         let userId = localStorage.getItem("userId");

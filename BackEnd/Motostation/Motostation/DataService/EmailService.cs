@@ -16,19 +16,32 @@ public class EmailService : IEmailService
      public void SendOtpEmail(string email, string otp)
      {
         MailMessage mail = new MailMessage();
-        SmtpClient smtpServer = new SmtpClient(_configuration["Smtp:Host"]);
+        SmtpClient smtpServer = new SmtpClient("smtp.gmail.com");
 
         mail.From = new MailAddress("motostation7@gmail.com");
         mail.To.Add(email);
         mail.Subject = "Confirm your email";
         mail.Body = $"Your OTP code is: {otp}";
 
-        smtpServer.Port = 587;
-        smtpServer.Credentials = new System.Net.NetworkCredential("motostation7@gmail.com", "krviaaeulbpqukcr");
+        smtpServer.Port = 465;
+        smtpServer.Credentials = new System.Net.NetworkCredential("motostation7@gmail.com", "yfhsqatniyptcwrz");
         smtpServer.EnableSsl = true;
 
-        smtpServer.Send(mail);
-     }
+        try
+        {
+            smtpServer.Send(mail); // Send the email
+            Console.WriteLine("OTP email sent successfully.");
+        }
+        catch (SmtpException ex)
+        {
+            Console.WriteLine($"Failed to send email: {ex.Message}");
+            if (ex.InnerException != null)
+            {
+                Console.WriteLine($"Inner exception: {ex.InnerException.Message}");
+            }
+        }
+
+    }
 
 
     //public void SendOtpEmail(string email, string otp)

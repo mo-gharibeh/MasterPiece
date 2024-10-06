@@ -33,20 +33,7 @@
     <style>
         @import url('https://fonts.googleapis.com/css?family=Montserrat:400,800');
 
-        /* * {
-            box-sizing: border-box;
-        } */
-
-        /* body {
-            background: #f6f5f7;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            flex-direction: column;
-            font-family: 'Montserrat', sans-serif;
-            height: 100vh;
-            margin: -20px 0 50px;
-        } */
+        
 
         h1 {
             font-weight: bold;
@@ -261,6 +248,45 @@
             margin-left: 22%;
         }
     </style>
+    <style>
+        /* Modal container */
+        .modall {
+            display: none; /* Hidden by default */
+            position: fixed; /* Stay in place */
+            z-index: 200; /* Sit on top */
+            left: 0;
+            top: 0;
+            width: 100%; /* Full width */
+            height: 100%; /* Full height */
+            overflow: auto; /* Enable scroll if needed */
+            background-color: rgba(0, 0, 0, 0.4); /* Black background with opacity */
+        }
+
+        /* Modal content */
+        .modal-contentt {
+            background-color: white;
+            margin: 15% auto; /* 15% from the top and centered */
+            padding: 20px;
+            border: 1px solid #888;
+            width: 30%; /* Could be more or less depending on screen size */
+            border-radius: 10px;
+        }
+
+        /* Close button */
+        .close {
+            color: #aaa;
+            float: right;
+            font-size: 28px;
+            font-weight: bold;
+        }
+
+        .close:hover,
+        .close:focus {
+            color: black;
+            text-decoration: none;
+            cursor: pointer;
+        }
+    </style>
 </head>
 
 <body>
@@ -309,7 +335,7 @@
                     </div>
                     <a href="register.html" class="btn btn-primary px-3 d-none d-lg-flex active">JOIN US! / SIGN IN</a>
                 </div>
-                <a href="profile.html" class="nav-item nav-link">Profile</a>
+                <!-- <a href="profile.html" class="nav-item nav-link">Profile</a> -->
             </nav>
         </div>
         <!-- Navbar End -->
@@ -343,37 +369,52 @@
         <!-- Search End -->
 
 
+        <!-- OTP Modal -->
+        <div id="otpModal" class="modall">
+            <div class="modal-contentt">
+                <span class="close" onclick="closeModal()">&times;</span>
+                <h2>Enter OTP</h2>
+                <input type="text" id="otp" placeholder="Enter OTP" required />
+                <button onclick="confirmOtp()">Confirm OTP</button>
+                <p id="statusMessage"></p>
+            </div>
+        </div>
+
+
         <!-- form -->
         <div class="containerr" id="containerr">
             <div class="form-container sign-up-container">
-                <form id="registerForm">
+                <form id="signupForm">
                     <h1>Create Account</h1>
-                    <div class="social-container">
+                    <!-- <div class="social-container">
                         <a href="#" class="social"><i class="fab fa-facebook-f"></i></a>
                         <a href="#" class="social"><i class="fab fa-google-plus-g"></i></a>
                         <a href="#" class="social"><i class="fab fa-linkedin-in"></i></a>
-                    </div>
-                    <span>or use your email for registration</span>
-                    <input type="text" id="name" name="UserName" placeholder="UserName" required />
+                    </div> -->
+                    <!-- <span>or use your account</span> -->
+                    <input type="text" id="usernameup" name="UserName" placeholder="Username" required />
                     <input type="email" id="email" name="Email" placeholder="Email" required />
                     <input type="password" id="password" name="Password" placeholder="Password" required />
                     <button type="submit">Sign Up</button>
                 </form>
+                    
             </div>
+
+            <!-- LOGIN -->
             <div class="form-container sign-in-container">
-                <form action="#">
+                <form id="loginForm">
                     <h1>Sign in</h1>
-                    <div class="social-container">
+                    <!-- <div class="social-container">
                         <a href="#" class="social"><i class="fab fa-facebook-f"></i></a>
                         <a href="#" class="social"><i class="fab fa-google-plus-g"></i></a>
                         <a href="#" class="social"><i class="fab fa-linkedin-in"></i></a>
-                    </div>
-                    <span>or use your account</span>
-                    <input type="text" id="username" placeholder="Username" />
-                    <input type="password" id="passwordLogin" placeholder="Password" />
-                    <a href="">Forgot your password?</a>
-                    <button onclick="login()" >Sign In</button>
-                </form>
+                    </div> -->
+                    <!-- <span>or use your account</span> -->                    
+                        <input type="text" id="username" placeholder="Username" required />
+                        <input type="password" id="passwordLogin" placeholder="Password" required />
+                        <a href="#">Forgot your password?</a>
+                        <button type="submit">Sign In</button>
+                    </form>
             </div>
             <div class="overlay-container">
                 <div class="overlay">
@@ -389,7 +430,19 @@
                     </div>
                 </div>
             </div>
+
+            <!-- OTP Modal
+            <div id="otpModal" >
+                <h2>Enter OTP</h2>
+                <input type="text" id="otp" placeholder="Enter OTP" required />
+                <button onclick="confirmOtp()">Confirm OTP</button>
+            </div>
+            
+            <p id="statusMessage"></p> -->
         </div>
+        
+        
+
         
         <!-- form -->
 

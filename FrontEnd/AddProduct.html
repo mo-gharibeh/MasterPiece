@@ -54,7 +54,7 @@
                 <button type="button" class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
                     <span class="navbar-toggler-icon"></span>
                 </button>
-                <div class="collapse navbar-collapse" id="navbarCollapse">
+                <div  id="navbar"  class="collapse navbar-collapse" id="navbarCollapse">
                     <div class="navbar-nav ms-auto">
                         <a href="index.html" class="nav-item nav-link ">Home</a>
                         <a href="about.html" class="nav-item nav-link">About</a>
@@ -75,7 +75,25 @@
                         </div> -->
                         <a href="contact.html" class="nav-item nav-link ">Contact Us</a>
                     </div>
-                    <a href="register.html" class="btn btn-primary px-3 d-none d-lg-flex">JOIN US! / SIGN IN</a>
+                    <script>
+                        let navbar = document.getElementById("navbar");
+                        let isLogedin = localStorage.getItem("isLogedin");
+                        if (isLogedin){
+                            navbar.innerHTML += `
+                                <div class="nav-item dropdown">
+                                <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Profile</a>
+                                <div class="dropdown-menu rounded-0 m-0">
+                                    <a href="profile.html" class="dropdown-item ">Profile</a>
+                                    <a onclick="logout()" href="register.html" class="dropdown-item">LOG OUT</a>                                        
+                                </div>
+                            `;
+                        }
+                        else {
+                            navbar.innerHTML += `<div>
+                                    <a href="register.html" class="btn btn-primary px-3 d-none d-lg-flex">JOIN US! / SIGN IN</a>
+                                    </div>`;
+                        }
+                    </script>
                 </div>
             </nav>
         </div>
@@ -112,82 +130,80 @@
 
         <!-- Add Product Form Start -->
         <div class="container-xxl py-5">
+
             <div class="container">
                 <h2 class="mb-4">Add a New Product</h2>
-                <form method="POST" action="/add-product" enctype="multipart/form-data">
+                <form id="addProductForm">
                     <div class="row g-3">
-                        <div class="col-md-6">
-                            <label for="ProductName" class="form-label">Product Name</label>
-                            <input type="text" class="form-control" id="ProductName" name="ProductName" required>
-                        </div>
-
-                        <div class="col-md-6">
-                            <label for="CategoryID" class="form-label">Category</label>
-                            <select class="form-select" id="CategoryID" name="CategoryID" required>
-                                <option value="" selected>Select Category</option>
-                                <option value="1">Motorcycle</option>
-                                <option value="2">Helmet</option>
-                                <option value="3">Protection</option>
-                                <option value="4">Accessories</option>
-                            </select>
-                        </div>
-
-                        <div class="col-12">
-                            <label for="Description" class="form-label">Description</label>
-                            <textarea class="form-control" id="Description" name="Description" rows="4" required></textarea>
-                        </div>
-
-                        <div class="col-md-6">
-                            <label for="ProductType" class="form-label">Type</label>
-                            <select class="form-select" id="ProductType" name="ProductType" required>
-                                <option value="Sale" selected>For Sale</option>
-                                <option value="Rent">For Rent</option>
-                            </select>
-                        </div>
-
-                        <div class="col-md-6">
-                            <label for="Price" class="form-label">Price</label>
-                            <input type="number" class="form-control" id="Price" name="Price" step="0.01" required>
-                        </div>
-
-                        <div class="col-md-6">
-                            <label for="RentalPrice" class="form-label">Rental Price (if applicable)</label>
-                            <input type="number" class="form-control" id="RentalPrice" name="RentalPrice" step="0.01">
-                        </div>
-
-                        <div class="col-md-6">
-                            <label for="RentalDuration" class="form-label">Rental Duration (in days, if applicable)</label>
-                            <input type="number" class="form-control" id="RentalDuration" name="RentalDuration">
-                        </div>
-
-                        <div class="col-md-6">
-                            <label for="StockQuantity" class="form-label">Stock Quantity</label>
-                            <input type="number" class="form-control" id="StockQuantity" name="StockQuantity" required>
-                        </div>
-
-                        <div class="col-md-6">
-                            <label for="Brand" class="form-label">Brand</label>
-                            <input type="text" class="form-control" id="Brand" name="Brand" required>
-                        </div>
-
-                        <div class="col-md-6">
-                            <label for="ProductCondition" class="form-label">Condition</label>
-                            <select class="form-select" id="ProductCondition" name="ProductCondition" required>
-                                <option value="New" selected>New</option>
-                                <option value="Used">Used</option>
-                            </select>
-                        </div>
-
-                        <div class="col-12">
-                            <label for="ImageURL" class="form-label">Product Image</label>
-                            <input type="file" class="form-control" id="ImageURL" name="ImageURL" required>
-                        </div>
-
-                        <div class="col-12">
-                            <button type="submit" class="btn btn-primary">Add Product</button>
-                        </div>
+                    <div class="col-md-6">
+                    <label for="ProductName" class="form-label">Product Name</label>
+                    <input type="text" class="form-control" id="ProductName" name="ProductName" required>
                     </div>
+                
+                    <div class="col-md-6">
+                    <label for="CategoryID" class="form-label">Category</label>
+                    <select class="form-select" id="CategoryID" name="CategoryID" required>
+                        <option value="" selected>Select Category</option>
+                    </select>
+                    </div>
+                
+                    <div class="col-12">
+                    <label for="Description" class="form-label">Description</label>
+                    <textarea class="form-control" id="Description" name="Description" rows="4" required></textarea>
+                    </div>
+                
+                    <div class="col-md-6">
+                    <label for="ProductType" class="form-label">Type</label>
+                    <select class="form-select" id="ProductType" name="ProductType" required>
+                        <option value="Sale" selected>For Sale</option>
+                        <option value="Rent">For Rent</option>
+                    </select>
+                    </div>
+                
+                    <div class="col-md-6">
+                    <label for="Price" class="form-label">Price</label>
+                    <input type="number" class="form-control" id="Price" name="Price" step="0.01" required>
+                    </div>
+                
+                    <!-- <div class="col-md-6">
+                    <label for="RentalPrice" class="form-label">Rental Price (if applicable)</label>
+                    <input type="number" class="form-control" id="RentalPrice" name="RentalPrice" step="0.01">
+                    </div> -->
+                
+                    <div class="col-md-12" id="rentalDurationDiv" style="display: none;">
+                    <label for="RentalDuration" class="form-label">Rental Duration (in days, if applicable)</label>
+                    <input type="number" class="form-control" id="RentalDuration" name="RentalDuration">
+                    </div>
+                
+                    <div class="col-md-6">
+                    <label for="StockQuantity" class="form-label">Stock Quantity</label>
+                    <input type="number" class="form-control" id="StockQuantity" name="StockQuantity" required>
+                    </div>
+                
+                    <div class="col-md-6">
+                    <label for="Brand" class="form-label">Brand</label>
+                    <input type="text" class="form-control" id="Brand" name="Brand" required>
+                    </div>
+                
+                    <div class="col-md-6">
+                    <label for="ProductCondition" class="form-label">Condition</label>
+                    <select class="form-select" id="ProductCondition" name="ProductCondition" required>
+                        <option value="New" selected>New</option>
+                        <option value="Used">Used</option>
+                    </select>
+                    </div>
+                
+                    <div class="col-12">
+                    <label for="ImageURL" class="form-label">Product Image</label>
+                    <input type="file" class="form-control" id="ImageURL" name="ImageURL" required>
+                    </div>
+                
+                    <div class="col-12">
+                    <button type="submit" class="btn btn-primary">Add Product</button>
+                    </div>
+                </div>
                 </form>
+                
             </div>
         </div>
         <!-- Add Product Form End -->
@@ -278,6 +294,17 @@
                     <!-- Back to Top -->
                     <a href="#" class="btn btn-lg btn-primary btn-lg-square back-to-top"><i class="bi bi-arrow-up"></i></a>
                 </div>
+
+                <script>
+                    // clear localstorage when logout
+                    
+                    function logout() {
+                        localStorage.clear();
+                        window.location.href = "register.html";
+                    }
+            
+                </script>
+                
             
                 <!-- JavaScript Libraries -->
                 <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
@@ -292,6 +319,8 @@
                     
                 <!-- Template Javascript -->
                 <script src="js/main.js"></script>
+                <script src="AddProduct.js"></script>
+
             </body>
             
             </html>

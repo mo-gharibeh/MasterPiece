@@ -54,8 +54,8 @@
                 <button type="button" class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
                     <span class="navbar-toggler-icon"></span>
                 </button>
-                <div class="collapse navbar-collapse" id="navbarCollapse">
-                    <div class="navbar-nav ms-auto">
+                <div id="navbar" class="collapse navbar-collapse" id="navbarCollapse">
+                    <div  class="navbar-nav ms-auto">
                         <a href="index.html" class="nav-item nav-link ">Home</a>
                         <a href="about.html" class="nav-item nav-link active">About</a>
                         <div class="nav-item dropdown">
@@ -75,7 +75,25 @@
                         </div> -->
                         <a href="contact.html" class="nav-item nav-link">Contact Us</a>
                     </div>
-                    <a href="register.html" class="btn btn-primary px-3 d-none d-lg-flex">JOIN US! / SIGN IN</a>
+                    <script>
+                        let navbar = document.getElementById("navbar");
+                        let isLogedin = localStorage.getItem("isLogedin");
+                        if (isLogedin){
+                            navbar.innerHTML += `
+                                <div class="nav-item dropdown">
+                                <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Profile</a>
+                                <div class="dropdown-menu rounded-0 m-0">
+                                    <a href="profile.html" class="dropdown-item ">Profile</a>
+                                    <a onclick="logout()" href="register.html" class="dropdown-item">LOG OUT</a>                                        
+                                </div>
+                            `;
+                        }
+                        else {
+                            navbar.innerHTML += `<div>
+                                    <a href="register.html" class="btn btn-primary px-3 d-none d-lg-flex">JOIN US! / SIGN IN</a>
+                                    </div>`;
+                        }
+                    </script>
                 </div>
             </nav>
         </div>
@@ -120,12 +138,12 @@
                     </p>
                 </div>
                 <div class="col-lg-6">
-                    <img src="/img/9.jpg" alt="The Badgers" class="img-fluid rounded">
+                    <img src="/FrontEnd/img/9.jpg" alt="The Badgers" class="img-fluid rounded">
                 </div>
             </div>
             <div class="row g-5 mt-3">
                 <div class="col-lg-6">
-                    <img src="/img/8.jpg" alt="The Badgers" class="img-fluid rounded">
+                    <img src="/FrontEnd/img/8.jpg" alt="The Badgers" class="img-fluid rounded">
                 </div>
                 <div class="col-lg-6">
                     <p>
@@ -224,6 +242,15 @@
                 <a href="#" class="btn btn-lg btn-primary btn-lg-square back-to-top"><i class="bi bi-arrow-up"></i></a>
             </div>
         
+            <script>
+                // clear localstorage when logout
+                
+                function logout() {
+                    localStorage.clear();
+                    window.location.href = "register.html";
+                }
+        
+            </script>
             <!-- JavaScript Libraries -->
             <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
             <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script>
@@ -234,6 +261,7 @@
         
             <!-- Template Javascript -->
             <script src="js/main.js"></script>
+
         </body>
         
         </html>

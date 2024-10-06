@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using Motostation.DTOs;
 using Motostation.Models;
 
 namespace Motostation.Controllers
@@ -80,19 +81,68 @@ namespace Motostation.Controllers
             return NoContent();
         }
 
-        // POST: api/Products
-        // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
-        [HttpPost]
-        public async Task<ActionResult<Product>> PostProduct(Product product)
-        {
-            _context.Products.Add(product);
-            await _context.SaveChangesAsync();
 
-            return CreatedAtAction("GetProduct", new { id = product.ProductId }, product);
+        // POST: api/Products/
+        [HttpPost]
+        public IActionResult PostProduct([FromForm] AddProductDto productDto) 
+        {
+            if (productDto == null)
+            {
+                return BadRequest();
+            }
+            if (productDto.ImageUrl != null)
+            {
+                var uploadsFolderPath = Path.Combine(Directory.GetCurrentDirectory(), "Uploads");
+                if (!Directory.Exists(uploadsFolderPath))
+                {
+                    Directory.CreateDirectory(uploadsFolderPath);
+                }
+                var filePath = Path.Combine(uploadsFolderPath, productDto.ImageUrl.FileName);
+                using (var stream = new FileStream(filePath, FileMode.Create))
+                {
+                    productDto.ImageUrl.CopyToAsync(stream);
+                }
+            }
+            var product = new Product
+            {
+            CategoryId = productDto.CategoryId,
+            ProductName = productDto.ProductName,
+            Description = productDto.Description,
+            SellerId = productDto.SellerId,
+            ProductType = productDto.ProductType,
+            //RentalPrice = productDto.RentalPrice,
+            RentalDuration = productDto.RentalDuration,
+            IsCurrentlyRented = productDto.IsCurrentlyRented,
+            Price = productDto.Price,
+            StockQuantity = productDto.StockQuantity,
+            ImageUrl = productDto.ImageUrl.FileName,
+            Brand = productDto.Brand,
+            ProductCondition = productDto.ProductCondition,
+            };
+            _context.Products.Add(product);
+            _context.SaveChanges();
+            return Ok(product);
         }
 
-        // DELETE: api/Products/5
-        [HttpDelete("{id}")]
+
+
+
+
+
+
+            // POST: api/Products
+            // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
+            //[HttpPost]
+            //public async Task<ActionResult<Product>> PostProduct(Product product)
+            //{
+            //    _context.Products.Add(product);
+            //    await _context.SaveChangesAsync();
+
+            //    return CreatedAtAction("GetProduct", new { id = product.ProductId }, product);
+            //}
+
+            // DELETE: api/Products/5
+            [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteProduct(int id)
         {
             var product = await _context.Products.FindAsync(id);

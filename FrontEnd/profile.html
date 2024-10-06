@@ -218,8 +218,8 @@
                 <button type="button" class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
                     <span class="navbar-toggler-icon"></span>
                 </button>
-                <div class="collapse navbar-collapse" id="navbarCollapse">
-                    <div class="navbar-nav ms-auto">
+                <div id="nabbar" class="collapse navbar-collapse" id="navbarCollapse">
+                    <div  class="navbar-nav ms-auto">
                         <a href="index.html" class="nav-item nav-link ">Home</a>
                         <a href="about.html" class="nav-item nav-link">About</a>
                         <div class="nav-item dropdown">
@@ -238,16 +238,48 @@
                             </div>
                         </div> -->
                         <a href="contact.html" class="nav-item nav-link">Contact Us</a>
-                        <a href="messages.html" class="nav-item nav-link">Messages</a>
+                        
+                        
+                        <!-- <a href="messages.html" class="nav-item nav-link">Messages</a>
                         <div class="nav-item dropdown">
                             <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Profile</a>
                             <div class="dropdown-menu rounded-0 m-0">
                                 <a href="profile.html" class="dropdown-item active">Profile</a>
-                                <a href="index.html" class="dropdown-item">LOG OUT</a>
-                                <!-- <a href="property-agent.html" class="dropdown-item">Property Agent</a> -->
+                                <a onclick="logout()" class="dropdown-item">LOG OUT</a>
+                                <script>
+                                    // clear localstorage when logout
+                                    
+                                    function logout() {
+                                        localStorage.clear();
+                                        window.location.href = "register.html";
+                                    }
+
+                                </script>
+                                <!-- <a href="property-agent.html" class="dropdown-item">Property Agent</a> 
                             </div>
-                        </div>
+                        </div> -->
                     </div>
+                    <script>
+                        let navbar = document.getElementById("nabbar");
+                        let isLogedin = localStorage.getItem("isLogedin");
+                        if (isLogedin){
+                            navbar.innerHTML += `
+                                <div class="nav-item dropdown">
+                                <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Profile</a>
+                                <div class="dropdown-menu rounded-0 m-0">
+                                    <a href="profile.html" class="dropdown-item active">Profile</a>
+                                    <a href="register.html" onclick="logout()" class="dropdown-item">LOG OUT</a>
+                                    
+                                </div>
+                            </div>
+                            `;
+                        }
+                        else {
+                            navbar.innerHTML += `</div>
+                                    <a href="register.html" class="btn btn-primary px-3 d-none d-lg-flex">JOIN US! / SIGN IN</a>
+                                    `;
+                        }
+                    </script>
 
                     <!-- <a href="register.html" class="btn btn-primary px-3 d-none d-lg-flex active">LOG OUT</a> -->
                 </div>
@@ -264,7 +296,7 @@
     <!-- User Info Section -->
     <div class="profile-info">
         <h1 id="name">Mohammad Hussain</h1>
-        <p>Motorcycle Enthusiast & Web Developer</p>
+        <!-- <p>Motorcycle Enthusiast & Web Developer</p> -->
         <div class="profile-buttons">
             <a href="profileSettings.html"><button class="btn btn-primary">Edit Profile</button></a>
             <a href="viewer.html" class="view-button btn btn-primary">
@@ -400,6 +432,16 @@
 
     <!-- Page Javascript -->
     <script src="profile.js"></script>
+
+    <script>
+        // clear localstorage when logout
+        
+        function logout() {
+            localStorage.clear();
+            window.location.href = "register.html";
+        }
+
+    </script>
     
 </body>
 

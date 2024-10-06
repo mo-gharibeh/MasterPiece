@@ -1,22 +1,22 @@
 const userRole = localStorage.getItem('userRole');
 
 function goToAddStore(){
-    if ( userRole == "User"){
-        window.location.href = 'Subscriptions.html';
+    if ( userRole == "Manager"){
+        window.location.href = 'AddStore.html';
         
     }
     else {
-        window.location.href = 'AddStore.html';
+        window.location.href = 'Subscriptions.html';
     }
 }
 
 function goToAddEvent(){
 
-    if ( userRole == "User"){
-        window.location.href = 'Subscriptions.html';
+    if ( userRole == "Manager"){
+        window.location.href = 'AddEvent.html';
         
     }
     else {
-        window.location.href = 'AddEvent.html';
+        window.location.href = 'Subscriptions.html';
     }
 }

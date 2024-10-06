@@ -152,11 +152,11 @@ namespace Motostation.Controllers
         {
             if (ModelState.IsValid)
             {
-                // Check if the email already exists
-                var existingUser = _db.Users.FirstOrDefault(u => u.Email == model.Email);
+                // Check if the email or userName already exists 
+                var existingUser = _db.Users.FirstOrDefault(u => u.Email == model.Email || u.UserName == model.UserName);
                 if (existingUser != null)
                 {
-                    return BadRequest(new { success = false, message = "Email already exists" });
+                    return BadRequest(new { success = false, message = "Email or UserName already exists" });
                 }
 
                 // Generate password hash and salt

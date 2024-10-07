@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using Motostation.DTOs;
 using Motostation.Models;
 
@@ -13,6 +14,22 @@ namespace Motostation.Controllers
         public SubscriptionController(MyDbContext db)
         {
             _db = db;
+        }
+
+        // GET: api/Payments
+        [HttpGet("allPayment")]
+        public IActionResult GetPayments()
+        {
+            var payments = _db.Payments.ToList();
+            return Ok(payments);
+        }
+
+        // GET: api/Subscriptions
+        [HttpGet("allSubscription")]
+        public IActionResult GetSubscriptions()
+        {
+            var subscriptions = _db.Subscriptions.ToList();
+            return Ok(subscriptions);
         }
 
         [HttpPost("addSubscription")]

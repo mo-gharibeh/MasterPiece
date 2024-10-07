@@ -11,7 +11,7 @@
             background-color: #f8f9fa;
         }
         .sidebar {
-            height: 100vh;
+            height: 200vh;
             background-color: #343a40;
             padding-top: 20px;
         }
@@ -74,20 +74,19 @@
 
         <!-- Main content -->
         <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4 content">
-            <h1 class="h2">Manage Users</h1>
+            <h1 class="h2">Manage Products</h1>
             <div class="table-responsive">
                 <table class="table table-striped table-sm">
                     <thead>
                         <tr>
                             <th>ID</th>
-                            <th>Username</th>
-                            <th>Email</th>
-                            <th>Full Name</th>
-                            <th>Role</th>
+                            <th>Product Name</th>
+                            <th>Description</th>
+                            <th>Price</th>
                             <th>Actions</th>
                         </tr>
                     </thead>
-                    <tbody id="usersTable">
+                    <tbody id="productsTable">
                         <!-- Dynamic rows will be inserted here -->
                     </tbody>
                 </table>
@@ -99,34 +98,49 @@
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 <script>
     document.addEventListener('DOMContentLoaded', function () {
-        const usersTable = document.getElementById('usersTable');
+        const productsTable = document.getElementById('productsTable');
 
-        // Fetch all users
-        function fetchUsers() {
-            fetch('https://localhost:44398/api/Users')
+        // Fetch all products
+        function fetchProducts() {
+            fetch('https://localhost:44398/api/Products')
                 .then(response => response.json())
-                .then(users => {
-                    usersTable.innerHTML = '';
-                    users.forEach(user => {
-                        usersTable.innerHTML += `
+                .then(products => {
+                    productsTable.innerHTML = '';
+                    products.forEach(product => {
+                        productsTable.innerHTML += `
                             <tr>
-                                <td>${user.userId}</td>
-                                <td>${user.userName}</td>
-                                <td>${user.email}</td>
-                                <td>${user.fullName}</td>
-                                <td>${user.role}</td>
+                                <td>${product.productId}</td>
+                                <td>${product.productName}</td>
+                                <td>${product.description}</td>
+                                <td>${product.price}</td>
                                 <td>
-                                    <button class="btn btn-sm btn-danger" onclick="alert('Feature not implemented')">Delete</button>
+                                    <button class="btn btn-sm btn-danger" onclick="deleteProduct(${product.productId})">Delete</button>
                                 </td>
                             </tr>
                         `;
                     });
                 })
-                .catch(error => console.error('Error fetching users:', error));
+                .catch(error => console.error('Error fetching products:', error));
         }
 
-        // Initial fetch of users
-        fetchUsers();
+        // Delete product
+        window.deleteProduct = function (id) {
+            debugger
+            if (!alert('Are you sure you want to delete this product?')) {
+                fetch(`https://localhost:44398/api/Products/${id}`, { method: 'DELETE' })
+                    .then(response => {
+                        if (response.ok) {
+                            fetchProducts(); // Refresh the product list
+                        } else {
+                            console.error('Error deleting product:', response.statusText);
+                        }
+                    })
+                    .catch(error => console.error('Error during delete operation:', error));
+            }
+        }
+
+        // Initial fetch of products
+        fetchProducts();
     });
 </script>
 </body>

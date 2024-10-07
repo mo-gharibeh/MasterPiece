@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Contact Management</title>
+    <title>Admin Dashboard - Contact Messages</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <style>
         body {
@@ -31,11 +31,8 @@
         .content {
             padding: 20px;
         }
-        .card {
-            margin-bottom: 20px;
-        }
-        .table-container {
-            overflow-x: auto;
+        .table {
+            margin-top: 20px;
         }
     </style>
 </head>
@@ -48,7 +45,7 @@
             <div class="position-sticky">
                 <ul class="nav flex-column">
                     <li class="nav-item">
-                        <a class="nav-link" href="dashboard.html">Dashboard</a>
+                        <a class="nav-link active">Dashboard</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="user.html">Users Management</a>
@@ -63,7 +60,7 @@
                         <a class="nav-link" href="event.html">Event Management</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link active" href="contact.html">Contact Management</a>
+                        <a class="nav-link" href="contact.html">Contact Management</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="../index.html">Logout</a>
@@ -72,41 +69,24 @@
             </div>
         </nav>
 
-        <!-- Main Content -->
+        <!-- Main content -->
         <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4 content">
-            <h1>Contact Management</h1>
-
-            <!-- Add Contact Button -->
-            <button class="btn btn-primary mb-3" data-bs-toggle="modal" data-bs-target="#addContactModal">Add New Contact</button>
-
-            <!-- Contacts Table -->
-            <div class="table-container">
-                <table class="table table-bordered table-striped">
+            <h1 class="h2">Manage Contact Messages</h1>
+            <div class="table-responsive">
+                <table class="table table-striped table-sm">
                     <thead>
                         <tr>
-                            <th>Contact ID</th>
+                            <th>ID</th>
                             <th>Name</th>
                             <th>Email</th>
-                            <th>Phone</th>
-                            <th>Message</th>
-                            <th>Created Date</th>
+                            <th>Subject</th>
+                            <th>Content</th>
+                            <th>Is Approved</th>
                             <th>Actions</th>
                         </tr>
                     </thead>
-                    <tbody>
-                        <!-- Example contact data, this should be dynamically loaded -->
-                        <tr>
-                            <td>1</td>
-                            <td>John Doe</td>
-                            <td>john.doe@example.com</td>
-                            <td>(123) 456-7890</td>
-                            <td>Hello, I would like more information about your services.</td>
-                            <td>2024-09-01</td>
-                            <td>
-                                <button class="btn btn-warning btn-sm">Edit</button>
-                                <button class="btn btn-danger btn-sm">Delete</button>
-                            </td>
-                        </tr>
+                    <tbody id="messagesTable">
+                        <!-- Dynamic rows will be inserted here -->
                     </tbody>
                 </table>
             </div>
@@ -114,39 +94,114 @@
     </div>
 </div>
 
-<!-- Add Contact Modal -->
-<div class="modal fade" id="addContactModal" tabindex="-1" aria-labelledby="addContactModalLabel" aria-hidden="true">
+<!-- Approve/Delete Modal -->
+<div class="modal fade" id="messageModal" tabindex="-1" aria-labelledby="messageModalLabel" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="addContactModalLabel">Add New Contact</h5>
+                <h5 class="modal-title" id="messageModalLabel">Approve/Delete Message</h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
-                <form>
-                    <div class="mb-3">
-                        <label for="contactName" class="form-label">Name</label>
-                        <input type="text" class="form-control" id="contactName" placeholder="Enter contact name">
-                    </div>
-                    <div class="mb-3">
-                        <label for="contactEmail" class="form-label">Email</label>
-                        <input type="email" class="form-control" id="contactEmail" placeholder="Enter contact email">
-                    </div>
-                    <div class="mb-3">
-                        <label for="contactPhone" class="form-label">Phone</label>
-                        <input type="text" class="form-control" id="contactPhone" placeholder="Enter contact phone number">
-                    </div>
-                    <div class="mb-3">
-                        <label for="contactMessage" class="form-label">Message</label>
-                        <textarea class="form-control" id="contactMessage" rows="3" placeholder="Enter message"></textarea>
-                    </div>
-                    <button type="submit" class="btn btn-primary">Add Contact</button>
-                </form>
+                <p id="modalMessage"></p>
+                <input type="hidden" id="messageId">
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary" id="approveButton">Approve</button>
+                <button type="button" class="btn btn-danger" id="deleteButton">Delete</button>
             </div>
         </div>
     </div>
 </div>
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        const messagesTable = document.getElementById('messagesTable');
+        const messageModal = new bootstrap.Modal(document.getElementById('messageModal'));
+        const approveButton = document.getElementById('approveButton');
+        const deleteButton = document.getElementById('deleteButton');
+        let currentMessageId = null;
+
+        // Fetch all contact messages
+        function fetchContactMessages() {
+            fetch('https://localhost:44398/api/ContactMessages')
+                .then(response => response.json())
+                .then(messages => {
+                    messagesTable.innerHTML = '';
+                    messages.forEach(message => {
+                        messagesTable.innerHTML += `
+                            <tr>
+                                <td>${message.messageId}</td>
+                                <td>${message.name}</td>
+                                <td>${message.email}</td>
+                                <td>${message.subject}</td>
+                                <td>${message.content}</td>
+                                <td>${message.isApproved ? 'Yes' : 'No'}</td>
+                                <td>
+                                    <button class="btn btn-sm btn-info" onclick="showModal(${message.messageId}, 'approve')">Approve</button>
+                                    <button class="btn btn-sm btn-danger" onclick="showModal(${message.messageId}, 'delete')">Delete</button>
+                                </td>
+                            </tr>
+                        `;
+                    });
+                })
+                .catch(error => console.error('Error fetching messages:', error));
+        }
+
+        // Show modal for approving or deleting
+        window.showModal = function (id, action) {
+            currentMessageId = id;
+            const modalMessage = document.getElementById('modalMessage');
+            messageModal.show();
+
+            if (action === 'approve') {
+                modalMessage.textContent = `Are you sure you want to approve the message with ID: ${id}?`;
+                approveButton.style.display = 'inline-block';
+                deleteButton.style.display = 'none';
+            } else {
+                modalMessage.textContent = `Are you sure you want to delete the message with ID: ${id}?`;
+                approveButton.style.display = 'none';
+                deleteButton.style.display = 'inline-block';
+            }
+        };
+
+        // Approve message
+        approveButton.addEventListener('click', function () {
+            fetch(`https://localhost:44398/api/ContactMessages/approve/${currentMessageId}`, {
+                method: 'PUT'
+            })
+                .then(response => {
+                    if (response.ok) {
+                        fetchContactMessages();
+                        messageModal.hide();
+                    } else {
+                        console.error('Error approving message:', response.statusText);
+                    }
+                })
+                .catch(error => console.error('Error during approve operation:', error));
+        });
+
+        // Delete message
+        deleteButton.addEventListener('click', function () {
+            fetch(`https://localhost:44398/api/ContactMessages/${currentMessageId}`, {
+                method: 'DELETE'
+            })
+                .then(response => {
+                    if (response.ok) {
+                        fetchContactMessages();
+                        messageModal.hide();
+                    } else {
+                        console.error('Error deleting message:', response.statusText);
+                    }
+                })
+                .catch(error => console.error('Error during delete operation:', error));
+        });
+
+        // Initial fetch of contact messages
+        fetchContactMessages();
+    });
+</script>
 </body>
 </html>

@@ -25,6 +25,14 @@ namespace Motostation.Controllers
             _cache = cache;
         }
 
+        // GET: api/Users
+        [HttpGet]
+        public IActionResult GetUsers()
+        {
+            var users = _db.Users.ToList();
+            return Ok(users);
+        }
+
         [HttpGet("{id}")]
         public IActionResult GetUserById(int id)
         {

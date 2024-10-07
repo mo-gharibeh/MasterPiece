@@ -19,7 +19,7 @@ namespace Motostation.Controllers
         [HttpGet]
         public IActionResult GetContact()
         {
-            var contact = _db.ContactMessages.ToList();
+            var contact = _db.ContactMessages.Where(c => c.IsApproved == true).ToList();
             return Ok(contact);
         }
 

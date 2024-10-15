@@ -23,9 +23,10 @@ namespace Motostation.Controllers
 
         // GET: api/Stores
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<Store>>> GetStores()
+        public IActionResult GetStores()
         {
-            return await _context.Stores.ToListAsync();
+            var stors = _context.Stores.ToList();
+            return Ok(stors);
         }
 
         // GET: api/Stores/5

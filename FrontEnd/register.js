@@ -109,8 +109,14 @@
             }
     
             const data = await response.json();
-    
-            if (data.role) {
+            debugger
+
+            if(data.role == "Admin") {
+                localStorage.setItem('userId', data.userId);
+                window.location.href = "Admin/dashboard.html";
+            }
+            else if (data.role) {
+                debugger
                 // Store user ID in localStorage
                 localStorage.setItem('userId', data.userId);
                 localStorage.setItem('isLogedin', true);

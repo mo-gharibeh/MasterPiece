@@ -3,44 +3,36 @@
   "WorkspaceRootPath": "C:\\Users\\Orange\\Desktop\\MasterPieceWorkSpace\\BackEnd\\Motostation\\",
   "Documents": [
     {
+      "AbsoluteMoniker": "D:0:0:{0F96131F-A317-4FAD-A905-3B0EA1686D59}|Motostation\\Motostation.csproj|c:\\users\\orange\\desktop\\masterpieceworkspace\\backend\\motostation\\motostation\\controllers\\categoriescontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{0F96131F-A317-4FAD-A905-3B0EA1686D59}|Motostation\\Motostation.csproj|solutionrelative:motostation\\controllers\\categoriescontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{0F96131F-A317-4FAD-A905-3B0EA1686D59}|Motostation\\Motostation.csproj|c:\\users\\orange\\desktop\\masterpieceworkspace\\backend\\motostation\\motostation\\controllers\\storescontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{0F96131F-A317-4FAD-A905-3B0EA1686D59}|Motostation\\Motostation.csproj|solutionrelative:motostation\\controllers\\storescontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{0F96131F-A317-4FAD-A905-3B0EA1686D59}|Motostation\\Motostation.csproj|c:\\users\\orange\\desktop\\masterpieceworkspace\\backend\\motostation\\motostation\\models\\subscription.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{0F96131F-A317-4FAD-A905-3B0EA1686D59}|Motostation\\Motostation.csproj|solutionrelative:motostation\\models\\subscription.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{0F96131F-A317-4FAD-A905-3B0EA1686D59}|Motostation\\Motostation.csproj|c:\\users\\orange\\desktop\\masterpieceworkspace\\backend\\motostation\\motostation\\controllers\\subscriptioncontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{0F96131F-A317-4FAD-A905-3B0EA1686D59}|Motostation\\Motostation.csproj|solutionrelative:motostation\\controllers\\subscriptioncontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{0F96131F-A317-4FAD-A905-3B0EA1686D59}|Motostation\\Motostation.csproj|c:\\users\\orange\\desktop\\masterpieceworkspace\\backend\\motostation\\motostation\\models\\store.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{0F96131F-A317-4FAD-A905-3B0EA1686D59}|Motostation\\Motostation.csproj|solutionrelative:motostation\\models\\store.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{0F96131F-A317-4FAD-A905-3B0EA1686D59}|Motostation\\Motostation.csproj|c:\\users\\orange\\desktop\\masterpieceworkspace\\backend\\motostation\\motostation\\controllers\\contactmessage.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{0F96131F-A317-4FAD-A905-3B0EA1686D59}|Motostation\\Motostation.csproj|solutionrelative:motostation\\controllers\\contactmessage.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{0F96131F-A317-4FAD-A905-3B0EA1686D59}|Motostation\\Motostation.csproj|c:\\users\\orange\\desktop\\masterpieceworkspace\\backend\\motostation\\motostation\\controllers\\contactmessagescontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{0F96131F-A317-4FAD-A905-3B0EA1686D59}|Motostation\\Motostation.csproj|solutionrelative:motostation\\controllers\\contactmessagescontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{0F96131F-A317-4FAD-A905-3B0EA1686D59}|Motostation\\Motostation.csproj|c:\\users\\orange\\desktop\\masterpieceworkspace\\backend\\motostation\\motostation\\controllers\\userscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{0F96131F-A317-4FAD-A905-3B0EA1686D59}|Motostation\\Motostation.csproj|solutionrelative:motostation\\controllers\\userscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{0F96131F-A317-4FAD-A905-3B0EA1686D59}|Motostation\\Motostation.csproj|c:\\users\\orange\\desktop\\masterpieceworkspace\\backend\\motostation\\motostation\\controllers\\productscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{0F96131F-A317-4FAD-A905-3B0EA1686D59}|Motostation\\Motostation.csproj|solutionrelative:motostation\\controllers\\productscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{0F96131F-A317-4FAD-A905-3B0EA1686D59}|Motostation\\Motostation.csproj|c:\\users\\orange\\desktop\\masterpieceworkspace\\backend\\motostation\\motostation\\models\\contactmessage.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{0F96131F-A317-4FAD-A905-3B0EA1686D59}|Motostation\\Motostation.csproj|solutionrelative:motostation\\models\\contactmessage.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{0F96131F-A317-4FAD-A905-3B0EA1686D59}|Motostation\\Motostation.csproj|c:\\users\\orange\\desktop\\masterpieceworkspace\\backend\\motostation\\motostation\\controllers\\categoriescontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{0F96131F-A317-4FAD-A905-3B0EA1686D59}|Motostation\\Motostation.csproj|solutionrelative:motostation\\controllers\\categoriescontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{0F96131F-A317-4FAD-A905-3B0EA1686D59}|Motostation\\Motostation.csproj|c:\\users\\orange\\desktop\\masterpieceworkspace\\backend\\motostation\\motostation\\dtos\\categorydto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{0F96131F-A317-4FAD-A905-3B0EA1686D59}|Motostation\\Motostation.csproj|solutionrelative:motostation\\dtos\\categorydto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{0F96131F-A317-4FAD-A905-3B0EA1686D59}|Motostation\\Motostation.csproj|c:\\users\\orange\\desktop\\masterpieceworkspace\\backend\\motostation\\motostation\\models\\category.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{0F96131F-A317-4FAD-A905-3B0EA1686D59}|Motostation\\Motostation.csproj|solutionrelative:motostation\\models\\category.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{0F96131F-A317-4FAD-A905-3B0EA1686D59}|Motostation\\Motostation.csproj|c:\\users\\orange\\desktop\\masterpieceworkspace\\backend\\motostation\\motostation\\dtos\\addproductdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{0F96131F-A317-4FAD-A905-3B0EA1686D59}|Motostation\\Motostation.csproj|solutionrelative:motostation\\dtos\\addproductdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{0F96131F-A317-4FAD-A905-3B0EA1686D59}|Motostation\\Motostation.csproj|c:\\users\\orange\\desktop\\masterpieceworkspace\\backend\\motostation\\motostation\\controllers\\eventscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{0F96131F-A317-4FAD-A905-3B0EA1686D59}|Motostation\\Motostation.csproj|solutionrelative:motostation\\controllers\\eventscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -50,7 +42,7 @@
       "DocumentGroups": [
         {
           "DockedWidth": 284,
-          "SelectedChildIndex": 1,
+          "SelectedChildIndex": 6,
           "Children": [
             {
               "$type": "Bookmark",
@@ -58,131 +50,106 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": "SubscriptionController.cs",
-              "DocumentMoniker": "C:\\Users\\Orange\\Desktop\\MasterPieceWorkSpace\\BackEnd\\Motostation\\Motostation\\Controllers\\SubscriptionController.cs",
-              "RelativeDocumentMoniker": "Motostation\\Controllers\\SubscriptionController.cs",
-              "ToolTip": "C:\\Users\\Orange\\Desktop\\MasterPieceWorkSpace\\BackEnd\\Motostation\\Motostation\\Controllers\\SubscriptionController.cs",
-              "RelativeToolTip": "Motostation\\Controllers\\SubscriptionController.cs",
-              "ViewState": "AQIAAA0AAAAAAAAAAAAzwBcAAAAgAAAA",
+              "DocumentIndex": 2,
+              "Title": "Subscription.cs",
+              "DocumentMoniker": "C:\\Users\\Orange\\Desktop\\MasterPieceWorkSpace\\BackEnd\\Motostation\\Motostation\\Models\\Subscription.cs",
+              "RelativeDocumentMoniker": "Motostation\\Models\\Subscription.cs",
+              "ToolTip": "C:\\Users\\Orange\\Desktop\\MasterPieceWorkSpace\\BackEnd\\Motostation\\Motostation\\Models\\Subscription.cs",
+              "RelativeToolTip": "Motostation\\Models\\Subscription.cs",
+              "ViewState": "AQIAAA0AAAAAAAAAAAA5wAAAAAAAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-10-07T21:21:22.039Z",
+              "WhenOpened": "2024-10-15T22:02:54.337Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "Store.cs",
+              "DocumentMoniker": "C:\\Users\\Orange\\Desktop\\MasterPieceWorkSpace\\BackEnd\\Motostation\\Motostation\\Models\\Store.cs",
+              "RelativeDocumentMoniker": "Motostation\\Models\\Store.cs",
+              "ToolTip": "C:\\Users\\Orange\\Desktop\\MasterPieceWorkSpace\\BackEnd\\Motostation\\Motostation\\Models\\Store.cs",
+              "RelativeToolTip": "Motostation\\Models\\Store.cs",
+              "ViewState": "AQIAABEAAAAAAAAAAAA9wB0AAAAZAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-10-15T22:02:31.596Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 1,
-              "Title": "ContactMessage.cs",
-              "DocumentMoniker": "C:\\Users\\Orange\\Desktop\\MasterPieceWorkSpace\\BackEnd\\Motostation\\Motostation\\Controllers\\ContactMessage.cs",
-              "RelativeDocumentMoniker": "Motostation\\Controllers\\ContactMessage.cs",
-              "ToolTip": "C:\\Users\\Orange\\Desktop\\MasterPieceWorkSpace\\BackEnd\\Motostation\\Motostation\\Controllers\\ContactMessage.cs",
-              "RelativeToolTip": "Motostation\\Controllers\\ContactMessage.cs",
-              "ViewState": "AQIAAAYAAAAAAAAAAAAAABYAAAAfAAAA",
+              "Title": "StoresController.cs",
+              "DocumentMoniker": "C:\\Users\\Orange\\Desktop\\MasterPieceWorkSpace\\BackEnd\\Motostation\\Motostation\\Controllers\\StoresController.cs",
+              "RelativeDocumentMoniker": "Motostation\\Controllers\\StoresController.cs",
+              "ToolTip": "C:\\Users\\Orange\\Desktop\\MasterPieceWorkSpace\\BackEnd\\Motostation\\Motostation\\Controllers\\StoresController.cs",
+              "RelativeToolTip": "Motostation\\Controllers\\StoresController.cs",
+              "ViewState": "AQIAABMAAAAAAAAAAAAQwBwAAAAdAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-10-07T21:15:56.707Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 3,
-              "Title": "UsersController.cs",
-              "DocumentMoniker": "C:\\Users\\Orange\\Desktop\\MasterPieceWorkSpace\\BackEnd\\Motostation\\Motostation\\Controllers\\UsersController.cs",
-              "RelativeDocumentMoniker": "Motostation\\Controllers\\UsersController.cs",
-              "ToolTip": "C:\\Users\\Orange\\Desktop\\MasterPieceWorkSpace\\BackEnd\\Motostation\\Motostation\\Controllers\\UsersController.cs",
-              "RelativeToolTip": "Motostation\\Controllers\\UsersController.cs",
-              "ViewState": "AQIAACEAAAAAAAAAAAAYwB4AAAAJAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-10-07T21:08:48.642Z",
+              "WhenOpened": "2024-10-15T21:55:21.013Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 5,
               "Title": "ContactMessage.cs",
-              "DocumentMoniker": "C:\\Users\\Orange\\Desktop\\MasterPieceWorkSpace\\BackEnd\\Motostation\\Motostation\\Models\\ContactMessage.cs",
-              "RelativeDocumentMoniker": "Motostation\\Models\\ContactMessage.cs",
-              "ToolTip": "C:\\Users\\Orange\\Desktop\\MasterPieceWorkSpace\\BackEnd\\Motostation\\Motostation\\Models\\ContactMessage.cs",
-              "RelativeToolTip": "Motostation\\Models\\ContactMessage.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAcAAAAYAAAA",
+              "DocumentMoniker": "C:\\Users\\Orange\\Desktop\\MasterPieceWorkSpace\\BackEnd\\Motostation\\Motostation\\Controllers\\ContactMessage.cs",
+              "RelativeDocumentMoniker": "Motostation\\Controllers\\ContactMessage.cs",
+              "ToolTip": "C:\\Users\\Orange\\Desktop\\MasterPieceWorkSpace\\BackEnd\\Motostation\\Motostation\\Controllers\\ContactMessage.cs",
+              "RelativeToolTip": "Motostation\\Controllers\\ContactMessage.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-10-07T20:30:52.276Z",
+              "WhenOpened": "2024-10-15T21:21:35.109Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
-              "Title": "ContactMessagesController.cs",
-              "DocumentMoniker": "C:\\Users\\Orange\\Desktop\\MasterPieceWorkSpace\\BackEnd\\Motostation\\Motostation\\Controllers\\ContactMessagesController.cs",
-              "RelativeDocumentMoniker": "Motostation\\Controllers\\ContactMessagesController.cs",
-              "ToolTip": "C:\\Users\\Orange\\Desktop\\MasterPieceWorkSpace\\BackEnd\\Motostation\\Motostation\\Controllers\\ContactMessagesController.cs",
-              "RelativeToolTip": "Motostation\\Controllers\\ContactMessagesController.cs",
-              "ViewState": "AQIAAB8AAAAAAAAAAAAgwDQAAAAQAAAA",
+              "DocumentIndex": 3,
+              "Title": "SubscriptionController.cs",
+              "DocumentMoniker": "C:\\Users\\Orange\\Desktop\\MasterPieceWorkSpace\\BackEnd\\Motostation\\Motostation\\Controllers\\SubscriptionController.cs",
+              "RelativeDocumentMoniker": "Motostation\\Controllers\\SubscriptionController.cs",
+              "ToolTip": "C:\\Users\\Orange\\Desktop\\MasterPieceWorkSpace\\BackEnd\\Motostation\\Motostation\\Controllers\\SubscriptionController.cs",
+              "RelativeToolTip": "Motostation\\Controllers\\SubscriptionController.cs",
+              "ViewState": "AQIAACEAAAAAAAAAAAAYwDQAAAAaAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-10-07T20:22:50.475Z",
+              "WhenOpened": "2024-10-15T21:07:05.55Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 7,
-              "Title": "CategoryDto.cs",
-              "DocumentMoniker": "C:\\Users\\Orange\\Desktop\\MasterPieceWorkSpace\\BackEnd\\Motostation\\Motostation\\DTOs\\CategoryDto.cs",
-              "RelativeDocumentMoniker": "Motostation\\DTOs\\CategoryDto.cs",
-              "ToolTip": "C:\\Users\\Orange\\Desktop\\MasterPieceWorkSpace\\BackEnd\\Motostation\\Motostation\\DTOs\\CategoryDto.cs",
-              "RelativeToolTip": "Motostation\\DTOs\\CategoryDto.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAwAAAAEAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-10-07T18:17:55.337Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 8,
-              "Title": "Category.cs",
-              "DocumentMoniker": "C:\\Users\\Orange\\Desktop\\MasterPieceWorkSpace\\BackEnd\\Motostation\\Motostation\\Models\\Category.cs",
-              "RelativeDocumentMoniker": "Motostation\\Models\\Category.cs",
-              "ToolTip": "C:\\Users\\Orange\\Desktop\\MasterPieceWorkSpace\\BackEnd\\Motostation\\Motostation\\Models\\Category.cs",
-              "RelativeToolTip": "Motostation\\Models\\Category.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAA8AAAAZAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-10-07T17:53:32.655Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 6,
+              "DocumentIndex": 0,
               "Title": "CategoriesController.cs",
               "DocumentMoniker": "C:\\Users\\Orange\\Desktop\\MasterPieceWorkSpace\\BackEnd\\Motostation\\Motostation\\Controllers\\CategoriesController.cs",
               "RelativeDocumentMoniker": "Motostation\\Controllers\\CategoriesController.cs",
               "ToolTip": "C:\\Users\\Orange\\Desktop\\MasterPieceWorkSpace\\BackEnd\\Motostation\\Motostation\\Controllers\\CategoriesController.cs",
               "RelativeToolTip": "Motostation\\Controllers\\CategoriesController.cs",
-              "ViewState": "AQIAAAkAAAAAAAAAAAAAABAAAAAIAAAA",
+              "ViewState": "AQIAACEAAAAAAAAAAAA4wCkAAAAJAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-10-07T17:44:31.851Z",
+              "WhenOpened": "2024-10-15T19:45:09.148Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 9,
-              "Title": "AddProductDto.cs",
-              "DocumentMoniker": "C:\\Users\\Orange\\Desktop\\MasterPieceWorkSpace\\BackEnd\\Motostation\\Motostation\\DTOs\\AddProductDto.cs",
-              "RelativeDocumentMoniker": "Motostation\\DTOs\\AddProductDto.cs",
-              "ToolTip": "C:\\Users\\Orange\\Desktop\\MasterPieceWorkSpace\\BackEnd\\Motostation\\Motostation\\DTOs\\AddProductDto.cs",
-              "RelativeToolTip": "Motostation\\DTOs\\AddProductDto.cs",
-              "ViewState": "AQIAAAsAAAAAAAAAAAAgwBcAAAAuAAAA",
+              "DocumentIndex": 6,
+              "Title": "UsersController.cs",
+              "DocumentMoniker": "C:\\Users\\Orange\\Desktop\\MasterPieceWorkSpace\\BackEnd\\Motostation\\Motostation\\Controllers\\UsersController.cs",
+              "RelativeDocumentMoniker": "Motostation\\Controllers\\UsersController.cs",
+              "ToolTip": "C:\\Users\\Orange\\Desktop\\MasterPieceWorkSpace\\BackEnd\\Motostation\\Motostation\\Controllers\\UsersController.cs",
+              "RelativeToolTip": "Motostation\\Controllers\\UsersController.cs",
+              "ViewState": "AQIAACgAAAAAAAAAAAApwDEAAAAfAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-10-06T18:23:51.675Z"
+              "WhenOpened": "2024-10-15T20:25:05.629Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 4,
-              "Title": "ProductsController.cs",
-              "DocumentMoniker": "C:\\Users\\Orange\\Desktop\\MasterPieceWorkSpace\\BackEnd\\Motostation\\Motostation\\Controllers\\ProductsController.cs",
-              "RelativeDocumentMoniker": "Motostation\\Controllers\\ProductsController.cs",
-              "ToolTip": "C:\\Users\\Orange\\Desktop\\MasterPieceWorkSpace\\BackEnd\\Motostation\\Motostation\\Controllers\\ProductsController.cs",
-              "RelativeToolTip": "Motostation\\Controllers\\ProductsController.cs",
-              "ViewState": "AQIAAFEAAAAAAAAAAAAAAJ4AAAAAAAAA",
+              "DocumentIndex": 7,
+              "Title": "EventsController.cs",
+              "DocumentMoniker": "C:\\Users\\Orange\\Desktop\\MasterPieceWorkSpace\\BackEnd\\Motostation\\Motostation\\Controllers\\EventsController.cs",
+              "RelativeDocumentMoniker": "Motostation\\Controllers\\EventsController.cs",
+              "ToolTip": "C:\\Users\\Orange\\Desktop\\MasterPieceWorkSpace\\BackEnd\\Motostation\\Motostation\\Controllers\\EventsController.cs",
+              "RelativeToolTip": "Motostation\\Controllers\\EventsController.cs",
+              "ViewState": "AQIAAD8AAAAAAAAAAAAIwEsAAAA1AAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-10-06T17:57:15.338Z",
+              "WhenOpened": "2024-10-15T19:33:55.917Z",
               "EditorCaption": ""
             }
           ]

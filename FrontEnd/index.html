@@ -432,20 +432,31 @@
 
 
         <!-- Testimonial Start -->
-        <div class="container-xxl py-5">
+        <div class="container-xxl py-5" style="width: 40%;">
             <div class="container">
                 <div class="text-center mx-auto mb-5 wow fadeInUp" data-wow-delay="0.1s" style="max-width: 600px;">
                     <h1 class="mb-3">Our Clients Say!</h1>
                     <p>Hear from our satisfied clients about their experiences with MotoStation, where quality service meets rider satisfaction.</p>
                 </div>
 
-                <div id="TestimonialContainer" class="owl-carousel testimonial-carousel wow fadeInUp" data-wow-delay="0.1s">
-                    
+                <!-- Bootstrap Carousel -->
+                <div id="testimonialCarousel" class="carousel slide" data-bs-ride="carousel">
+                    <div class="carousel-inner" id="TestimonialContainer">
+                        <!-- Dynamic testimonial slides will be inserted here -->
+                    </div>
+                    <button class="carousel-control-prev" type="button" data-bs-target="#testimonialCarousel" data-bs-slide="prev">
+                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                        <span class="visually-hidden">Previous</span>
+                    </button>
+                    <button class="carousel-control-next" type="button" data-bs-target="#testimonialCarousel" data-bs-slide="next">
+                        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                        <span class="visually-hidden">Next</span>
+                    </button>
                 </div>
-                
             </div>
         </div>
         <!-- Testimonial End -->
+
         
 
         <!-- Footer Start -->

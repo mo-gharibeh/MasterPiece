@@ -1,150 +1,286 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Event Management</title>
+    <title>Admin Dashboard</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <style>
         body {
             font-family: Arial, sans-serif;
             background-color: #f8f9fa;
         }
+
         .sidebar {
-            height: 100vh;
+            min-height: 100vh;
             background-color: #343a40;
             padding-top: 20px;
         }
+
         .sidebar a {
             color: #ffffff;
             padding: 15px;
             text-decoration: none;
             display: block;
         }
+
         .sidebar a:hover {
             background-color: #495057;
         }
+
         .sidebar a.active {
             background-color: #007bff;
             color: #ffffff;
         }
+
         .content {
             padding: 20px;
         }
+
         .card {
             margin-bottom: 20px;
         }
-        .table-container {
-            overflow-x: auto;
-        }
     </style>
 </head>
+
 <body>
 
-<div class="container-fluid">
-    <div class="row">
-        <!-- Sidebar -->
-        <nav class="col-md-3 col-lg-2 d-md-block bg-dark sidebar">
-            <div class="position-sticky">
-                <ul class="nav flex-column">
-                    <li class="nav-item">
-                        <a class="nav-link" href="dashboard.html">Dashboard</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="user.html">Users Management</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="Motorcycle.html">Motorcycle Management</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="Store.html">Store Management</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link active" href="event.html">Event Management</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="contact.html">Contact Management</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="../index.html">Logout</a>
-                    </li>
-                </ul>
-            </div>
-        </nav>
+    <div class="container-fluid">
+        <div class="row">
+            <!-- Sidebar -->
+            <nav class="col-md-3 col-lg-2 d-md-block bg-dark sidebar">
+                <div class="position-sticky">
+                    <ul class="nav flex-column">
+                        <li class="nav-item">
+                            <a class="nav-link" href="dashboard.html" >Dashboard</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link"  href="user.html" >Users Management</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="category.html">Categories Management</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="product.html">Products Management</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link " href="Store.html">Store Management</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link active" href="event.html">Event Management</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="posts.html">Posts Management</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="contact.html">Contact Management</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="subscription.html">Subscriptions Management</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="payment.html">Payment Management</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="../index.html" >Logout</a>
+                        </li>
+                    </ul>
+                </div>
+            </nav>
+    
 
-        <!-- Main Content -->
-        <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4 content">
-            <h1>Event Management</h1>
-
-            <!-- Add Event Button -->
-            <button class="btn btn-primary mb-3" data-bs-toggle="modal" data-bs-target="#addEventModal">Add New Event</button>
-
-            <!-- Events Table -->
-            <div class="table-container">
-                <table class="table table-bordered table-striped">
-                    <thead>
-                        <tr>
-                            <th>Event ID</th>
-                            <th>Title</th>
-                            <th>Description</th>
-                            <th>Location</th>
-                            <th>Event Date</th>
-                            <th>Actions</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <!-- Example event data, this should be dynamically loaded -->
-                        <tr>
-                            <td>1</td>
-                            <td>Motorcycle Rally</td>
-                            <td>Join us for a thrilling motorcycle rally across the city.</td>
-                            <td>City Park, Downtown</td>
-                            <td>2024-10-15</td>
-                            <td>
-                                <button class="btn btn-warning btn-sm">Edit</button>
-                                <button class="btn btn-danger btn-sm">Delete</button>
-                            </td>
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
-        </main>
+            <!-- Main content -->
+            <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4 content">
+                <h1 class="h2">Manage Events</h1>
+                <button class="btn btn-primary mb-3" id="addEventBtn">Add Event</button>
+                <div class="table-responsive">
+                    <table class="table table-striped table-sm">
+                        <thead>
+                            <tr>
+                                <th>ID</th>
+                                <th>Title</th>
+                                <th>Description</th>
+                                <th>Location</th>
+                                <th>Date</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody id="eventsTable">
+                            <!-- Dynamic rows will be inserted here -->
+                        </tbody>
+                    </table>
+                </div>
+            </main>
+        </div>
     </div>
-</div>
 
-<!-- Add Event Modal -->
-<div class="modal fade" id="addEventModal" tabindex="-1" aria-labelledby="addEventModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="addEventModalLabel">Add New Event</h5>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <div class="modal-body">
-                <form>
-                    <div class="mb-3">
-                        <label for="eventTitle" class="form-label">Title</label>
-                        <input type="text" class="form-control" id="eventTitle" placeholder="Enter event title">
+    <!-- Add/Edit Modal -->
+    <div class="modal fade" id="eventModal" tabindex="-1" aria-labelledby="eventModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="eventModalLabel">Add Event</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <form id="eventForm">
+                    <div class="modal-body">
+                        <div class="mb-3">
+                            <label for="eventTitle" class="form-label">Event Title</label>
+                            <input type="text" class="form-control" name="Title" id="eventTitle" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="description" class="form-label">Description</label>
+                            <textarea class="form-control" name="Description" id="description" rows="3"></textarea>
+                        </div>
+                        <div class="mb-3">
+                            <label for="location" class="form-label">Location</label>
+                            <input type="text" class="form-control" name="Location" id="location" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="eventDate" class="form-label">Event Date</label>
+                            <input type="datetime-local" class="form-control" name="EventDate" id="eventDate" required>
+                        </div>
+                        <input type="hidden" id="eventId">
                     </div>
-                    <div class="mb-3">
-                        <label for="eventDescription" class="form-label">Description</label>
-                        <textarea class="form-control" id="eventDescription" rows="3" placeholder="Enter event description"></textarea>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                        <button type="submit" class="btn btn-primary">Save</button>
                     </div>
-                    <div class="mb-3">
-                        <label for="eventLocation" class="form-label">Location</label>
-                        <input type="text" class="form-control" id="eventLocation" placeholder="Enter event location">
-                    </div>
-                    <div class="mb-3">
-                        <label for="eventDate" class="form-label">Event Date</label>
-                        <input type="date" class="form-control" id="eventDate">
-                    </div>
-                    <button type="submit" class="btn btn-primary">Add Event</button>
                 </form>
             </div>
         </div>
     </div>
-</div>
 
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const eventModal = new bootstrap.Modal(document.getElementById('eventModal'));
+            const eventForm = document.getElementById('eventForm');
+            const eventsTable = document.getElementById('eventsTable');
+            const addEventBtn = document.getElementById('addEventBtn');
+            let editingEventId = null;
+
+            // Fetch all events
+            async function fetchEvents() {
+                try {
+                    const response = await fetch('https://localhost:44398/api/Events');
+                    const events = await response.json();
+                    eventsTable.innerHTML = '';
+                    events.forEach(event => {
+                        eventsTable.innerHTML += `
+                            <tr>
+                                <td>${event.eventId}</td>
+                                <td>${event.title}</td>
+                                <td>${event.description}</td>
+                                <td>${event.location}</td>
+                                <td>${new Date(event.eventDate).toLocaleString()}</td>
+                                <td>
+                                    <button class="btn btn-sm btn-info" onclick="editEvent(${event.eventId})">Edit</button>
+                                    <button class="btn btn-sm btn-danger" onclick="deleteEvent(${event.eventId})">Delete</button>
+                                </td>
+                            </tr>
+                        `;
+                    });
+                } catch (error) {
+                    console.error('Error fetching events:', error);
+                }
+            }
+
+            // Add or edit event
+            eventForm.addEventListener('submit', async function (e) {
+                e.preventDefault();
+                debugger
+                const formData = new FormData(eventForm);
+                try {
+                    if (editingEventId === null) {
+                        // Add new event (POST request)
+                        const response = await fetch('https://localhost:44398/api/Events', {
+                            method: 'POST',
+                            body: formData,
+                        });
+
+                        if (response.ok) {
+                            eventModal.hide();
+                            fetchEvents();
+                            eventForm.reset();
+                        } else {
+                            console.error('Error saving event:', response.statusText);
+                        }
+                    } else {
+                        debugger
+                        // Edit existing event (PUT request)
+                        // formData.append("UserId", editingEventId);
+                        const response = await fetch(`https://localhost:44398/api/Events?id=${editingEventId}`, {
+                            method: 'PUT',
+                            body: formData,
+                        });
+
+                        if (response.ok) {
+                            eventModal.hide();
+                            fetchEvents();
+                            eventForm.reset();
+                            editingEventId = null;
+                        } else {
+                            console.error('Error saving event:', response.statusText);
+                        }
+                    }
+                } catch (error) {
+                    console.error('Error during save operation:', error);
+                }
+            });
+
+            // Open Add Event modal
+            addEventBtn.addEventListener('click', function () {
+                editingEventId = null;
+                document.getElementById('eventModalLabel').textContent = 'Add Event';
+                eventForm.reset();
+                eventModal.show();
+            });
+
+            // Edit event
+            window.editEvent = async function (id) {
+                editingEventId = id;
+                document.getElementById('eventModalLabel').textContent = 'Edit Event';
+                debugger
+                try {
+                    const response = await fetch(`https://localhost:44398/api/Events/${id}`);
+                    if (response.ok) {
+                        const event = await response.json();
+                        document.getElementById('eventTitle').value = event.title;
+                        document.getElementById('description').value = event.description;
+                        document.getElementById('location').value = event.location;
+                        document.getElementById('eventDate').value = new Date(event.eventDate).toISOString().slice(0, 16);
+                        eventModal.show();
+                    } else {
+                        console.error('Error fetching event:', response.statusText);
+                    }
+                } catch (error) {
+                    console.error('Error fetching event:', error);
+                }
+            };
+
+            // Delete event
+            window.deleteEvent = async function (id) {
+                debugger
+                if (confirm('Are you sure you want to delete this event?')) {
+                    try {
+                        const response = await fetch(`https://localhost:44398/api/Events?id=${id}`, { method: 'DELETE' });
+                        if (response.ok) {
+                            fetchEvents();
+                        } else {
+                            console.error('Error deleting event:', response.statusText);
+                        }
+                    } catch (error) {
+                        console.error('Error during delete operation:', error);
+                    }
+                }
+            };
+
+            // Initial fetch of events
+            fetchEvents();
+        });
+    </script>
 </body>
+
 </html>

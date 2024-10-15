@@ -20,7 +20,17 @@ namespace Motostation.Controllers
         [HttpGet("allPayment")]
         public IActionResult GetPayments()
         {
-            var payments = _db.Payments.ToList();
+            var payments = _db.Payments
+                .Select(t => new
+                {
+                    t.PaymentId,
+                    UserName = t.User.UserName,
+                    t.PaymentDate,
+                    t.Amount,
+                    t.PaymentStatus,
+                    t.PaymentMethod,
+                })
+                .ToList();
             return Ok(payments);
         }
 
@@ -28,7 +38,19 @@ namespace Motostation.Controllers
         [HttpGet("allSubscription")]
         public IActionResult GetSubscriptions()
         {
-            var subscriptions = _db.Subscriptions.ToList();
+            var subscriptions = _db.Subscriptions
+                .Select(s => new
+                {
+                    s.SubscriptionId,
+                    UserName = s.User.UserName,
+                    s.SubscriptionType,
+                    s.Price,
+                    s.StartDate,
+                    s.EndDate,
+                    s.IsActive,
+
+                })
+                .ToList();
             return Ok(subscriptions);
         }
 

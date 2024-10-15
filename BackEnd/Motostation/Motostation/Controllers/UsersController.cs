@@ -40,6 +40,28 @@ namespace Motostation.Controllers
             return Ok(user);
         }
 
+        [HttpGet("AllPost")]
+        public IActionResult GetAllPosts()
+        {
+            var posts = _db.Posts.ToList();
+            return Ok(posts);
+        }
+
+        [HttpDelete("DeletePost")]
+        public IActionResult DeletePost(int id)
+        {
+            var postToRemove = _db.Posts.Find(id);
+            if (postToRemove == null)
+            {
+                return NotFound(new { message = "Post not found" });
+            }
+            _db.Posts.Remove(postToRemove);
+            _db.SaveChanges();
+            return Ok(new { message = "Post deleted successfully" });   
+
+        }
+
+
         [HttpGet("posts/userId/{id}")]
         public IActionResult grtPost(int id)
         {

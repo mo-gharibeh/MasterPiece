@@ -47,26 +47,44 @@ async function GitAllContact(){
     console.log(result);
 
     var TestimonialContainer = document.getElementById("TestimonialContainer");
+    TestimonialContainer.innerHTML = ''; // Clear previous content
 
-    result.forEach(element =>{
+    result.forEach((element, index) => {
+        const activeClass = index === 0 ? "active" : ""; // Set the first item as active
         TestimonialContainer.innerHTML +=
         `
-        <div class="testimonial-item bg-light rounded p-3">
-            <div class="bg-white border rounded p-4">
-                <p>${element.content}</p>
-                <div class="d-flex align-items-center">
-                    <img class="img-fluid flex-shrink-0 rounded" src="img/testimonial-1.jpg" style="width: 45px; height: 45px;">
-                    <div class="ps-3">
-                        <h6 class="fw-bold mb-1">${element.name}</h6>
-                        <small>${element.subject}</small>
+        <div class="carousel-item ${activeClass}">
+            <div class="testimonial-item bg-light rounded p-3">
+                <div class="bg-white border rounded p-4">
+                    <p>${element.content}</p>
+                    <div class="d-flex align-items-center">
+                        <img class="img-fluid flex-shrink-0 rounded" src="img/testimonial-1.jpg" style="width: 45px; height: 45px;">
+                        <div class="ps-3">
+                            <h6 class="fw-bold mb-1">${element.name}</h6>
+                            <small>${element.subject}</small>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
-        `
-    })
+        `;
+    });
     
 
 }
+// forEach((testimonial, index) => {
+//     const activeClass = index === 0 ? "active" : ""; // Set the first testimonial as active
+//     const testimonialHTML = `
+//         <div class="carousel-item ${activeClass}">
+//             <div class="testimonial-item text-center">
+//                 <img class="rounded-circle mb-4" src="${testimonial.image}" alt="${testimonial.author}" style="width: 100px; height: 100px;">
+//                 <p class="mb-3">${testimonial.content}</p>
+//                 <h5>${testimonial.author}</h5>
+//                 <small>${testimonial.position}</small>
+//             </div>
+//         </div>
+//     `;
+//     testimonialContainer.innerHTML += testimonialHTML;
+// });
 
 GitAllContact();

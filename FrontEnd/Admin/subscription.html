@@ -11,7 +11,7 @@
             background-color: #f8f9fa;
         }
         .sidebar {
-            height: 100vh;
+            min-height: 100vh;
             background-color: #343a40;
             padding-top: 20px;
         }
@@ -41,35 +41,41 @@
 <div class="container-fluid">
     <div class="row">
         <!-- Sidebar -->
-        <nav class="col-md-3 col-lg-2 d-md-block bg-dark sidebar">
+        <nav class="col-md-3 col-lg-2 d-md-block bg-dark sidebar"  style="position: sticky;">
             <div class="position-sticky">
                 <ul class="nav flex-column">
                     <li class="nav-item">
-                        <a class="nav-link active">Dashboard</a>
+                        <a class="nav-link " href="dashboard.html" >Dashboard</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="user.html">Users Management</a>
+                        <a class="nav-link"  href="user.html" >Users Management</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="Motorcycle.html">Motorcycle Management</a>
+                        <a class="nav-link" href="category.html">Categories Management</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="Store.html">Store Management</a>
+                        <a class="nav-link" href="product.html">Products Management</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link " href="Store.html">Store Management</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="event.html">Event Management</a>
                     </li>
                     <li class="nav-item">
+                        <a class="nav-link" href="posts.html">Posts Management</a>
+                    </li>
+                    <li class="nav-item">
                         <a class="nav-link" href="contact.html">Contact Management</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="payments.html">Payments Management</a>
+                        <a class="nav-link active" href="subscription.html">Subscriptions Management</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="subscriptions.html">Subscriptions Management</a>
+                        <a class="nav-link" href="payment.html">Payment Management</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="../index.html">Logout</a>
+                        <a class="nav-link" href="../index.html" >Logout</a>
                     </li>
                 </ul>
             </div>
@@ -83,7 +89,7 @@
                     <thead>
                         <tr>
                             <th>ID</th>
-                            <th>UserID</th>
+                            <th>UserName</th>
                             <th>Subscription Type</th>
                             <th>Price</th>
                             <th>Start Date</th>
@@ -115,7 +121,7 @@
                         subscriptionsTable.innerHTML += `
                             <tr>
                                 <td>${subscription.subscriptionId}</td>
-                                <td>${subscription.userId}</td>
+                                <td>${subscription.userName}</td>
                                 <td>${subscription.subscriptionType}</td>
                                 <td>${subscription.price.toFixed(2)}</td>
                                 <td>${new Date(subscription.startDate).toLocaleDateString()}</td>

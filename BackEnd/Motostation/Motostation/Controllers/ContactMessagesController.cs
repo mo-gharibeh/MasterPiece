@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using Motostation.DTOs;
 using Motostation.Models;
 
 namespace Motostation.Controllers
@@ -21,6 +22,14 @@ namespace Motostation.Controllers
         {
             var messages = _context.ContactMessages.ToList();
             return Ok(messages);
+        }
+
+        // GET: api/Contact
+        [HttpGet("approved")]
+        public IActionResult GetContact()
+        {
+            var contact = _context.ContactMessages.Where(c => c.IsApproved == true).ToList();
+            return Ok(contact);
         }
 
         // GET: api/ContactMessages/5
@@ -75,5 +84,31 @@ namespace Motostation.Controllers
 
             return NoContent();
         }
+
+
+        [HttpPost]
+        public IActionResult PostContactMessage([FromBody] ContactMessageDto messageDto)
+        {
+            if (messageDto == null)
+            {
+                return BadRequest();
+            }
+
+            var contactMessage = new ContactMessage
+            {
+                Name = messageDto.Name,
+                Email = messageDto.Email,
+                Subject = messageDto.Subject,
+                Content = messageDto.Content,
+                IsApproved = false, // default value
+                CreatedDate = DateTime.Now // set the current date
+            };
+
+            _context.ContactMessages.Add(contactMessage);
+            _context.SaveChanges(); // Save changes synchronously
+
+            return CreatedAtAction(nameof(GetContactMessage), new { id = contactMessage.MessageId }, contactMessage);
+        }
+
     }
 }

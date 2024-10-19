@@ -6,6 +6,8 @@
         public string? PhoneNumber { get; set; }
         public string? Location { get; set; }
         public IFormFile? ProfileImageUrl { get; set; }
+        public IFormFile? CoverImageUrl { get; set; }
+
 
     }
 }

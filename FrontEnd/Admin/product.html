@@ -90,6 +90,7 @@
                     <thead>
                         <tr>
                             <th>ID</th>
+                            <th>User Name</th>
                             <th>Product Name</th>
                             <th>Description</th>
                             <th>Price</th>
@@ -112,7 +113,7 @@
 
         // Fetch all products
         function fetchProducts() {
-            fetch('https://localhost:44398/api/Products')
+            fetch('https://localhost:44398/api/Products/allProducts')
                 .then(response => response.json())
                 .then(products => {
                     productsTable.innerHTML = '';
@@ -120,6 +121,7 @@
                         productsTable.innerHTML += `
                             <tr>
                                 <td>${product.productId}</td>
+                                <td>${product.userName}</td>
                                 <td>${product.productName}</td>
                                 <td>${product.description}</td>
                                 <td>${product.price}</td>

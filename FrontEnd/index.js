@@ -41,7 +41,7 @@ function saveCategoryId(id, name){
 async function GitAllContact(){
     debugger
     
-    let response = await fetch("https://localhost:44398/api/ContactMessage");
+    let response = await fetch("https://localhost:44398/api/ContactMessages/approved");
     let result = await response.json();
 
     console.log(result);

@@ -16,6 +16,7 @@ async function GetAllEvents(){
         container.innerHTML += `
         <div class="col-md-4 mb-4">
             <div class="card">
+                <img src="https://israel-taxi.com/wp-content/uploads/2024/07/road-to-the-dead-sea.jpg" class="card-img-top" alt="Scenic coastal highway with ocean views">
                 <div class="card-body">
                     <h5 class="card-title">${element.title}</h5>
                     <p class="card-text"><i class="fas fa-map-marker-alt"></i>${element.location} ${element.eventDate}</p>

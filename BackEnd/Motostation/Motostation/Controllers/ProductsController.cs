@@ -22,17 +22,41 @@ namespace Motostation.Controllers
         }
 
         // GET: api/Products
-        [HttpGet]
-        public async Task<ActionResult<IEnumerable<Product>>> GetProducts()
+        [HttpGet("allProducts")]
+        public IActionResult GetProducts()
         {
-            return await _context.Products.ToListAsync();
+            var products = _context.Products
+                .Select(c => new
+                {
+                    c.ProductId,
+                    c.ProductName,
+                    c.ImageUrl,
+                    c.ProductType,
+                    c.Price,
+                    userName = c.Seller.UserName,
+                    categoryName = c.Category.CategoryName,
+                })
+                .ToList();
+            return Ok(products);
+
+
         }
 
         // GET: api/Products/Category/5
         [HttpGet("category/{id}")]
         public IActionResult GetProductByCategoryId(int id) 
         {
-            var products = _context.Products.Where(c => c.CategoryId == id).ToList();
+            var products = _context.Products.Where(c => c.CategoryId == id)
+                .Select(c => new
+                {
+                    c.ProductId,
+                    c.ProductName,
+                    c.ImageUrl,
+                    c.ProductType,
+                    c.Price,
+                    categoryName = c.Category.CategoryName,
+                })
+                .ToList();
             return Ok(products);
         }
 
@@ -125,24 +149,56 @@ namespace Motostation.Controllers
         }
 
 
+        [HttpGet("filter")]
+        public IActionResult FilterProducts(int? categoryId, string? productName)
+        {
+            var query = _context.Products.AsQueryable();
+
+            if (categoryId.HasValue)
+            {
+                query = query.Where(p => p.CategoryId == categoryId.Value);
+            }
+
+            if (!string.IsNullOrEmpty(productName))
+            {
+                query = query.Where(p => p.ProductName.ToLower().Contains(productName.ToLower()));
+            }
+
+            var products = query
+                .Select(p => new
+                {
+                    p.ProductId,
+                    p.ProductName,
+                    p.ImageUrl,
+                    p.ProductType,
+                    p.Price,
+                    CategoryName = p.Category.CategoryName
+                })
+                .ToList();
+
+            return Ok(products);
+        }
 
 
 
 
 
-            // POST: api/Products
-            // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
-            //[HttpPost]
-            //public async Task<ActionResult<Product>> PostProduct(Product product)
-            //{
-            //    _context.Products.Add(product);
-            //    await _context.SaveChangesAsync();
 
-            //    return CreatedAtAction("GetProduct", new { id = product.ProductId }, product);
-            //}
 
-            // DELETE: api/Products/5
-            [HttpDelete("{id}")]
+
+        // POST: api/Products
+        // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
+        //[HttpPost]
+        //public async Task<ActionResult<Product>> PostProduct(Product product)
+        //{
+        //    _context.Products.Add(product);
+        //    await _context.SaveChangesAsync();
+
+        //    return CreatedAtAction("GetProduct", new { id = product.ProductId }, product);
+        //}
+
+        // DELETE: api/Products/5
+        [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteProduct(int id)
         {
             var product = await _context.Products.FindAsync(id);

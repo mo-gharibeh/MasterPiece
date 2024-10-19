@@ -2,7 +2,7 @@
 const userId = localStorage.getItem("userId");
 
 async function viewProfile(){
-    
+    debugger
     let coverImage = document.getElementById("coverImage");
     let profileImage = document.getElementById("profileImage");
     let name = document.getElementById("name");

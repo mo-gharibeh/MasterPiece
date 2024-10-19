@@ -129,15 +129,14 @@
             <div class="col-lg-4">
                 <div class="bg-light rounded p-4 mb-4">
                     <div class="text-center">
-                        <img class="rounded-circle mb-3" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRA5K6G_sHTcvx3n3-FVqr3rSpQBDN4HhW3JQ&s" alt="Profile Picture" style="width: 150px; height: 150px;">
-                        <h4 class="mb-0">Mohammad Hussain</h4>
-                        <p class="text-muted">Web Developer</p>
+                        <img id="profileImage" class="rounded-circle mb-3" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRA5K6G_sHTcvx3n3-FVqr3rSpQBDN4HhW3JQ&s" alt="Profile Picture" style="width: 150px; height: 150px;">
+                        <h4 id="name" class="mb-0">Mohammad Hussain</h4>
                     </div>
                     <hr>
                     <ul class="list-unstyled">
                         <li class="mb-2"><a href="#" class="text-dark"><i class="bi bi-person me-2"></i> My Profile</a></li>
                         <li class="mb-2"><a href="Services.html" class="text-dark"><i class="bi bi-tools me-2"></i> Services</a></li>
-                        <li class="mb-2"><a href="#" class="text-dark"><i class="bi bi-gear me-2"></i> Account Settings</a></li>
+                        <li class="mb-2"><a href="#" class="text-dark"><i class="bi bi-gear me-2"></i> My Service Settings</a></li>
                         <li class="mb-2"><a href="#" class="text-dark"><i class="bi bi-envelope me-2"></i> Messages</a></li>
                         <li><a href="index.html" class="text-danger"><i class="bi bi-box-arrow-right me-2"></i> Log Out</a></li>
                     </ul>
@@ -176,8 +175,12 @@
                             <input type="text" class="form-control" id="address" name="Location" placeholder="Address">
                         </div>
                         <div>
-                            <label for="img">Edit Image</label>
+                            <label for="img">Profile Image</label>
                             <input type="file" class="form-control" id="img" name="ProfileImageUrl" >
+                        </div>
+                        <div>
+                            <label for="img1">Cover Image</label>
+                            <input type="file" class="form-control" id="img1" name="CoverImageUrl" >
                         </div>
                         <button type="submit" onclick="saveChanges()" class="btn btn-primary">Update Profile</button>
                         <br>
@@ -186,25 +189,26 @@
 
                 <div class="bg-light rounded p-4">
                     <h4>Change Password</h4>
-                    <form>
+                    <form onsubmit="event.preventDefault(); changePassword();">
                         <div class="row g-3 mb-3">
                             <div class="col-md-12">
                                 <label for="currentPassword" class="form-label">Current Password</label>
-                                <input type="password" class="form-control" id="currentPassword">
+                                <input type="password" class="form-control" id="currentPassword" required>
                             </div>
                         </div>
                         <div class="row g-3 mb-3">
                             <div class="col-md-6">
                                 <label for="newPassword" class="form-label">New Password</label>
-                                <input type="password" class="form-control" id="newPassword">
+                                <input type="password" class="form-control" id="newPassword" required>
                             </div>
                             <div class="col-md-6">
                                 <label for="confirmPassword" class="form-label">Confirm Password</label>
-                                <input type="password" class="form-control" id="confirmPassword">
+                                <input type="password" class="form-control" id="confirmPassword" required>
                             </div>
                         </div>
                         <button type="submit" class="btn btn-primary">Change Password</button>
                     </form>
+                    
                 </div>
             </div>
             <!-- Profile Content End -->

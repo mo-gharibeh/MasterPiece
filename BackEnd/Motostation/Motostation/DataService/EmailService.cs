@@ -23,9 +23,9 @@ public class EmailService : IEmailService
         mail.Subject = "Confirm your email";
         mail.Body = $"Your OTP code is: {otp}";
 
-        smtpServer.Port = 465;
-        smtpServer.Credentials = new System.Net.NetworkCredential("motostation7@gmail.com", "yfhsqatniyptcwrz");
+        smtpServer.Port = 587;
         smtpServer.EnableSsl = true;
+        smtpServer.Credentials = new System.Net.NetworkCredential("motostation7@gmail.com", "afssjpqjtuwufvno");
 
         try
         {

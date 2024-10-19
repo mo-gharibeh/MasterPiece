@@ -77,19 +77,30 @@ namespace Motostation.Controllers
                 return BadRequest(ModelState);
             }
 
-            // Handle file upload if a new profile image is provided
+            // Define the uploads folder path for storing the images
+            var uploadsFolderPath = Path.Combine(Directory.GetCurrentDirectory(), "Uploads");
+            if (!Directory.Exists(uploadsFolderPath))
+            {
+                Directory.CreateDirectory(uploadsFolderPath);
+            }
+
+            // Handle Profile Image upload
             if (editDto.ProfileImageUrl != null)
             {
-                var uploadsFolderPath = Path.Combine(Directory.GetCurrentDirectory(), "Uploads");
-                if (!Directory.Exists(uploadsFolderPath))
-                {
-                    Directory.CreateDirectory(uploadsFolderPath);
-                }
-
-                var filePath = Path.Combine(uploadsFolderPath, editDto.ProfileImageUrl.FileName);
-                using (var stream = new FileStream(filePath, FileMode.Create))
+                var profileImagePath = Path.Combine(uploadsFolderPath, editDto.ProfileImageUrl.FileName);
+                using (var stream = new FileStream(profileImagePath, FileMode.Create))
                 {
                     editDto.ProfileImageUrl.CopyTo(stream); // Synchronous file copy
+                }
+            }
+
+            // Handle Cover Image upload
+            if (editDto.CoverImageUrl != null)
+            {
+                var coverImagePath = Path.Combine(uploadsFolderPath, editDto.CoverImageUrl.FileName);
+                using (var stream = new FileStream(coverImagePath, FileMode.Create))
+                {
+                    editDto.CoverImageUrl.CopyTo(stream); // Synchronous file copy
                 }
             }
 
@@ -111,12 +122,19 @@ namespace Motostation.Controllers
                 user.ProfileImageUrl = editDto.ProfileImageUrl.FileName; // Save only the file name in the database
             }
 
+            // Update the cover image URL if a new image was uploaded
+            if (editDto.CoverImageUrl != null)
+            {
+                user.CoverImageUrl = editDto.CoverImageUrl.FileName; // Save only the file name in the database
+            }
+
             // Save changes to the database
             _db.Users.Update(user);
             _db.SaveChanges();
 
             return Ok(new { message = "Profile updated successfully" });
         }
+
 
 
         // API for adding Posts to the database from body 
@@ -211,7 +229,8 @@ namespace Motostation.Controllers
                 _cache.Set(model.Email, otp, TimeSpan.FromMinutes(5));
 
                 // Send OTP email synchronously
-                _emailService.SendOtpEmail(user.Email, otp); // Synchronous OTP email sending
+
+                //_emailService.SendOtpEmail(user.Email, otp); // Synchronous OTP email sending
 
                 // Save the user in the database
                 _db.Users.Add(user);
@@ -264,6 +283,49 @@ namespace Motostation.Controllers
 
             return Ok(new { Role = userRole, UserId = user.UserId });
         }
+
+        [HttpPut("changePassword/{id}")]
+        public IActionResult ChangePassword(int id, [FromBody] ChangePasswordDto passwordDto)
+        {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+
+            // Find user by id
+            var user = _db.Users.Find(id);
+            if (user == null)
+            {
+                return NotFound("User not found.");
+            }
+
+            // Verify current password
+            if (!PasswordHasherNew.VerifyPasswordHash(passwordDto.CurrentPassword, user.PasswordHash, user.PasswordSalt))
+            {
+                return BadRequest(new { message = "Current password is incorrect." });
+            }
+
+            // Verify that new password and confirm password match
+            if (passwordDto.NewPassword != passwordDto.ConfirmPassword)
+            {
+                return BadRequest(new { message = "New password and confirmation password do not match." });
+            }
+
+            // Generate new password hash and salt
+            byte[] passwordHash, passwordSalt;
+            PasswordHasherNew.createPasswordHash(passwordDto.NewPassword, out passwordHash, out passwordSalt);
+
+            // Update the user's password hash and salt
+            user.PasswordHash = passwordHash;
+            user.PasswordSalt = passwordSalt;
+
+            // Save changes to the database
+            _db.Users.Update(user);
+            _db.SaveChanges();
+
+            return Ok(new { message = "Password changed successfully." });
+        }
+
     }
 
 

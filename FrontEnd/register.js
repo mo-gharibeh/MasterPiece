@@ -5,7 +5,7 @@
     document.getElementById('signupForm').addEventListener('submit', async function (event) {
         event.preventDefault(); // Prevent form submission
         const formData = new FormData(document.getElementById('signupForm'));
-    
+        debugger
         try {
             // Send registration request to the server
             const response = await fetch('https://localhost:44398/api/Users/register', {
@@ -16,7 +16,11 @@
             
             if (response.ok && data.success) {
                 // Show OTP modal if registration is successful
-                openModal();
+
+                // openModal();   // Show modal
+                alert('User Registration complete.');
+                window.location.href = "register.html";          ////// editing 
+
                 document.getElementById('statusMessage').textContent = 'OTP sent to your email.';
             } else {
                 // Handle registration failure
@@ -80,9 +84,9 @@
 
     // For loged in users
     document.getElementById('loginForm').addEventListener('submit', login);
-
     async function login(event) {
         event.preventDefault(); // Prevents the default form submission behavior
+        debugger
         
         const userName = document.getElementById('username').value.trim();
         const password = document.getElementById('passwordLogin').value.trim();

@@ -18,7 +18,7 @@ async function loadProductDetails() {
     document.getElementById("productCondition").textContent = product.productCondition;
     document.getElementById("productType").textContent = "For " + product.productType;
     document.getElementById("productPrice").textContent = `${product.price} JOD`;
-    document.getElementById("stockQuantity").textContent = `${product.stockQuantity} available`;
+    // document.getElementById("stockQuantity").textContent = `${product.stockQuantity} available`;
     document.getElementById("productDescription").textContent = product.description;
     
     // Handle optional fields like rental price and seller info

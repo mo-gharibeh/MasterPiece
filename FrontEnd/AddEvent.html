@@ -29,6 +29,7 @@
 
     <!-- Template Stylesheet -->
     <link href="css/style.css" rel="stylesheet">
+    
 </head>
 
 <body>
@@ -57,16 +58,16 @@
                 <div id="navbar" class="collapse navbar-collapse" id="navbarCollapse">
                     <div class="navbar-nav ms-auto">
                         <a href="index.html" class="nav-item nav-link ">Home</a>
-                        <a href="about.html" class="nav-item nav-link">About</a>
                         <div class="nav-item dropdown">
                             <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Services</a>
                             <div class="dropdown-menu rounded-0 m-0">
-                                <a href="shops.html" class="dropdown-item">Shops</a>
-                                <a href="rent.html" class="dropdown-item">Rent</a>
+                                <a href="shops.html" class="dropdown-item">Maintenance</a>
+                                <a href="rent.html" class="dropdown-item">Shop</a>
                                 <a href="event.html" class="dropdown-item">Events</a>
                                 <!-- <a href="property-agent.html" class="dropdown-item">Property Agent</a> -->
                             </div>
                         </div>
+                        <a href="about.html" class="nav-item nav-link">About</a>
                         <!-- <div class="nav-item dropdown">
                             <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Pages</a>
                             <div class="dropdown-menu rounded-0 m-0">                                
@@ -128,39 +129,76 @@
         <!-- Search End -->
 
 
-        <!-- Event Form Start -->
-        <div class="container my-5">
-            <h2 class="text-center mb-4">Add New Event</h2>
-            <form id="eventForm" >
-                <div class="row mb-3">
-                    <div class="col">
-                        <label for="eventName" class="form-label">Event Name</label>
-                        <input type="text" class="form-control" id="eventName" name="eventName" placeholder="Enter event name" required>
-                    </div>
-                    <div class="col">
-                        <label for="eventDate" class="form-label">Event Date</label>
-                        <input type="date" class="form-control" id="eventDate" name="eventDate" required>
-                    </div>
+<!-- Event Form Start -->
+<div class="container my-5">
+    <div class="card shadow-lg p-4">
+        <h2 class="text-center mb-4 ">Add New Event</h2>
+        <form id="eventForm">
+            <div class="row mb-3">
+                <div class="col-md-6">
+                    <label for="title" class="form-label fw-bold">Event Title</label>
+                    <input type="text" class="form-control " id="title" name="title" placeholder="Enter event title" required>
                 </div>
-                <div class="mb-3">
-                    <label for="eventDescription" class="form-label">Event Description</label>
-                    <textarea class="form-control" id="eventDescription" name="eventDescription" rows="4" placeholder="Enter event description" required></textarea>
+                <div class="col-md-3">
+                    <label for="startDate" class="form-label fw-bold">Start Date</label>
+                    <input type="datetime-local" class="form-control " id="startDate" name="startDate" required>
                 </div>
-                <div class="row mb-3">
-                    <div class="col">
-                        <label for="eventLocation" class="form-label">Location</label>
-                        <input type="text" class="form-control" id="eventLocation" name="eventLocation" placeholder="Enter location" required>
-                    </div>
-                    <!-- <div class="col">
-                        <label for="eventOrganizer" class="form-label">Organizer</label>
-                        <input type="text" class="form-control" id="eventOrganizer" name="eventOrganizer" placeholder="Enter organizer name" required>
-                    </div> -->
+                <div class="col-md-3">
+                    <label for="endDate" class="form-label fw-bold">End Date</label>
+                    <input type="datetime-local" class="form-control " id="endDate" name="endDate" required>
                 </div>
-                <button type="submit" onclick="addEventDetailes()" class="btn btn-primary">Submit Event</button>
-            </form>
-        </div>
-        <!-- Event Form End -->
+            </div>
+            <div class="mb-3">
+                <label for="description" class="form-label fw-bold">Event Description</label>
+                <textarea class="form-control rounded" id="description" name="description" rows="4" placeholder="Enter event description" required></textarea>
+            </div>
+            <div class="row mb-3">
+                <div class="col-md-6">
+                    <label for="location" class="form-label fw-bold">Location</label>
+                    <input type="text" class="form-control " id="location" name="location" placeholder="Enter location" required>
+                </div>
+                <div class="col-md-6">
+                    <label for="capacity" class="form-label fw-bold">Capacity</label>
+                    <input type="number" class="form-control " id="capacity" name="capacity" placeholder="Enter capacity" required>
+                </div>
+            </div>
+            <div class="row mb-3">
+                <div class="col-md-6">
+                    <label for="registrationFee" class="form-label fw-bold">Registration Fee</label>
+                    <input type="number" class="form-control " id="registrationFee" name="registrationFee" placeholder="Enter registration fee" step="0.01" required>
+                </div>
+                <div class="col-md-6">
+                    <label for="eventType" class="form-label fw-bold">Event Type</label>
+                    <input type="text" class="form-control " id="eventType" name="eventType" placeholder="Enter event type" required>
+                </div>
+            </div>
+            <div class="mb-3">
+                <label for="coverImageURL" class="form-label fw-bold">Cover Image</label>
+                <input type="file" class="form-control " id="coverImageURL" name="coverImageURL" accept="image/*">
+            </div>
 
+            <button type="submit" onclick="addEventDetails()" class="btn btn-primary w-100 ">Submit Event</button>
+        </form>
+    </div>
+</div>
+<!-- Event Form End -->
+
+<!-- CSS for styling -->
+<style>
+
+
+    #eventForm .form-label {
+            font-weight: bold;
+            color: #555;
+        }
+        #eventForm .form-control
+        {
+            padding: 12px;
+            font-size: 1rem;
+            border-radius: 5px;
+            border: 1px solid #ddd;
+        }
+</style>
 
 
         
@@ -169,28 +207,34 @@
     <div class="container py-5">
         <div class="row g-5">
             <div class="col-lg-3 col-md-6">
+                <h5 class="text-white mb-4">MotoStation</h5>
+                <p class="text-white-50">
+                    MotoStation is a dedicated platform for motorcycle enthusiasts, providing a space for buying and selling bikes, renting them, and joining the latest events and news in the world of motorcycling.
+                </p>
+            </div>
+            
+            <div class="col-lg-3 col-md-6">
                 <h5 class="text-white mb-4">Get In Touch</h5>
                 <p class="mb-2"><i class="fa fa-map-marker-alt me-3"></i>30 Street, Irbid, Jordan</p>
                 <p class="mb-2"><i class="fa fa-phone-alt me-3"></i>+962 7 8060 8076</p>
                 <p class="mb-2"><i class="fa fa-envelope me-3"></i>motostation@gmail.com</p>
-                <div class="d-flex pt-2">
+                <!-- <div class="d-flex pt-2">
                     <a class="btn btn-outline-light btn-social" href=""><i class="fab fa-twitter"></i></a>
                     <a class="btn btn-outline-light btn-social" href=""><i class="fab fa-facebook-f"></i></a>
                     <a class="btn btn-outline-light btn-social" href=""><i class="fab fa-youtube"></i></a>
                     <a class="btn btn-outline-light btn-social" href=""><i class="fab fa-linkedin-in"></i></a>
-                </div>
+                </div> -->
             </div>
             <div class="col-lg-3 col-md-6">
                 <h5 class="text-white mb-4">Quick Links</h5>
                 <a class="btn btn-link text-white-50" href="about.html">About Us</a>
                 <a class="btn btn-link text-white-50" href="contact.html">Contact Us</a>
-                <a class="btn btn-link text-white-50" href="shop.html">    Shops</a>
-                <a class="btn btn-link text-white-50" href="rent.html">    Rent</a>
+                <a class="btn btn-link text-white-50" href="shop.html">    Maintenance</a>
+                <a class="btn btn-link text-white-50" href="rent.html">    Shop</a>
                 <a class="btn btn-link text-white-50" href="event.html">    Events</a>
-                <a class="btn btn-link text-white-50" href="privacy.html">Privacy Policy</a>
-                <a class="btn btn-link text-white-50" href="term.html">Terms & Condition</a>
+
             </div>
-            <div class="col-lg-3 col-md-6">
+            <!-- <div class="col-lg-3 col-md-6">
                 <h5 class="text-white mb-4">Photo Gallery</h5>
                 <div class="row g-2 pt-2">
                     <div class="col-4">
@@ -199,7 +243,7 @@
                     <div class="col-4">
                         <img class="img-fluid rounded bg-light p-1" src="img/02.jpg" alt="">
                     </div>
-                    <!-- <div class="col-4">
+                    <div class="col-4">
                         <img class="img-fluid rounded bg-light p-1" src="img/property-3.jpg" alt="">
                     </div>
                     <div class="col-4">
@@ -210,17 +254,9 @@
                     </div>
                     <div class="col-4">
                         <img class="img-fluid rounded bg-light p-1" src="img/property-6.jpg" alt="">
-                    </div> -->
+                    </div> 
                 </div>
-            </div>
-            <div class="col-lg-3 col-md-6">
-                <h5 class="text-white mb-4">Newsletter</h5>
-                <p>Stay updated with the latest motorcycle deals, news, and exclusive offers by subscribing to our newsletter.</p>
-                <div class="position-relative mx-auto" style="max-width: 400px;">
-                    <input class="form-control bg-transparent w-100 py-3 ps-4 pe-5" type="text" placeholder="Your email">
-                    <button type="button" class="btn btn-primary py-2 position-absolute top-0 end-0 mt-2 me-2" >SignUp</button>
-                </div>
-            </div>
+            </div> -->
         </div>
     </div>
     <div class="container">

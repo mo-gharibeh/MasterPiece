@@ -28,7 +28,6 @@ viewProfile();
 
 
 async function getPost() {
-
     let postsContainer = document.getElementById("postsContainer");
 
     let response = await fetch(`https://localhost:44398/api/Users/posts/userId/${userId}`);
@@ -36,23 +35,105 @@ async function getPost() {
         console.error("Failed to fetch post");
         return;
     }
-    let post = await response.json();
-    console.log("posts : ", post);
+    let posts = await response.json();
+    console.log("posts:", posts);
 
     postsContainer.innerHTML = "";
-    post.forEach(post => {
+    posts.forEach(post => {
         postsContainer.innerHTML += `
         <div class="gallery-item">
-            <img src="../BackEnd/Motostation/Motostation/Uploads/${post.imageUrl}" alt="User Photo">
-            <div class="gallery-overlay">View Photo</div>
+            <img src="../BackEnd/Motostation/Motostation/Uploads/${post.imageUrl}" alt="User Photo" >
+            <div onclick="openModal('../../BackEnd/Motostation/Motostation/Uploads/${post.imageUrl}', '${post.postId}')" class="gallery-overlay">View Photo</div>
+
         </div>
-        `
+        `;
     });
-
-
 }
 
+
 getPost();
+
+function editPhoto(postId) {
+    // Code to edit the photo, for example, opening an edit form
+    localStorage.setItem('postId', postId);
+    console.log("Edit post with ID:", postId);
+}
+
+async function deletePhoto(postId) {
+    if (confirm("Are you sure you want to delete this photo?")) {
+        // Code to delete the photo
+        let response = await fetch(`https://localhost:44398/api/Users/DeletePost?id=${postId}`, {
+            method: "DELETE",
+            headers: {
+                'Content-Type': 'application/json'
+            }
+        });
+        if (response.ok) {
+            alert("Photo deleted successfully!");
+        } else {
+            alert("Failed to delete photo.");
+        }
+        closeModal();
+        getPost(); // Refresh the posts list after deletion
+        
+    
+        console.log("Delete post with ID:", postId);
+    }
+}
+
+function openModal(imageUrl, postId) {
+    debugger 
+
+    const modal = document.getElementById("imageModal");
+    const modalImage = document.getElementById("modalImage");
+
+    modal.style.display = "block";
+
+    modalImage.src = imageUrl;
+
+    document.getElementById("btns").innerHTML += `            
+                <button onclick="editPhoto(${postId})" class="edit-button" data-bs-toggle="modal" data-bs-target="#editPostModal" >Edit</button>
+                <button onclick="deletePhoto(${postId})" class="delete-button">Delete</button>
+            `
+}
+
+function closeModal() {
+    debugger 
+
+    document.getElementById("btns").innerHTML = '';
+
+    document.getElementById("imageModal").style.display = "none";
+}
+
+// function for edit and fetch data by API
+
+async function editPost(postId) {
+    debugger
+    // Create FormData and append the post data
+    let formData = new FormData();
+    formData.append("Content", document.getElementById("editContent").value);
+    formData.append("ImageUrl", document.getElementById("editImageFile").files[0]);
+
+    // Perform the fetch request
+    let response = await fetch(`https://localhost:44398/api/Users/editPost/${postId}`, {
+        method: "PUT",
+        body: formData // No need to set Content-Type; FormData handles it
+    });
+
+    if (!response.ok) {
+        console.error("Failed to edit post");
+        return;
+    }
+
+    let post = await response.json();
+    console.log("Edited post: ", post);
+
+    // Refresh posts, close modal, and show success message
+    getPost();
+    closeModal();
+    alert("Post edited successfully!");
+}
+
 
 
 // For Adding a new post

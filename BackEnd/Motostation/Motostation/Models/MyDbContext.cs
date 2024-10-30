@@ -106,25 +106,40 @@ public partial class MyDbContext : DbContext
 
         modelBuilder.Entity<Event>(entity =>
         {
-            entity.HasKey(e => e.EventId).HasName("PK__Events__7944C87038A23C61");
+            entity.HasKey(e => e.EventId).HasName("PK__Events__7944C870C7C2558F");
 
             entity.Property(e => e.EventId).HasColumnName("EventID");
+            entity.Property(e => e.CoverImageUrl)
+                .HasMaxLength(255)
+                .HasColumnName("CoverImageURL");
             entity.Property(e => e.CreatedDate)
                 .HasDefaultValueSql("(getdate())")
                 .HasColumnType("datetime");
-            entity.Property(e => e.EventDate).HasColumnType("datetime");
-            entity.Property(e => e.Location).HasMaxLength(255);
+            entity.Property(e => e.EndDate).HasColumnType("datetime");
+            entity.Property(e => e.EventType).HasMaxLength(50);
+            entity.Property(e => e.LastUpdated)
+                .HasDefaultValueSql("(getdate())")
+                .HasColumnType("datetime");
+            entity.Property(e => e.Location).HasMaxLength(200);
+            entity.Property(e => e.OrganizerId).HasColumnName("OrganizerID");
+            entity.Property(e => e.RegistrationFee)
+                .HasDefaultValue(0m)
+                .HasColumnType("decimal(10, 2)");
+            entity.Property(e => e.StartDate).HasColumnType("datetime");
+            entity.Property(e => e.Status)
+                .HasMaxLength(50)
+                .HasDefaultValue("Upcoming");
+            entity.Property(e => e.Tags).HasMaxLength(255);
             entity.Property(e => e.Title).HasMaxLength(100);
-            entity.Property(e => e.UserId).HasColumnName("UserID");
 
-            entity.HasOne(d => d.User).WithMany(p => p.Events)
-                .HasForeignKey(d => d.UserId)
-                .HasConstraintName("FK__Events__UserID__5535A963");
+            entity.HasOne(d => d.Organizer).WithMany(p => p.Events)
+                .HasForeignKey(d => d.OrganizerId)
+                .HasConstraintName("FK__Events__Organize__208CD6FA");
         });
 
         modelBuilder.Entity<Favorite>(entity =>
         {
-            entity.HasKey(e => e.FavoriteId).HasName("PK__Favorite__CE74FAF5A34DDEB1");
+            entity.HasKey(e => e.FavoriteId).HasName("PK__Favorite__CE74FAF579C01FFA");
 
             entity.Property(e => e.FavoriteId).HasColumnName("FavoriteID");
             entity.Property(e => e.EventId).HasColumnName("EventID");
@@ -134,19 +149,19 @@ public partial class MyDbContext : DbContext
 
             entity.HasOne(d => d.Event).WithMany(p => p.Favorites)
                 .HasForeignKey(d => d.EventId)
-                .HasConstraintName("FK__Favorites__Event__70DDC3D8");
+                .HasConstraintName("FK__Favorites__Event__2645B050");
 
             entity.HasOne(d => d.Product).WithMany(p => p.Favorites)
                 .HasForeignKey(d => d.ProductId)
-                .HasConstraintName("FK__Favorites__Produ__6EF57B66");
+                .HasConstraintName("FK__Favorites__Produ__245D67DE");
 
             entity.HasOne(d => d.Store).WithMany(p => p.Favorites)
                 .HasForeignKey(d => d.StoreId)
-                .HasConstraintName("FK__Favorites__Store__6FE99F9F");
+                .HasConstraintName("FK__Favorites__Store__25518C17");
 
             entity.HasOne(d => d.User).WithMany(p => p.Favorites)
                 .HasForeignKey(d => d.UserId)
-                .HasConstraintName("FK__Favorites__UserI__6E01572D");
+                .HasConstraintName("FK__Favorites__UserI__236943A5");
         });
 
         modelBuilder.Entity<Follower>(entity =>

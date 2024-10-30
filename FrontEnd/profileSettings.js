@@ -1,31 +1,28 @@
 let userId = localStorage.getItem('userId');
 
+function saveChanges() {
+    debugger
+    const form = document.getElementById("editForm");
+    const formData = new FormData(form);
 
-async function saveChanges() {
-debugger
-    let formData = new FormData(document.getElementById('editForm'));
-    let response = await fetch(`https://localhost:44398/api/Users/editProfile/${userId}`, { 
-        method: 'PUT',
-        headers: {
-                'Content-Type': 'application/json'},
+    fetch(`https://localhost:44398/api/Users/editProfile/${userId}`, {
+        method: "PUT",
         body: formData
-    });
-    console.log(response);
-    debugger 
+    })
+    .then(response => {
+        if (response.ok) {
+            return response.json();
+        } else {
+            throw new Error("حدث خطأ أثناء تحديث المعلومات الشخصية.");
+        }
+    })
+    .then(data => {
+        alert(data.message);
+    })
     
-    // Check the response status
-    if (response.ok) {
-        let result = await response.json();
-        alert('Profile updated successfully!');
-        window.location.href = 'profile.html';  
-        console.log(result);
-    } else {
-        // Handle errors 
-        const errorData = await response.json();
-        alert('Failed to update profile. Please try again.');
-        console.error(errorData);
-    }
+    
 }
+
 
 
 async function viewProfile(){
@@ -79,6 +76,11 @@ debugger
             const result = await response.json();
             alert(result.message);
             // Optionally, redirect or reset the form
+            document.getElementById('currentPassword').value = '';
+            document.getElementById('newPassword').value = '';
+            document.getElementById('confirmPassword').value = '';
+
+
         } else {
             const errorData = await response.json();
             alert('Failed to change password. ' + (errorData.message || 'Please try again.'));

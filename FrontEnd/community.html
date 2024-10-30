@@ -1,0 +1,407 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <title>Makaan - Real Estate HTML Template</title>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <meta content="" name="keywords">
+    <meta content="" name="description">
+
+    <!-- Favicon -->
+    <link href="img/favicon.ico" rel="icon">
+
+    <!-- Google Web Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Heebo:wght@400;500;600&family=Inter:wght@700;800&display=swap" rel="stylesheet">
+    
+    <!-- Icon Font Stylesheet -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css" rel="stylesheet">
+
+    <!-- Libraries Stylesheet -->
+    <link href="lib/animate/animate.min.css" rel="stylesheet">
+    <link href="lib/owlcarousel/assets/owl.carousel.min.css" rel="stylesheet">
+
+    <!-- Customized Bootstrap Stylesheet -->
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Template Stylesheet -->
+    <link href="css/style.css" rel="stylesheet">
+
+    <style>
+        /* Custom styles */
+        body {
+            background-color: #f8f9fa;
+        }
+        h2 {
+            font-weight: bold;
+            color: #333;
+        }
+        .post {
+            background: #ffffff;
+            border-radius: 10px;
+            padding: 20px;
+            margin-bottom: 20px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        .post img {
+            width: 100%;
+            height: auto;
+            border-radius: 5px;
+        }
+        .post p {
+            font-size: large;
+        }
+        .like-comment {
+            margin-top: 10px;
+        }
+        .comment-input {
+            margin-top: 10px;
+        }
+        .comments {
+            margin-top: 15px;
+            border-top: 1px solid #ddd;
+            padding-top: 10px;
+        }
+
+        .upcoming-events .event-item {
+            padding: 20px;
+            border-radius: 10px;
+            background: #ffffff;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s;
+        }
+        .upcoming-events .event-item:hover {
+            transform: scale(1.05);
+        }
+        .upcoming-events h3, .gallery h3 {
+            color: #007bff;
+        }
+    </style>
+    
+</head>
+
+<body>
+    <div class="container-xxl bg-white p-0">
+        <!-- Spinner Start -->
+        <div id="spinner" class="show bg-white position-fixed translate-middle w-100 vh-100 top-50 start-50 d-flex align-items-center justify-content-center">
+            <div class="spinner-border text-primary" style="width: 3rem; height: 3rem;" role="status">
+                <span class="sr-only">Loading...</span>
+            </div>
+        </div>
+        <!-- Spinner End -->
+
+
+        <!-- Navbar Start -->
+        <div class="container-fluid nav-bar bg-transparent">
+            <nav class="navbar navbar-expand-lg bg-white navbar-light py-0 px-4">
+                <a href="index.html" class="navbar-brand d-flex align-items-center text-center">
+                    <div class="icon p-2 me-2">
+                        <img class="img-fluid" src="img/icon-deal.png" alt="Icon" style="width: 30px; height: 30px;">
+                    </div>
+                    <h1 class="m-0 text-primary">MotoStation</h1>
+                </a>
+                <button type="button" class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div id="navbar" class="collapse navbar-collapse" id="navbarCollapse">
+                    <div class="navbar-nav ms-auto">
+                        <a href="index.html" class="nav-item nav-link ">Home</a>
+                        <div class="nav-item dropdown">
+                            <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Services</a>
+                            <div class="dropdown-menu rounded-0 m-0">
+                                <a href="shops.html" class="dropdown-item">Maintenance</a>
+                                <a href="rent.html" class="dropdown-item">Shop</a>
+                                <a href="event.html" class="dropdown-item">Events</a>
+                                <!-- <a href="property-agent.html" class="dropdown-item">Property Agent</a> -->
+                            </div>
+                        </div>
+                        <a href="about.html" class="nav-item nav-link">About</a>
+                        <!-- <div class="nav-item dropdown">
+                            <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Pages</a>
+                            <div class="dropdown-menu rounded-0 m-0">                                
+                                <a href="#" class="dropdown-item">404 Error</a>
+                            </div>
+                        </div> -->
+                        <a href="contact.html" class="nav-item nav-link ">Contact Us</a>
+                    </div>
+                    <script>
+                        let navbar = document.getElementById("navbar");
+                        let isLogedin = localStorage.getItem("isLogedin");
+                        if (isLogedin){
+                            navbar.innerHTML += `
+                                <div class="nav-item dropdown">
+                                <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Profile</a>
+                                <div class="dropdown-menu rounded-0 m-0">
+                                    <a href="profile.html" class="dropdown-item ">Profile</a>
+                                    <a onclick="logout()" href="register.html" class="dropdown-item">LOG OUT</a>                                        
+                                </div>
+                            `;
+                        }
+                        else {
+                            navbar.innerHTML += `<div>
+                                    <a href="register.html" class="btn btn-primary px-3 d-none d-lg-flex">JOIN US! / SIGN IN</a>
+                                    </div>`;
+                        }
+                    </script>
+                </div>
+            </nav>
+        </div>
+        <!-- Navbar End -->
+
+        <!-- Header Start -->
+        <div class="container-fluid header bg-white p-0">
+            <div class="row g-0 align-items-center flex-column-reverse flex-md-row">
+                <div class="col-md-6 p-5 mt-lg-5">
+                    <br>
+                    <h1 class="display-5 animated fadeIn mb-4">Community</h1> 
+                        <nav aria-label="breadcrumb animated fadeIn">
+                        <ol class="breadcrumb text-uppercase">
+                            <li class="breadcrumb-item"><a href="index.html">Home</a></li>
+                            <!-- <li class="breadcrumb-item"><a href="#">Pages</a></li> -->
+                            <li class="breadcrumb-item text-body active" aria-current="page">Community</li>
+                        </ol>
+                    </nav>
+                </div>
+                <div class="col-md-6 animated fadeIn">
+                    <img class="img-fluid" src="https://www.motorbiscuit.com/wp-content/uploads/2022/06/Motorcycle-riding-1.jpg?w=902&h=507&crop=1" alt="">
+                </div>
+            </div>
+        </div>
+        <!-- Header End -->
+        <!-- Search Start -->
+        <div class="container-fluid bg-primary mb-5 wow fadeIn" data-wow-delay="0.1s" style="padding: 35px;">
+            <div class="container">
+                <div class="row g-2">                    
+                </div>
+            </div>
+        </div>
+        <!-- Search End -->
+
+
+        <div class="container my-5">
+                <!-- Section for upcoming events -->
+    <section class="upcoming-events">
+        <h2 class="text-center mb-4">Upcoming Events</h2>
+        <div class="row">
+            <div class="col-md-6 mb-4">
+                <div class="event-item">
+                    <h3>Event Title 1</h3>
+                    <p><strong>Date:</strong> November 10, 2024</p>
+                    <p><strong>Location:</strong> Sports City</p>
+                    <p>A brief description of the event to let users know what to expect.</p>
+                </div>
+            </div>
+            <div class="col-md-6 mb-4">
+                <div class="event-item">
+                    <h3>Event Title 2</h3>
+                    <p><strong>Date:</strong> December 20, 2024</p>
+                    <p><strong>Location:</strong> Conference Center</p>
+                    <p>A brief description of the event to let users know what to expect.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+            <!-- Section for latest images -->
+            <section class="gallery mb-5">
+                <h2 class="text-center mb-4">Latest Community Images</h2>
+                
+                <!-- Post 1 -->
+                <div class="post">
+                    <img src="../BackEnd/Motostation/Motostation/Uploads/Bike-Rally.jpeg" alt="Post Image">
+                    <p>This is a description of the image, giving context to what it represents.</p>
+                    <div class="like-comment">
+                        <button class="btn btn-primary">👍 Like</button>
+                        <button class="btn btn-link">💬 Comment</button>
+                    </div>
+                    <div class="comment-input">
+                        <input type="text" class="form-control" placeholder="Write a comment...">
+                    </div>
+                    <div class="comments">
+                        <p><strong>User1:</strong> Amazing shot!</p>
+                        <p><strong>User2:</strong> Love this view!</p>
+                    </div>
+                </div>
+        
+                <!-- Post 2 -->
+                <div class="post">
+                    <img src="../BackEnd/Motostation/Motostation/Uploads/Bike-Rally.jpeg" alt="Post Image">
+                    <p>This is a description of the image, giving context to what it represents.</p>
+                    <div class="like-comment">
+                        <button class="btn btn-primary">👍 Like</button>
+                        <button class="btn btn-link">💬 Comment</button>
+                    </div>
+                    <div class="comment-input">
+                        <input type="text" class="form-control" placeholder="Write a comment...">
+                    </div>
+                    <div class="comments">
+                        <p><strong>User1:</strong> Amazing shot!</p>
+                        <p><strong>User2:</strong> Love this view!</p>
+                    </div>
+                </div>
+        
+                <!-- Post 3 -->
+                <div class="post">
+                    <img src="../BackEnd/Motostation/Motostation/Uploads/Bike-Rally.jpeg" alt="Post Image">
+                    <p>This is a description of the image, giving context to what it represents.</p>
+                    <div class="like-comment">
+                        <button class="btn btn-primary">👍 Like</button>
+                        <button class="btn btn-link">💬 Comment</button>
+                    </div>
+                    <div class="comment-input">
+                        <input type="text" class="form-control" placeholder="Write a comment...">
+                    </div>
+                    <div class="comments">
+                        <p><strong>User1:</strong> Amazing shot!</p>
+                        <p><strong>User2:</strong> Love this view!</p>
+                    </div>
+                </div>
+                <!-- Additional posts can be added here -->
+            </section>
+        
+            <!-- Section for upcoming events -->
+            <section class="upcoming-events">
+                <h2 class="text-center mb-4">Upcoming Events</h2>
+                <div class="row">
+                    <div class="col-md-6 mb-4">
+                        <div class="event-item">
+                            <h3>Event Title 1</h3>
+                            <p><strong>Date:</strong> November 10, 2024</p>
+                            <p><strong>Location:</strong> Sports City</p>
+                            <p>A brief description of the event to let users know what to expect.</p>
+                        </div>
+                    </div>
+                    <div class="col-md-6 mb-4">
+                        <div class="event-item">
+                            <h3>Event Title 2</h3>
+                            <p><strong>Date:</strong> December 20, 2024</p>
+                            <p><strong>Location:</strong> Conference Center</p>
+                            <p>A brief description of the event to let users know what to expect.</p>
+                        </div>
+                    </div>
+                    <!-- Additional events can be added here -->
+                </div>
+            </section>
+        </div>
+
+
+<!-- Footer Start -->
+<div class="container-fluid bg-dark text-white-50 footer pt-5 mt-5 wow fadeIn" data-wow-delay="0.1s">
+    <div class="container py-5">
+        <div class="row g-5">
+            <div class="col-lg-3 col-md-6">
+                <h5 class="text-white mb-4">MotoStation</h5>
+                <p class="text-white-50">
+                    MotoStation is a dedicated platform for motorcycle enthusiasts, providing a space for buying and selling bikes, renting them, and joining the latest events and news in the world of motorcycling.
+                </p>
+            </div>
+            
+            <div class="col-lg-3 col-md-6">
+                <h5 class="text-white mb-4">Get In Touch</h5>
+                <p class="mb-2"><i class="fa fa-map-marker-alt me-3"></i>30 Street, Irbid, Jordan</p>
+                <p class="mb-2"><i class="fa fa-phone-alt me-3"></i>+962 7 8060 8076</p>
+                <p class="mb-2"><i class="fa fa-envelope me-3"></i>motostation@gmail.com</p>
+                <!-- <div class="d-flex pt-2">
+                    <a class="btn btn-outline-light btn-social" href=""><i class="fab fa-twitter"></i></a>
+                    <a class="btn btn-outline-light btn-social" href=""><i class="fab fa-facebook-f"></i></a>
+                    <a class="btn btn-outline-light btn-social" href=""><i class="fab fa-youtube"></i></a>
+                    <a class="btn btn-outline-light btn-social" href=""><i class="fab fa-linkedin-in"></i></a>
+                </div> -->
+            </div>
+            <div class="col-lg-3 col-md-6">
+                <h5 class="text-white mb-4">Quick Links</h5>
+                <a class="btn btn-link text-white-50" href="about.html">About Us</a>
+                <a class="btn btn-link text-white-50" href="contact.html">Contact Us</a>
+                <a class="btn btn-link text-white-50" href="shop.html">    Maintenance</a>
+                <a class="btn btn-link text-white-50" href="rent.html">    Shop</a>
+                <a class="btn btn-link text-white-50" href="event.html">    Events</a>
+
+            </div>
+            <!-- <div class="col-lg-3 col-md-6">
+                <h5 class="text-white mb-4">Photo Gallery</h5>
+                <div class="row g-2 pt-2">
+                    <div class="col-4">
+                        <img class="img-fluid rounded bg-light p-1" src="img/01.jpg" alt="">
+                    </div>
+                    <div class="col-4">
+                        <img class="img-fluid rounded bg-light p-1" src="img/02.jpg" alt="">
+                    </div>
+                    <div class="col-4">
+                        <img class="img-fluid rounded bg-light p-1" src="img/property-3.jpg" alt="">
+                    </div>
+                    <div class="col-4">
+                        <img class="img-fluid rounded bg-light p-1" src="img/property-4.jpg" alt="">
+                    </div>
+                    <div class="col-4">
+                        <img class="img-fluid rounded bg-light p-1" src="img/property-5.jpg" alt="">
+                    </div>
+                    <div class="col-4">
+                        <img class="img-fluid rounded bg-light p-1" src="img/property-6.jpg" alt="">
+                    </div> 
+                </div>
+            </div> -->
+        </div>
+    </div>
+    <div class="container">
+        <div class="copyright">
+            <div class="row">
+                <div class="col-md-6 text-center text-md-start mb-3 mb-md-0">
+                    &copy; <a class="border-bottom" href="index.html">MotoStation</a>, All Right Reserved. 
+                    
+                    <!--/*** This template is free as long as you keep the footer author’s credit link/attribution link/backlink. If you'd like to use the template without the footer author’s credit link/attribution link/backlink, you can purchase the Credit Removal License from "https://htmlcodex.com/credit-removal". Thank you for your support. ***/-->
+                    Designed By <a class="border-bottom" href="https://htmlcodex.com">HTML Codex</a>
+                </div>
+                <div class="col-md-6 text-center text-md-end">
+                    <div class="footer-menu">
+                        <a href="index.html">Home</a>
+                        <a href="">Cookies</a>
+                        <a href="contact.html">Help</a>
+                        <a href="contact.html">FQAs</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Footer End -->
+        
+        
+                <!-- Back to Top -->
+                <a href="#" class="btn btn-lg btn-primary btn-lg-square back-to-top"><i class="bi bi-arrow-up"></i></a>
+            </div>
+        
+            <!-- JavaScript Libraries -->
+            <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+            <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script>
+            <script src="lib/wow/wow.min.js"></script>
+            <script src="lib/easing/easing.min.js"></script>
+            <script src="lib/waypoints/waypoints.min.js"></script>
+            <script src="lib/owlcarousel/owl.carousel.min.js"></script>
+            <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+            <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.3/dist/umd/popper.min.js"></script>
+            <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+                
+            <!-- Template Javascript -->
+            <script src="js/main.js"></script>
+            <script src="contact.js"></script>
+            <script>
+                // clear localstorage when logout
+                
+                function logout() {
+                    localStorage.clear();
+                    window.location.href = "register.html";
+                }
+        
+            </script>
+        </body>
+        
+        </html>
+    
+        <style>
+            .card{
+                margin : 10px;
+            }
+        </style>
+

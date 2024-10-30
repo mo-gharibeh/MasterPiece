@@ -106,15 +106,37 @@ CREATE TABLE Motorcycles (
 );
 
 -- جدول الفعاليات
+--CREATE TABLE Events (
+  --  EventID INT PRIMARY KEY IDENTITY(1,1),
+ --   UserID INT FOREIGN KEY REFERENCES Users(UserID),
+  --  Title NVARCHAR(100) NOT NULL,
+   -- Description NVARCHAR(MAX) NOT NULL,
+   -- Location NVARCHAR(255) NOT NULL,
+   -- EventDate DATETIME NOT NULL,
+ --   CreatedDate DATETIME DEFAULT GETDATE()
+--);
+
+DROP TABLE Events;
+
 CREATE TABLE Events (
     EventID INT PRIMARY KEY IDENTITY(1,1),
-    UserID INT FOREIGN KEY REFERENCES Users(UserID),
     Title NVARCHAR(100) NOT NULL,
-    Description NVARCHAR(MAX) NOT NULL,
-    Location NVARCHAR(255) NOT NULL,
-    EventDate DATETIME NOT NULL,
-    CreatedDate DATETIME DEFAULT GETDATE()
+    Description NVARCHAR(MAX),
+    Location NVARCHAR(200),
+    StartDate DATETIME NOT NULL,
+    EndDate DATETIME NOT NULL,
+    OrganizerID INT,
+    EventType NVARCHAR(50),
+    Capacity INT,
+    RegistrationFee DECIMAL(10, 2) DEFAULT 0,
+    Status NVARCHAR(50) DEFAULT 'Upcoming',
+    CreatedDate DATETIME DEFAULT GETDATE(),
+    LastUpdated DATETIME DEFAULT GETDATE(),
+    CoverImageURL NVARCHAR(255),
+    Tags NVARCHAR(255),
+    FOREIGN KEY (OrganizerID) REFERENCES Users(UserID) -- Assuming an Organizers table
 );
+
 
 -- جدول المسارات
 CREATE TABLE Routes (
@@ -169,6 +191,7 @@ CREATE TABLE Favorites (
     StoreID INT NULL FOREIGN KEY REFERENCES Stores(StoreID),
     EventID INT NULL FOREIGN KEY REFERENCES Events(EventID)
 );
+
 
 -- 555 جدول التنبيهات
 CREATE TABLE Notifications (
@@ -262,3 +285,66 @@ VALUES
 (4, 'Phone Mount', 'Universal phone mount for motorcycles', 6, 'Sale', 15.00, NULL, NULL, 25, 'https://example.com/phone-mount.jpg', 'Generic', 'New'),
 (4, 'Saddlebags', 'Waterproof saddlebags for motorcycles', 6, 'Sale', 80.00, NULL, NULL, 10, 'https://example.com/saddlebags.jpg', 'Generic', 'New'),
 (4, 'Motorcycle Stand', 'Adjustable motorcycle stand', 6, 'Sale', 60.00, NULL, NULL, 12, 'https://example.com/motorcycle-stand.jpg', 'Generic', 'New');
+
+
+INSERT INTO Events (Title, Description, Location, StartDate, EndDate, EventType, Capacity, RegistrationFee, Status, CoverImageURL, Tags)
+VALUES 
+('Off-Road Adventure', 
+ 'Join us for an exhilarating off-road adventure through the rugged terrains of Irbid, perfect for motorcycle enthusiasts!', 
+ 'Irbid', 
+ '2024-11-10 09:00:00', 
+ '2024-11-10 17:00:00', 
+ 'Adventure', 
+ 100, 
+ 50.00, 
+ 'Upcoming', 
+ 'https://example.com/images/off-road-adventure.jpg', 
+ 'Adventure,Off-road,Motorcycle'),
+
+('Irbid Bike Rally', 
+ 'Experience the thrill of the annual Irbid Bike Rally with live music, food trucks, and group rides through Irbid’s best roads.', 
+ 'Irbid', 
+ '2024-12-05 12:00:00', 
+ '2024-12-05 20:00:00', 
+ 'Rally', 
+ 300, 
+ 20.00, 
+ 'Upcoming', 
+ 'https://example.com/images/irbid-bike-rally.jpg', 
+ 'Rally,Motorcycle,Community'),
+
+('Vintage Motorcycle Show', 
+ 'A showcase of vintage motorcycles from the 70s, 80s, and 90s, with awards for the best-preserved classics.', 
+ 'Irbid', 
+ '2025-01-15 10:00:00', 
+ '2025-01-15 18:00:00', 
+ 'Show', 
+ 150, 
+ 15.00, 
+ 'Upcoming', 
+ 'https://example.com/images/vintage-motorcycle-show.jpg', 
+ 'Vintage,Motorcycle,Show'),
+
+('Night Ride Challenge', 
+ 'A night-time challenge across Irbid’s scenic routes for experienced riders looking for an unforgettable ride.', 
+ 'Irbid', 
+ '2024-11-25 20:00:00', 
+ '2024-11-26 02:00:00', 
+ 'Challenge', 
+ 50, 
+ 30.00, 
+ 'Upcoming', 
+ 'https://example.com/images/night-ride-challenge.jpg', 
+ 'Night,Challenge,Motorcycle'),
+
+('Motorcycle Safety Workshop', 
+ 'A free workshop focused on motorcycle safety practices, ideal for new and experienced riders alike.', 
+ 'Irbid', 
+ '2024-11-18 10:00:00', 
+ '2024-11-18 14:00:00', 
+ 'Workshop', 
+ 200, 
+ 0.00, 
+ 'Upcoming', 
+ 'https://example.com/images/safety-workshop.jpg', 
+ 'Safety,Workshop,Motorcycle');

@@ -69,6 +69,87 @@ namespace Motostation.Controllers
             return Ok(userPosts);
         }
 
+        // API for adding Posts to the database from body 
+        [HttpPost("addPost")]
+        public IActionResult AddPost([FromForm] AddPostDto postDto)
+        {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+            // Handle file upload if a new profile image is provided
+            if (postDto.ImageUrl != null)
+            {
+                var uploadsFolderPath = Path.Combine(Directory.GetCurrentDirectory(), "Uploads");
+                if (!Directory.Exists(uploadsFolderPath))
+                {
+                    Directory.CreateDirectory(uploadsFolderPath);
+                }
+
+                var filePath = Path.Combine(uploadsFolderPath, postDto.ImageUrl.FileName);
+                using (var stream = new FileStream(filePath, FileMode.Create))
+                {
+                    postDto.ImageUrl.CopyTo(stream); // Synchronous file copy
+                }
+
+                var post = new Post
+                {
+                    UserId = postDto.UserId,
+                    Content = postDto.Content,
+                    ImageUrl = postDto.ImageUrl.FileName, // Save only the file name in the database
+                };
+                // Save the post to the database
+                _db.Posts.Add(post);
+                _db.SaveChanges();
+
+            }
+            return Ok(new { message = "Post added successfully" });
+
+        }
+
+        // Edit Post 
+        [HttpPut("editPost/{id}")]
+        public IActionResult PutPost(int id, [FromForm] EditPostDto editDto)
+        {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+
+            var post = _db.Posts.FirstOrDefault(p => p.PostId == id);
+            if (post == null)
+            {
+                return NotFound(new { message = "Post not found" });
+            }
+
+            // Handle file upload
+            var uploadsFolderPath = Path.Combine(Directory.GetCurrentDirectory(), "Uploads");
+            if (!Directory.Exists(uploadsFolderPath))
+            {
+                Directory.CreateDirectory(uploadsFolderPath);
+            }
+
+            var filePath = Path.Combine(uploadsFolderPath, editDto.ImageUrl.FileName);
+            using (var stream = new FileStream(filePath, FileMode.Create))
+            {
+                editDto.ImageUrl.CopyTo(stream); // Synchronous file copy
+            }
+
+            // Update the existing post
+            post.Content = editDto.Content ?? post.Content;
+            post.ImageUrl = editDto.ImageUrl.FileName ?? post.ImageUrl; // Save only the file name in the database
+
+            _db.Posts.Update(post);
+            _db.SaveChanges();
+
+            return Ok(new
+            {
+                message = "Post edited successfully"
+            });
+        }
+
+
+
         [HttpPut("editProfile/{id}")]
         public IActionResult PutUser(int id, [FromForm] EditProfileDto editDto)
         {
@@ -137,43 +218,7 @@ namespace Motostation.Controllers
 
 
 
-        // API for adding Posts to the database from body 
-        [HttpPost("addPost")]
-        public IActionResult AddPost([FromForm] AddPostDto postDto)
-        {
-            if (!ModelState.IsValid)
-            {
-                return BadRequest(ModelState);
-            }
-            // Handle file upload if a new profile image is provided
-            if (postDto.ImageUrl != null)
-            {
-                var uploadsFolderPath = Path.Combine(Directory.GetCurrentDirectory(), "Uploads");
-                if (!Directory.Exists(uploadsFolderPath))
-                {
-                    Directory.CreateDirectory(uploadsFolderPath);
-                }
 
-                var filePath = Path.Combine(uploadsFolderPath, postDto.ImageUrl.FileName);
-                using (var stream = new FileStream(filePath, FileMode.Create))
-                {
-                    postDto.ImageUrl.CopyTo(stream); // Synchronous file copy
-                }
-
-                var post = new Post
-                {
-                    UserId = postDto.UserId,
-                    Content = postDto.Content,
-                    ImageUrl = postDto.ImageUrl.FileName, // Save only the file name in the database
-                };
-                // Save the post to the database
-                _db.Posts.Add(post);
-                _db.SaveChanges();
-
-            }
-            return Ok(new { message = "Post added successfully" });
-
-        }
 
         [HttpPut("updateRole/{id}")]
         public IActionResult UpdateUserRole(int id)

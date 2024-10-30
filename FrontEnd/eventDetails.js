@@ -1,7 +1,7 @@
 window.onload = async function () {
-    debugger
     const eventId = localStorage.getItem('eventId'); 
 
+    debugger
     if (!eventId) {
         alert("Event ID not found!");
         return;
@@ -17,12 +17,14 @@ window.onload = async function () {
 
         // Populate the HTML with the event data
         document.getElementById('eventTitle').textContent = eventData.title;
-        document.getElementById('eventDate').textContent = new Date(eventData.eventDate).toLocaleDateString();
+        document.getElementById('eventDate').textContent = new Date(eventData.startDate).toLocaleDateString();
         document.getElementById('eventLocation').textContent = eventData.location;
+        document.getElementById('eventCapacity').textContent = eventData.capacity;
+        document.getElementById('eventFee').textContent = `${eventData.registrationFee.toFixed(2)} JOD`;
         document.getElementById('eventDescription').textContent = eventData.description;
-
-        // Optional: If you have event-specific images
-        // document.getElementById('eventImage').src = eventData.imageUrl || 'img/event-image-placeholder.jpg';
+        
+        // Set the event image if available
+        document.getElementById('eventImage').src = '../BackEnd/Motostation/Motostation/Uploads/' + eventData.coverImageUrl ;
     } catch (error) {
         console.error('Error fetching event details:', error);
         alert('There was an error fetching event details. Please try again later.');

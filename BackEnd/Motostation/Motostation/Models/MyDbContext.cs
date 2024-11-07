@@ -23,8 +23,6 @@ public partial class MyDbContext : DbContext
 
     public virtual DbSet<Event> Events { get; set; }
 
-    public virtual DbSet<Favorite> Favorites { get; set; }
-
     public virtual DbSet<Follower> Followers { get; set; }
 
     public virtual DbSet<Like> Likes { get; set; }
@@ -38,8 +36,6 @@ public partial class MyDbContext : DbContext
     public virtual DbSet<Post> Posts { get; set; }
 
     public virtual DbSet<Product> Products { get; set; }
-
-    public virtual DbSet<Route> Routes { get; set; }
 
     public virtual DbSet<Store> Stores { get; set; }
 
@@ -72,7 +68,7 @@ public partial class MyDbContext : DbContext
 
         modelBuilder.Entity<Comment>(entity =>
         {
-            entity.HasKey(e => e.CommentId).HasName("PK__Comments__C3B4DFAA03236BB4");
+            entity.HasKey(e => e.CommentId).HasName("PK__Comments__C3B4DFAA0392C1FB");
 
             entity.Property(e => e.CommentId).HasColumnName("CommentID");
             entity.Property(e => e.CreatedDate)
@@ -83,11 +79,11 @@ public partial class MyDbContext : DbContext
 
             entity.HasOne(d => d.Post).WithMany(p => p.Comments)
                 .HasForeignKey(d => d.PostId)
-                .HasConstraintName("FK__Comments__PostID__619B8048");
+                .HasConstraintName("FK__Comments__PostID__29221CFB");
 
             entity.HasOne(d => d.User).WithMany(p => p.Comments)
                 .HasForeignKey(d => d.UserId)
-                .HasConstraintName("FK__Comments__UserID__628FA481");
+                .HasConstraintName("FK__Comments__UserID__2A164134");
         });
 
         modelBuilder.Entity<ContactMessage>(entity =>
@@ -106,7 +102,7 @@ public partial class MyDbContext : DbContext
 
         modelBuilder.Entity<Event>(entity =>
         {
-            entity.HasKey(e => e.EventId).HasName("PK__Events__7944C870C7C2558F");
+            entity.HasKey(e => e.EventId).HasName("PK__Events__7944C87014AB32ED");
 
             entity.Property(e => e.EventId).HasColumnName("EventID");
             entity.Property(e => e.CoverImageUrl)
@@ -116,7 +112,9 @@ public partial class MyDbContext : DbContext
                 .HasDefaultValueSql("(getdate())")
                 .HasColumnType("datetime");
             entity.Property(e => e.EndDate).HasColumnType("datetime");
+            entity.Property(e => e.EndLocation).HasMaxLength(255);
             entity.Property(e => e.EventType).HasMaxLength(50);
+            entity.Property(e => e.IsPaid).HasDefaultValue(false);
             entity.Property(e => e.LastUpdated)
                 .HasDefaultValueSql("(getdate())")
                 .HasColumnType("datetime");
@@ -126,42 +124,15 @@ public partial class MyDbContext : DbContext
                 .HasDefaultValue(0m)
                 .HasColumnType("decimal(10, 2)");
             entity.Property(e => e.StartDate).HasColumnType("datetime");
+            entity.Property(e => e.StartLocation).HasMaxLength(255);
             entity.Property(e => e.Status)
                 .HasMaxLength(50)
                 .HasDefaultValue("Upcoming");
-            entity.Property(e => e.Tags).HasMaxLength(255);
             entity.Property(e => e.Title).HasMaxLength(100);
 
             entity.HasOne(d => d.Organizer).WithMany(p => p.Events)
                 .HasForeignKey(d => d.OrganizerId)
-                .HasConstraintName("FK__Events__Organize__208CD6FA");
-        });
-
-        modelBuilder.Entity<Favorite>(entity =>
-        {
-            entity.HasKey(e => e.FavoriteId).HasName("PK__Favorite__CE74FAF579C01FFA");
-
-            entity.Property(e => e.FavoriteId).HasColumnName("FavoriteID");
-            entity.Property(e => e.EventId).HasColumnName("EventID");
-            entity.Property(e => e.ProductId).HasColumnName("ProductID");
-            entity.Property(e => e.StoreId).HasColumnName("StoreID");
-            entity.Property(e => e.UserId).HasColumnName("UserID");
-
-            entity.HasOne(d => d.Event).WithMany(p => p.Favorites)
-                .HasForeignKey(d => d.EventId)
-                .HasConstraintName("FK__Favorites__Event__2645B050");
-
-            entity.HasOne(d => d.Product).WithMany(p => p.Favorites)
-                .HasForeignKey(d => d.ProductId)
-                .HasConstraintName("FK__Favorites__Produ__245D67DE");
-
-            entity.HasOne(d => d.Store).WithMany(p => p.Favorites)
-                .HasForeignKey(d => d.StoreId)
-                .HasConstraintName("FK__Favorites__Store__25518C17");
-
-            entity.HasOne(d => d.User).WithMany(p => p.Favorites)
-                .HasForeignKey(d => d.UserId)
-                .HasConstraintName("FK__Favorites__UserI__236943A5");
+                .HasConstraintName("FK__Events__Organize__44CA3770");
         });
 
         modelBuilder.Entity<Follower>(entity =>
@@ -183,19 +154,22 @@ public partial class MyDbContext : DbContext
 
         modelBuilder.Entity<Like>(entity =>
         {
-            entity.HasKey(e => e.LikeId).HasName("PK__Likes__A2922CF440607789");
+            entity.HasKey(e => e.Id).HasName("PK__Likes__3213E83F2BE85662");
 
-            entity.Property(e => e.LikeId).HasColumnName("LikeID");
-            entity.Property(e => e.PostId).HasColumnName("PostID");
-            entity.Property(e => e.UserId).HasColumnName("UserID");
+            entity.HasIndex(e => new { e.PostId, e.UserId }, "UQ_Post_User").IsUnique();
+
+            entity.Property(e => e.Id).HasColumnName("id");
+            entity.Property(e => e.Flag).HasDefaultValue(true);
+            entity.Property(e => e.PostId).HasColumnName("postId");
+            entity.Property(e => e.UserId).HasColumnName("userId");
 
             entity.HasOne(d => d.Post).WithMany(p => p.Likes)
                 .HasForeignKey(d => d.PostId)
-                .HasConstraintName("FK__Likes__PostID__66603565");
+                .HasConstraintName("FK_Like_Post");
 
             entity.HasOne(d => d.User).WithMany(p => p.Likes)
                 .HasForeignKey(d => d.UserId)
-                .HasConstraintName("FK__Likes__UserID__6754599E");
+                .HasConstraintName("FK_Like_User");
         });
 
         modelBuilder.Entity<Motorcycle>(entity =>
@@ -312,19 +286,6 @@ public partial class MyDbContext : DbContext
                 .HasForeignKey(d => d.SellerId)
                 .OnDelete(DeleteBehavior.ClientSetNull)
                 .HasConstraintName("FK__Products__Seller__49C3F6B7");
-        });
-
-        modelBuilder.Entity<Route>(entity =>
-        {
-            entity.HasKey(e => e.RouteId).HasName("PK__Routes__80979AAD169521B4");
-
-            entity.Property(e => e.RouteId).HasColumnName("RouteID");
-            entity.Property(e => e.CreatedDate)
-                .HasDefaultValueSql("(getdate())")
-                .HasColumnType("datetime");
-            entity.Property(e => e.EndLocation).HasMaxLength(255);
-            entity.Property(e => e.StartLocation).HasMaxLength(255);
-            entity.Property(e => e.Title).HasMaxLength(200);
         });
 
         modelBuilder.Entity<Store>(entity =>

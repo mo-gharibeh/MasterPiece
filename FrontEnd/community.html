@@ -115,6 +115,7 @@
                                 <a href="shops.html" class="dropdown-item">Maintenance</a>
                                 <a href="rent.html" class="dropdown-item">Shop</a>
                                 <a href="event.html" class="dropdown-item">Events</a>
+                                <a href="community.html" class="dropdown-item">Community</a>
                                 <!-- <a href="property-agent.html" class="dropdown-item">Property Agent</a> -->
                             </div>
                         </div>
@@ -207,9 +208,12 @@
             <!-- Section for latest images -->
             <section class="gallery mb-5">
                 <h2 class="text-center mb-4">Latest Community Images</h2>
-                
                 <!-- Post 1 -->
-                <div class="post">
+                <div class="post" id="post-container">
+                    <div class="post-header">
+                        <img src="../BackEnd/Motostation/Motostation/Uploads/Bike-Rally.jpeg" alt="User Image" class="user-image" style="width: 50px; height: 50px; border-radius: 50%;" id="post-user-image">
+                        <strong id="post-user-name">User Name</strong>
+                    </div>
                     <img src="../BackEnd/Motostation/Motostation/Uploads/Bike-Rally.jpeg" alt="Post Image">
                     <p>This is a description of the image, giving context to what it represents.</p>
                     <div class="like-comment">
@@ -219,71 +223,18 @@
                     <div class="comment-input">
                         <input type="text" class="form-control" placeholder="Write a comment...">
                     </div>
-                    <div class="comments">
-                        <p><strong>User1:</strong> Amazing shot!</p>
-                        <p><strong>User2:</strong> Love this view!</p>
-                    </div>
-                </div>
-        
-                <!-- Post 2 -->
-                <div class="post">
-                    <img src="../BackEnd/Motostation/Motostation/Uploads/Bike-Rally.jpeg" alt="Post Image">
-                    <p>This is a description of the image, giving context to what it represents.</p>
-                    <div class="like-comment">
-                        <button class="btn btn-primary">👍 Like</button>
-                        <button class="btn btn-link">💬 Comment</button>
-                    </div>
-                    <div class="comment-input">
-                        <input type="text" class="form-control" placeholder="Write a comment...">
-                    </div>
-                    <div class="comments">
-                        <p><strong>User1:</strong> Amazing shot!</p>
-                        <p><strong>User2:</strong> Love this view!</p>
-                    </div>
-                </div>
-        
-                <!-- Post 3 -->
-                <div class="post">
-                    <img src="../BackEnd/Motostation/Motostation/Uploads/Bike-Rally.jpeg" alt="Post Image">
-                    <p>This is a description of the image, giving context to what it represents.</p>
-                    <div class="like-comment">
-                        <button class="btn btn-primary">👍 Like</button>
-                        <button class="btn btn-link">💬 Comment</button>
-                    </div>
-                    <div class="comment-input">
-                        <input type="text" class="form-control" placeholder="Write a comment...">
-                    </div>
-                    <div class="comments">
-                        <p><strong>User1:</strong> Amazing shot!</p>
-                        <p><strong>User2:</strong> Love this view!</p>
-                    </div>
-                </div>
-                <!-- Additional posts can be added here -->
-            </section>
-        
-            <!-- Section for upcoming events -->
-            <section class="upcoming-events">
-                <h2 class="text-center mb-4">Upcoming Events</h2>
-                <div class="row">
-                    <div class="col-md-6 mb-4">
-                        <div class="event-item">
-                            <h3>Event Title 1</h3>
-                            <p><strong>Date:</strong> November 10, 2024</p>
-                            <p><strong>Location:</strong> Sports City</p>
-                            <p>A brief description of the event to let users know what to expect.</p>
+                    <div class="comments" id="comments-container">
+                        <!-- Example comment structure -->
+                        <div class="comment">
+                            <img src="../BackEnd/Motostation/Motostation/Uploads/Bike-Rally.jpeg" alt="Commenter Image" class="comment-user-image" style="width: 30px; height: 30px; border-radius: 50%;" />
+                            <strong class="comment-user-name">User Name</strong>
+                            <p> Comment text here</p>   
                         </div>
+                        
                     </div>
-                    <div class="col-md-6 mb-4">
-                        <div class="event-item">
-                            <h3>Event Title 2</h3>
-                            <p><strong>Date:</strong> December 20, 2024</p>
-                            <p><strong>Location:</strong> Conference Center</p>
-                            <p>A brief description of the event to let users know what to expect.</p>
-                        </div>
-                    </div>
-                    <!-- Additional events can be added here -->
                 </div>
             </section>
+            
         </div>
 
 
@@ -385,7 +336,7 @@
                 
             <!-- Template Javascript -->
             <script src="js/main.js"></script>
-            <script src="contact.js"></script>
+            <script src="community.js"></script>
             <script>
                 // clear localstorage when logout
                 

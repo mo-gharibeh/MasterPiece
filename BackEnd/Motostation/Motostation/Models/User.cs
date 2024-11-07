@@ -37,8 +37,6 @@ public partial class User
 
     public virtual ICollection<Event> Events { get; set; } = new List<Event>();
 
-    public virtual ICollection<Favorite> Favorites { get; set; } = new List<Favorite>();
-
     public virtual ICollection<Follower> FollowerFollowedUsers { get; set; } = new List<Follower>();
 
     public virtual ICollection<Follower> FollowerUsers { get; set; } = new List<Follower>();

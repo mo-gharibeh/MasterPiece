@@ -25,8 +25,6 @@ public partial class Store
 
     public int ManagerId { get; set; }
 
-    public virtual ICollection<Favorite> Favorites { get; set; } = new List<Favorite>();
-
     public virtual User Manager { get; set; } = null!;
 
     public virtual ICollection<StoreRating> StoreRatings { get; set; } = new List<StoreRating>();

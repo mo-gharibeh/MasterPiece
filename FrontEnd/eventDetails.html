@@ -29,54 +29,48 @@
 
     <!-- Template Stylesheet -->
     <link href="css/style.css" rel="stylesheet">
+
+    <!-- Custom CSS -->
     <style>
-    /* Event Details Section Styling */
-        #eventTitle {
-            font-size: 2rem;
-            color: #007bff; /* Primary color */
-            font-weight: 700;
-            margin-bottom: 0.5rem;
-        }
-
-        #eventDate, #eventLocation, #eventCapacity, #eventFee {
-            color: #333;
-            font-weight: 600;
-            margin-top: 0.5rem;
-        }
-
-        #eventDescription {
-            font-size: 1rem;
-            color: #555;
-            line-height: 1.5;
-            margin-top: 1rem;
-        }
-
-        .container.my-5 {
+        /* Event Details Section Styling */
+        .event-details-container {
             background-color: #f9f9f9;
             border-radius: 10px;
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
             padding: 30px;
+            font-size: 1.1rem; 
         }
 
-        .container.my-5 .col-md-4 img {
+        #eventTitle {
+            font-size: 3rem; 
+            font-weight: 700;
+            margin-bottom: 1.5rem;
+        }
+
+        .event-info {
+            color: #555;
+            font-weight: 600;
+            margin-bottom: 1.5rem;
+            font-size: 1.1rem; 
+
+        }
+
+        #eventDescription {
+            font-size: 1.2rem;
+            color: #555;
+            line-height: 1.5;
+            margin-top: 1.5rem;
+        }
+
+        .event-image {
             border-radius: 8px;
             box-shadow: 0 4px 6px rgba(0, 0, 0, 0.15);
-        }
-
-        .container.my-5 h2, .container.my-5 p {
-            margin-bottom: 1rem;
-        }
-
-        /* Add hover effect on images */
-        .container.my-5 .col-md-4 img:hover {
-            transform: scale(1.05);
             transition: transform 0.3s ease;
         }
 
-
-
-
-
+        .event-image:hover {
+            transform: scale(1.05);
+        }
 
     </style>
 
@@ -113,6 +107,7 @@
                                 <a href="shops.html" class="dropdown-item">Maintenance</a>
                                 <a href="rent.html" class="dropdown-item">Shop</a>
                                 <a href="event.html" class="dropdown-item">Events</a>
+                                <a href="community.html" class="dropdown-item">Community</a>
                             </div>
                         </div>
                         <a href="about.html" class="nav-item nav-link">About</a>
@@ -160,7 +155,8 @@
             </div>
         </div>
         <!-- Header End -->
-         <!-- Search Start -->
+
+        <!-- Search Start -->
         <div class="container-fluid bg-primary mb-5 wow fadeIn" data-wow-delay="0.1s" style="padding: 35px;">
             <div class="container">
                 <div class="row g-2">                    
@@ -170,22 +166,32 @@
         <!-- Search End -->
 
         <!-- Event Details Start -->
-<div class="container my-5">
-    <div class="row">
-        <div class="col-md-8">
-            <h2 id="eventTitle">Event Title</h2>
-            <p><strong>Date:</strong> <span id="eventDate">Event Date</span></p>
-            <p><strong>Location:</strong> <span id="eventLocation">Event Location</span></p>
-            <p><strong>Capacity:</strong> <span id="eventCapacity">Event Capacity</span></p>
-            <p><strong>Registration Fee:</strong> <span id="eventFee">Event Fee</span></p>
-            <p id="eventDescription">Event Description</p>
+        <div class="container event-details-container">
+            <div class="row">
+                <div class="col-md-6">
+                    <h2 id="eventTitle"></h2>
+                    <p id="eventLocation" class="event-info"></p>
+                    <p id="eventDates" class="event-info"></p>
+                    <p id="eventCapacity" class="event-info"></p>
+                    <p id="eventFee" class="event-info"></p>
+                    <p id="eventStatus" class="event-info"></p>
+                    <div class="event-info">
+                        <p id="startLocation" class="event-info"></p> <!-- Start Location -->
+                        <p id="endLocation" class="event-info"></p>   <!-- End Location -->
+                    </div>
+                    <h4>Activities</h4>
+                    <ul id="eventActivities"></ul>
+                    <h4>Rest Stops</h4>
+                    <ul id="eventRestStops"></ul>
+                    <p id="eventDescription"></p>
+                </div>
+                <div class="col-md-6">
+                    <img id="eventImage" src="../BackEnd/Motostation/Motostation/Uploads/" alt="Event Image" class="event-image mb-4" style="width: 100%; max-height: 400px;">
+                </div>
+            </div>
         </div>
-        <div class="col-md-4">
-            <img id="eventImage" src="img/event-image-placeholder.jpg" alt="Event Cover" class="img-fluid rounded">
-        </div>
-    </div>
-</div>
-<!-- Event Details End -->
+        <!-- Event Details End -->
+
 
 
 
@@ -222,29 +228,7 @@
                 <a class="btn btn-link text-white-50" href="event.html">    Events</a>
 
             </div>
-            <!-- <div class="col-lg-3 col-md-6">
-                <h5 class="text-white mb-4">Photo Gallery</h5>
-                <div class="row g-2 pt-2">
-                    <div class="col-4">
-                        <img class="img-fluid rounded bg-light p-1" src="img/01.jpg" alt="">
-                    </div>
-                    <div class="col-4">
-                        <img class="img-fluid rounded bg-light p-1" src="img/02.jpg" alt="">
-                    </div>
-                    <div class="col-4">
-                        <img class="img-fluid rounded bg-light p-1" src="img/property-3.jpg" alt="">
-                    </div>
-                    <div class="col-4">
-                        <img class="img-fluid rounded bg-light p-1" src="img/property-4.jpg" alt="">
-                    </div>
-                    <div class="col-4">
-                        <img class="img-fluid rounded bg-light p-1" src="img/property-5.jpg" alt="">
-                    </div>
-                    <div class="col-4">
-                        <img class="img-fluid rounded bg-light p-1" src="img/property-6.jpg" alt="">
-                    </div> 
-                </div>
-            </div> -->
+
         </div>
     </div>
     <div class="container">

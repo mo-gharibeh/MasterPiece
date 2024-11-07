@@ -19,11 +19,17 @@ public partial class Event
 
     public int? OrganizerId { get; set; }
 
-    public string? EventType { get; set; }
+    public string EventType { get; set; } = null!;
 
     public int? Capacity { get; set; }
 
     public decimal? RegistrationFee { get; set; }
+
+    public bool? IsPaid { get; set; }
+
+    public string? FreeActivities { get; set; }
+
+    public string? RestStops { get; set; }
 
     public string? Status { get; set; }
 
@@ -33,9 +39,9 @@ public partial class Event
 
     public string? CoverImageUrl { get; set; }
 
-    public string? Tags { get; set; }
+    public string? StartLocation { get; set; }
 
-    public virtual ICollection<Favorite> Favorites { get; set; } = new List<Favorite>();
+    public string? EndLocation { get; set; }
 
     public virtual User? Organizer { get; set; }
 }

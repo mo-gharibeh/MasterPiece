@@ -5,11 +5,13 @@ namespace Motostation.Models;
 
 public partial class Like
 {
-    public int LikeId { get; set; }
+    public long Id { get; set; }
 
     public int? PostId { get; set; }
 
     public int? UserId { get; set; }
+
+    public bool? Flag { get; set; }
 
     public virtual Post? Post { get; set; }
 

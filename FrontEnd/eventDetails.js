@@ -1,32 +1,64 @@
-window.onload = async function () {
-    const eventId = localStorage.getItem('eventId'); 
+document.addEventListener("DOMContentLoaded", function() {
+    const eventId = localStorage.getItem('eventId');
 
-    debugger
-    if (!eventId) {
-        alert("Event ID not found!");
-        return;
+    async function fetchEventDetails(eventId) {
+        debugger
+        try {
+            const response = await fetch(`https://localhost:44398/api/Events/${eventId}`);
+            if (!response.ok) {
+                throw new Error("Network response was not ok");
+            }
+            const event = await response.json();
+            displayEventDetails(event);
+        } catch (error) {
+            console.error("Error fetching event details:", error);
+        }
     }
 
-    try {
-        const response = await fetch(`https://localhost:44398/api/Events/${eventId}`);
-        if (!response.ok) {
-            throw new Error(`Error fetching event: ${response.statusText}`);
+    function displayEventDetails(event) {
+        // Basic Event Information
+        document.getElementById("eventTitle").textContent = event.title;
+        document.getElementById("eventImage").src +=  event.coverImageUrl;
+        document.getElementById("eventLocation").textContent = `Location: ${event.location}`;
+        document.getElementById("eventDates").textContent = `From ${event.startDate} to ${event.endDate}`;
+        document.getElementById("eventCapacity").textContent = `Capacity: ${event.capacity}`;
+        document.getElementById("eventFee").textContent = event.isPaid ? `Fee: $${event.registrationFee}` : "Free Event";
+        document.getElementById("eventStatus").textContent = `Status: ${event.status}`;
+        document.getElementById("eventDescription").textContent = event.description;
+
+        // Start and End Locations
+        const startLocationElement = document.getElementById("startLocation");
+        const endLocationElement = document.getElementById("endLocation");
+
+        if (event.startLocation) {
+            startLocationElement.textContent = `Start Location: ${event.startLocation}`;
+        } else {
+            startLocationElement.textContent = "Start Location: Not Provided";
         }
 
-        const eventData = await response.json();
+        if (event.endLocation) {
+            endLocationElement.textContent = `End Location: ${event.endLocation}`;
+        } else {
+            endLocationElement.textContent = "End Location: Not Provided";
+        }
 
-        // Populate the HTML with the event data
-        document.getElementById('eventTitle').textContent = eventData.title;
-        document.getElementById('eventDate').textContent = new Date(eventData.startDate).toLocaleDateString();
-        document.getElementById('eventLocation').textContent = eventData.location;
-        document.getElementById('eventCapacity').textContent = eventData.capacity;
-        document.getElementById('eventFee').textContent = `${eventData.registrationFee.toFixed(2)} JOD`;
-        document.getElementById('eventDescription').textContent = eventData.description;
-        
-        // Set the event image if available
-        document.getElementById('eventImage').src = '../BackEnd/Motostation/Motostation/Uploads/' + eventData.coverImageUrl ;
-    } catch (error) {
-        console.error('Error fetching event details:', error);
-        alert('There was an error fetching event details. Please try again later.');
+        // Activities and Rest Stops
+        const activitiesList = document.getElementById("eventActivities");
+        const restStopsList = document.getElementById("eventRestStops");
+
+        // Populate activities and rest stops from JSON
+        JSON.parse(event.freeActivities || "[]").forEach(activity => {
+            const li = document.createElement("li");
+            li.textContent = activity;
+            activitiesList.appendChild(li);
+        });
+
+        JSON.parse(event.restStops || "[]").forEach(stop => {
+            const li = document.createElement("li");
+            li.textContent = stop;
+            restStopsList.appendChild(li);
+        });
     }
-};
+
+    fetchEventDetails(eventId);
+});

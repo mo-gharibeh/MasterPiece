@@ -116,7 +116,41 @@ CREATE TABLE Motorcycles (
  --   CreatedDate DATETIME DEFAULT GETDATE()
 --);
 
-DROP TABLE Events;
+--DROP TABLE Events;
+
+--CREATE TABLE Events (
+--    EventID INT PRIMARY KEY IDENTITY(1,1),
+--    Title NVARCHAR(100) NOT NULL,
+--    Description NVARCHAR(MAX),
+--    Location NVARCHAR(200),
+--    StartDate DATETIME NOT NULL,
+--    EndDate DATETIME NOT NULL,
+--    OrganizerID INT,
+--    EventType NVARCHAR(50),
+--    Capacity INT,
+--    RegistrationFee DECIMAL(10, 2) DEFAULT 0,
+--    Status NVARCHAR(50) DEFAULT 'Upcoming',
+--    CreatedDate DATETIME DEFAULT GETDATE(),
+--    LastUpdated DATETIME DEFAULT GETDATE(),
+--    CoverImageURL NVARCHAR(255),
+--    Tags NVARCHAR(255),
+--    FOREIGN KEY (OrganizerID) REFERENCES Users(UserID) -- Assuming an Organizers table
+--);
+
+
+
+--drop table Routes;
+---- جدول المسارات
+--CREATE TABLE Routes (
+--    RouteID INT PRIMARY KEY IDENTITY(1,1),
+--    Title NVARCHAR(200) NOT NULL,
+--    Description NVARCHAR(MAX),
+--    StartLocation NVARCHAR(255),
+--    EndLocation NVARCHAR(255),
+--    RestStops NVARCHAR(MAX), -- يمكن استخدام JSON أو تنسيق آخر
+--    CreatedDate DATETIME DEFAULT GETDATE()
+--);
+
 
 CREATE TABLE Events (
     EventID INT PRIMARY KEY IDENTITY(1,1),
@@ -126,28 +160,21 @@ CREATE TABLE Events (
     StartDate DATETIME NOT NULL,
     EndDate DATETIME NOT NULL,
     OrganizerID INT,
-    EventType NVARCHAR(50),
+    EventType NVARCHAR(50) CHECK (EventType IN ('Event', 'Route')) NOT NULL,
     Capacity INT,
     RegistrationFee DECIMAL(10, 2) DEFAULT 0,
+    IsPaid BIT DEFAULT 0, -- مدفوع أو غير مدفوع
+    FreeActivities NVARCHAR(MAX), -- JSON لتخزين الأنشطة المجانية
+    RestStops NVARCHAR(MAX), -- JSON لتخزين نقاط الاستراحة
     Status NVARCHAR(50) DEFAULT 'Upcoming',
     CreatedDate DATETIME DEFAULT GETDATE(),
     LastUpdated DATETIME DEFAULT GETDATE(),
     CoverImageURL NVARCHAR(255),
-    Tags NVARCHAR(255),
-    FOREIGN KEY (OrganizerID) REFERENCES Users(UserID) -- Assuming an Organizers table
-);
-
-
--- جدول المسارات
-CREATE TABLE Routes (
-    RouteID INT PRIMARY KEY IDENTITY(1,1),
-    Title NVARCHAR(200) NOT NULL,
-    Description NVARCHAR(MAX),
     StartLocation NVARCHAR(255),
     EndLocation NVARCHAR(255),
-    RestStops NVARCHAR(MAX), -- يمكن استخدام JSON أو تنسيق آخر
-    CreatedDate DATETIME DEFAULT GETDATE()
+    FOREIGN KEY (OrganizerID) REFERENCES Users(UserID)
 );
+
 
 -- جدول المنشورات في المجتمع
 CREATE TABLE Posts (
@@ -169,49 +196,57 @@ CREATE TABLE Comments (
     CreatedDate DATETIME DEFAULT GETDATE()
 );
 
--- جدول الإعجابات في المجتمع
+-- Create Likes table
 CREATE TABLE Likes (
-    LikeID INT PRIMARY KEY IDENTITY(1,1),
-    PostID INT FOREIGN KEY REFERENCES Posts(PostID),
-    UserID INT FOREIGN KEY REFERENCES Users(UserID)
+    id BIGINT IDENTITY(1,1) PRIMARY KEY,
+    postId INT,  -- Foreign key to Posts table
+    userId INT,  -- Foreign key to Users table
+    Flag BIT DEFAULT 1,  -- 1 = liked, 0 = not liked (removed)
+    CONSTRAINT FK_Like_Post FOREIGN KEY (postId) REFERENCES Posts(PostID),
+    CONSTRAINT FK_Like_User FOREIGN KEY (userId) REFERENCES Users(UserID),
+    CONSTRAINT UQ_Post_User UNIQUE (postId, userId)  -- Composite unique constraint to prevent multiple likes on the same post
 );
+
+
+DROP TABLE Likes; 
 
 -- 3333 جدول المتابعين في المجتمع
-CREATE TABLE Followers (
-    FollowerID INT PRIMARY KEY IDENTITY(1,1),
-    UserID INT FOREIGN KEY REFERENCES Users(UserID),
-    FollowedUserID INT FOREIGN KEY REFERENCES Users(UserID)
-);
+--CREATE TABLE Followers (
+--    FollowerID INT PRIMARY KEY IDENTITY(1,1),
+--    UserID INT FOREIGN KEY REFERENCES Users(UserID),
+--    FollowedUserID INT FOREIGN KEY REFERENCES Users(UserID)
+--);
 
 -- 4444 جدول المفضلات
-CREATE TABLE Favorites (
-    FavoriteID INT PRIMARY KEY IDENTITY(1,1),
-    UserID INT FOREIGN KEY REFERENCES Users(UserID),
-    ProductID INT NULL FOREIGN KEY REFERENCES Products(ProductID),
-    StoreID INT NULL FOREIGN KEY REFERENCES Stores(StoreID),
-    EventID INT NULL FOREIGN KEY REFERENCES Events(EventID)
-);
+--CREATE TABLE Favorites (
+--    FavoriteID INT PRIMARY KEY IDENTITY(1,1),
+--    UserID INT FOREIGN KEY REFERENCES Users(UserID),
+--    ProductID INT NULL FOREIGN KEY REFERENCES Products(ProductID),
+--    StoreID INT NULL FOREIGN KEY REFERENCES Stores(StoreID),
+--    EventID INT NULL FOREIGN KEY REFERENCES Events(EventID)
+--);
 
+drop table Favorites;
 
 -- 555 جدول التنبيهات
-CREATE TABLE Notifications (
-    NotificationID INT PRIMARY KEY IDENTITY(1,1),
-    UserID INT FOREIGN KEY REFERENCES Users(UserID),
-    NotificationText NVARCHAR(MAX) NOT NULL,
-    IsRead BIT DEFAULT 0,
-    CreatedDate DATETIME DEFAULT GETDATE()
-);
+--CREATE TABLE Notifications (
+--    NotificationID INT PRIMARY KEY IDENTITY(1,1),
+--    UserID INT FOREIGN KEY REFERENCES Users(UserID),
+--    NotificationText NVARCHAR(MAX) NOT NULL,
+--    IsRead BIT DEFAULT 0,
+--    CreatedDate DATETIME DEFAULT GETDATE()
+--);
 
 -- جدول المعاملات
-CREATE TABLE Transactions (
-    TransactionID INT PRIMARY KEY IDENTITY(1,1),
-    SellerID INT NOT NULL FOREIGN KEY REFERENCES Users(UserID), -- البائع
-    BuyerID INT NOT NULL FOREIGN KEY REFERENCES Users(UserID), -- المشتري
-    ProductID INT NULL FOREIGN KEY REFERENCES Products(ProductID),
-    TransactionType NVARCHAR(50) NOT NULL, -- Sale or Rent
-    Amount DECIMAL(18, 2) NOT NULL,
-    TransactionDate DATETIME DEFAULT GETDATE()
-);
+--CREATE TABLE Transactions (
+--    TransactionID INT PRIMARY KEY IDENTITY(1,1),
+--    SellerID INT NOT NULL FOREIGN KEY REFERENCES Users(UserID), -- البائع
+--    BuyerID INT NOT NULL FOREIGN KEY REFERENCES Users(UserID), -- المشتري
+--    ProductID INT NULL FOREIGN KEY REFERENCES Products(ProductID),
+--    TransactionType NVARCHAR(50) NOT NULL, -- Sale or Rent
+--    Amount DECIMAL(18, 2) NOT NULL,
+--    TransactionDate DATETIME DEFAULT GETDATE()
+--);
 
 CREATE TABLE Payments (--Store Or Event
     PaymentID INT PRIMARY KEY IDENTITY(1,1),
@@ -348,3 +383,92 @@ VALUES
  'Upcoming', 
  'https://example.com/images/safety-workshop.jpg', 
  'Safety,Workshop,Motorcycle');
+
+
+ -- Paid Event
+INSERT INTO Events 
+(
+
+    Title, 
+    Description, 
+    Location, 
+    StartDate, 
+    EndDate, 
+    Capacity, 
+    RegistrationFee, 
+    IsPaid, 
+    EventType, 
+    CoverImageUrl, 
+    Status, 
+    CreatedDate, 
+    LastUpdated, 
+    StartLocation, 
+    EndLocation, 
+    FreeActivities, 
+    RestStops
+)
+VALUES
+(
+
+    'Jordan Desert Adventure', 
+    'A thrilling off-road adventure through the Wadi Rum desert.', 
+    'Wadi Rum, Jordan', 
+    '2024-12-15', 
+    '2024-12-17', 
+    50, 
+    150.00, 
+    1, -- IsPaid (True)
+    'Route', 
+    'wadi_rum_adventure.jpg', 
+    'Upcoming', 
+    GETDATE(), 
+    GETDATE(), 
+    'Aqaba', 
+    'Petra', 
+    '["Sandboarding", "Camel Ride"]', -- JSON string for free activities
+    '["Wadi Rum Village", "Lawrence’s Spring"]' -- JSON string for rest stops
+);
+
+-- Free Event
+INSERT INTO Events 
+(
+
+    Title, 
+    Description, 
+    Location, 
+    StartDate, 
+    EndDate, 
+    Capacity, 
+    RegistrationFee, 
+    IsPaid, 
+    EventType, 
+    CoverImageUrl, 
+    Status, 
+    CreatedDate, 
+    LastUpdated, 
+    StartLocation, 
+    EndLocation, 
+    FreeActivities, 
+    RestStops
+)
+VALUES
+(
+ 
+    'Amman City Ride', 
+    'Join us for a community bike ride around the historic landmarks of Amman.', 
+    'Amman, Jordan', 
+    '2024-11-20', 
+    '2024-11-20', 
+    100, 
+    0.00, 
+    0, -- IsPaid (False)
+    'Event', 
+    'amman_ride.jpg', 
+    'Upcoming', 
+    GETDATE(), 
+    GETDATE(), 
+    'Amman Citadel', 
+    'Roman Amphitheater', 
+    '["Coffee Break", "Photo Stop at Rainbow Street"]', -- JSON string for free activities
+    '["Downtown Amman", "King Hussein Park"]' -- JSON string for rest stops
+);

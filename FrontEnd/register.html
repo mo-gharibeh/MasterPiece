@@ -286,6 +286,9 @@
             text-decoration: none;
             cursor: pointer;
         }
+
+        .error { color: red; }
+        .success { color: green; }
     </style>
 </head>
 
@@ -396,6 +399,7 @@
                     <input type="text" id="usernameup" name="UserName" placeholder="Username" required />
                     <input type="email" id="email" name="Email" placeholder="Email" required />
                     <input type="password" id="password" name="Password" placeholder="Password" required />
+                    <p id="message" class="error"></p>
                     <button type="submit">Sign Up</button>
                 </form>
                     

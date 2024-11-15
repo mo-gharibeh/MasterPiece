@@ -1,165 +1,54 @@
 <!DOCTYPE html>
-<html lang="ar">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>تفاصيل الفعالية</title>
-    <link rel="stylesheet" href="style.css">
+    <title>Password Validation</title>
     <style>
-        * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    font-family: Arial, sans-serif;
-    direction: rtl; /* تحديد الاتجاه إلى اليمين */
-}
-
-body {
-    background-color: #f4f4f9;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
-    padding: 20px;
-}
-
-.event-container {
-    background-color: #fff;
-    width: 90%;
-    max-width: 800px;
-    border-radius: 8px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    overflow: hidden;
-}
-
-.cover-image {
-    width: 100%;
-    height: 250px;
-    background-size: cover;
-    background-position: center;
-}
-
-.event-details {
-    padding: 20px;
-}
-
-.event-title {
-    font-size: 1.8em;
-    color: #333;
-    margin-bottom: 10px;
-}
-
-.event-date, .event-location, .event-organizer, .event-capacity, .event-type, .event-status, .event-fee {
-    font-size: 1em;
-    color: #666;
-    margin-bottom: 8px;
-}
-
-.event-description {
-    font-size: 1.1em;
-    color: #555;
-    line-height: 1.6;
-    margin-top: 15px;
-}
-
-.free-activities h2 {
-    font-size: 1.3em;
-    color: #444;
-    margin: 15px 0 8px;
-}
-
-.free-activities ul {
-    list-style-type: none;
-    padding: 0;
-}
-
-.free-activities li {
-    font-size: 1em;
-    color: #444;
-    margin: 5px 0;
-}
-
-.register-button {
-    display: block;
-    width: 100%;
-    padding: 10px;
-    font-size: 1.1em;
-    color: #fff;
-    background-color: #f76262;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    text-align: center;
-    margin-top: 20px;
-}
-
-.register-button:hover {
-    background-color: #e14b4b;
-}
-
+        .error { color: red; }
+        .success { color: green; }
     </style>
 </head>
 <body>
-
-    <div class="event-container">
-        <div class="cover-image" style="background-image: url('https://example.com/sample-cover.jpg');"></div>
-        
-        <div class="event-details">
-            <h1 class="event-title">رحلة استكشافية بالدرجات في جبال الهدا</h1>
-            <p class="event-date">التاريخ: 1 نوفمبر 2024 - 3 نوفمبر 2024</p>
-            <p class="event-location">الموقع: الهدا، الطائف</p>
-            <p class="event-organizer">المنظم: نادي الدراجين السعودي</p>
-            <p class="event-capacity">الطاقة الاستيعابية: 30 شخص</p>
-            <p class="event-type">النوع: <span>مسار</span></p>
-            <p class="event-status">الحالة: <span>متاحة</span></p>
-            <p class="event-fee">رسوم التسجيل: 150 ريال</p>
-
-            <h2>الوصف</h2>
-            <p class="event-description">
-                انضموا إلينا في رحلة ممتعة بالدراجات لاستكشاف جبال الهدا، تشمل نقاط توقف للاستراحة وأماكن لوجبات خفيفة مجانية.
-            </p>
-
-            <!-- أنشطة مجانية -->
-            <div class="free-activities">
-                <h2>أنشطة مجانية</h2>
-                <ul id="activities-list"></ul>
-            </div>
-
-            <!-- نقاط استراحة -->
-            <div class="rest-stops">
-                <h2>نقاط استراحة</h2>
-                <ul id="stops-list"></ul>
-            </div>
-
-            <button class="register-button">تسجيل في الفعالية</button>
-        </div>
-    </div>
+    <form id="registerForm">
+        <label for="password">Password:</label>
+        <input type="password" id="password" name="password">
+        <p id="message" class="error"></p>
+        <button type="submit">Register</button>
+    </form>
 
     <script>
-        // بيانات JSON للأنشطة ونقاط الاستراحة (كمثال)
-        const freeActivitiesJson = '[{"ActivityName": "وجبات خفيفة مجانية", "Description": "توزيع وجبات مجانية في محطات التوقف"}, {"ActivityName": "تصوير فوتوغرافي مجاني", "Description": "التقاط صور احترافية للمشاركين"}]';
-        const restStopsJson = '[{"StopName": "شلال الهدا", "Description": "استراحة في منطقة الشلال"}, {"StopName": "محطة الوقود المجانية", "Description": "محطة للوقود المجاني في منتصف الرحلة"}]';
-
-        // تحويل JSON إلى كائنات JavaScript
-        const freeActivities = JSON.parse(freeActivitiesJson);
-        const restStops = JSON.parse(restStopsJson);
-
-        // عرض الأنشطة المجانية
-        const activitiesList = document.getElementById('activities-list');
-        freeActivities.forEach(activity => {
-            const listItem = document.createElement('li');
-            listItem.innerHTML = `<strong>${activity.ActivityName}:</strong> ${activity.Description}`;
-            activitiesList.appendChild(listItem);
+        document.getElementById("registerForm").addEventListener("submit", function(event) {
+            event.preventDefault(); // Prevent form submission for testing purposes
+            validatePassword();
         });
 
-        // عرض نقاط الاستراحة
-        const stopsList = document.getElementById('stops-list');
-        restStops.forEach(stop => {
-            const listItem = document.createElement('li');
-            listItem.innerHTML = `<strong>${stop.StopName}:</strong> ${stop.Description}`;
-            stopsList.appendChild(listItem);
-        });
+        function validatePassword() {
+            const password = document.getElementById("password").value;
+            const message = document.getElementById("message");
+            const requirements = {
+                length: { regex: /.{8,}/, message: "At least 8 characters" },
+                uppercase: { regex: /[A-Z]/, message: "One uppercase letter" },
+                lowercase: { regex: /[a-z]/, message: "One lowercase letter" },
+                number: { regex: /[0-9]/, message: "One number" },
+                specialChar: { regex: /[\W_]/, message: "One special character" }
+            };
+
+            // Collect all unmet requirements
+            const unmetRequirements = Object.values(requirements).filter(req => !req.regex.test(password));
+
+            if (unmetRequirements.length > 0) {
+                // Show unmet requirements
+                message.textContent = `Password must contain: ${unmetRequirements.map(req => req.message).join(", ")}`;
+                message.classList.add("error");
+                message.classList.remove("success");
+            } else {
+                // If all requirements are met
+                message.textContent = "Password is valid!";
+                message.classList.remove("error");
+                message.classList.add("success");
+            }
+        }
     </script>
-
 </body>
 </html>

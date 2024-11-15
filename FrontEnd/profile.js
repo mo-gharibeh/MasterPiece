@@ -39,6 +39,13 @@ async function getPost() {
     console.log("posts:", posts);
 
     postsContainer.innerHTML = "";
+
+    if (posts.length === 1) {
+        postsContainer.classList.add("single-photo");
+    } else {
+        postsContainer.classList.remove("single-photo");
+    }
+
     posts.forEach(post => {
         postsContainer.innerHTML += `
         <div class="gallery-item">
@@ -54,9 +61,20 @@ async function getPost() {
 getPost();
 
 function editPhoto(postId) {
-    // Code to edit the photo, for example, opening an edit form
+    // Store the postId in localStorage (or sessionStorage) to retain it across pages/modal
     localStorage.setItem('postId', postId);
-    console.log("Edit post with ID:", postId);
+
+    // Fetch the current post data
+    fetch(`https://localhost:44398/api/Users/getPost/${postId}`)
+        .then(response => response.json())
+        .then(post => {
+            // Populate the modal with the current post's data
+            document.getElementById("editContent").value = post.content; // Set current content in textarea
+            document.getElementById("currentImage").src = `../BackEnd/Motostation/Motostation/Uploads/${post.imageUrl}`; // Show current image
+
+            // If you have an image input (to upload a new one), it will stay empty until the user selects a new image
+        })
+        .catch(err => console.error("Error fetching post:", err));
 }
 
 async function deletePhoto(postId) {
@@ -68,13 +86,13 @@ async function deletePhoto(postId) {
                 'Content-Type': 'application/json'
             }
         });
-        if (response.ok) {
-            alert("Photo deleted successfully!");
-        } else {
-            alert("Failed to delete photo.");
-        }
         closeModal();
         getPost(); // Refresh the posts list after deletion
+        // if (response.ok) {
+        //     alert("Photo deleted successfully!");
+        // } else {
+        //     alert("Failed to delete photo.");
+        // }
         
     
         console.log("Delete post with ID:", postId);
@@ -97,6 +115,8 @@ function openModal(imageUrl, postId) {
             `
 }
 
+
+
 function closeModal() {
     debugger 
 
@@ -107,32 +127,51 @@ function closeModal() {
 
 // function for edit and fetch data by API
 
-async function editPost(postId) {
+
+
+
+async function editPost(e) {
+    e.preventDefault(); 
     debugger
-    // Create FormData and append the post data
-    let formData = new FormData();
-    formData.append("Content", document.getElementById("editContent").value);
-    formData.append("ImageUrl", document.getElementById("editImageFile").files[0]);
 
-    // Perform the fetch request
-    let response = await fetch(`https://localhost:44398/api/Users/editPost/${postId}`, {
-        method: "PUT",
-        body: formData // No need to set Content-Type; FormData handles it
-    });
+    const form = document.getElementById("editPostForm");
+    const formData = new FormData(form);
 
-    if (!response.ok) {
-        console.error("Failed to edit post");
-        return;
+    const postId = localStorage.getItem('postId'); // Get the postId from localStorage
+    const apiEndpoint = `https://localhost:44398/api/Users/editPost/${postId}`;
+
+    try {
+        const response = await fetch(apiEndpoint, {
+            method: "PUT",
+            body: formData
+        });
+
+        if (!response.ok) {
+            const errorData = await response.json();
+            console.error("Error:", errorData);
+            alert("Failed to update post: " + (errorData.message || "An error occurred"));
+            return;
+        }
+
+        const result = await response.json();
+        console.log("Success:", result);
+        alert(result.message || "Post updated successfully!");
+
+        // if (formData.get("imageUrl")) {
+        //     const newImageUrl = URL.createObjectURL(formData.get("imageUrl"));
+        //     document.getElementById("currentImage").src = newImageUrl;
+        // }
+
+        // إغلاق المودال بعد الحفظ
+        const modal = new bootstrap.Modal(document.getElementById("editPostModal"));
+        modal.hide();
+    } catch (error) {
+        console.error("Fetch error:", error);
+        alert("An error occurred while updating the post.");
     }
-
-    let post = await response.json();
-    console.log("Edited post: ", post);
-
-    // Refresh posts, close modal, and show success message
-    getPost();
-    closeModal();
-    alert("Post edited successfully!");
 }
+
+
 
 
 

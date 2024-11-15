@@ -1,9 +1,12 @@
-    // fro register a new user when clic on signup() button and save the data in database by API FromForm
-    // by  using FormData 
-    //
+
 
     document.getElementById('signupForm').addEventListener('submit', async function (event) {
         event.preventDefault(); // Prevent form submission
+        debugger
+    // Validate password before continuing
+    if (!validatePassword()) {
+        return; // Stop submission if password is invalid
+    }
         const formData = new FormData(document.getElementById('signupForm'));
         debugger
         try {
@@ -24,6 +27,7 @@
                 document.getElementById('statusMessage').textContent = 'OTP sent to your email.';
             } else {
                 // Handle registration failure
+                alert(data.message); 
                 document.getElementById('statusMessage').textContent = data.message || 'Registration failed.';
             }
         } catch (error) {
@@ -59,6 +63,7 @@
     
             if (response.ok && data.success) {
                 document.getElementById('statusMessage').textContent = 'OTP confirmed. Registration complete.';
+                alert('User Registration complete.');
                 window.location.href = "register.html";
                 closeModal(); // Close modal upon successful OTP confirmation
             } else {
@@ -143,3 +148,34 @@
     
 
 
+
+
+
+    function validatePassword() {
+        const password = document.getElementById("password").value;
+        const message = document.getElementById("message");
+        const requirements = {
+            length: { regex: /.{8,}/, message: "At least 8 characters" },
+            uppercase: { regex: /[A-Z]/, message: "One uppercase letter" },
+            lowercase: { regex: /[a-z]/, message: "One lowercase letter" },
+            number: { regex: /[0-9]/, message: "One number" },
+            specialChar: { regex: /[\W_]/, message: "One special character" }
+        };
+    
+        // Collect all unmet requirements
+        const unmetRequirements = Object.values(requirements).filter(req => !req.regex.test(password));
+    
+        if (unmetRequirements.length > 0) {
+            // Show unmet requirements
+            message.textContent = `Password must contain: ${unmetRequirements.map(req => req.message).join(", ")}`;
+            message.classList.add("error");
+            message.classList.remove("success");
+            return false; // Password is invalid
+        } else {
+            // If all requirements are met
+            message.textContent = "Password is valid!";
+            message.classList.remove("error");
+            message.classList.add("success");
+            return true; // Password is valid
+        }
+    }

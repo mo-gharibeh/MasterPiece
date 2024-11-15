@@ -73,10 +73,11 @@ async function searchByName() {
     `;
     });
 }
+searchByName();
 
 // Fetch categories for dropdown
 async function fetchCategories() {
-    const url = 'https://localhost:44398/api/Categories'; // Replace with your API endpoint for categories
+    const url = 'https://localhost:44398/api/Categories'; 
     let response = await fetch(url);
     if (!response.ok) {
         console.error("Failed to fetch categories");

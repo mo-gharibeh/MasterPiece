@@ -255,3 +255,6 @@ C:\Users\Orange\Desktop\MasterPieceWorkSpace\BackEnd\Motostation\Motostation\bin
 C:\Users\Orange\Desktop\MasterPieceWorkSpace\BackEnd\Motostation\Motostation\bin\Debug\net8.0\MailKit.dll
 C:\Users\Orange\Desktop\MasterPieceWorkSpace\BackEnd\Motostation\Motostation\bin\Debug\net8.0\MimeKit.dll
 C:\Users\Orange\Desktop\MasterPieceWorkSpace\BackEnd\Motostation\Motostation\bin\Debug\net8.0\System.Formats.Asn1.dll
+C:\Users\Orange\Desktop\MasterPieceWorkSpace\BackEnd\Motostation\Motostation\bin\Debug\net8.0\SmtpServer.dll
+C:\Users\Orange\Desktop\MasterPieceWorkSpace\BackEnd\Motostation\Motostation\bin\Debug\net8.0\SendGrid.dll
+C:\Users\Orange\Desktop\MasterPieceWorkSpace\BackEnd\Motostation\Motostation\bin\Debug\net8.0\StarkbankEcdsa.dll

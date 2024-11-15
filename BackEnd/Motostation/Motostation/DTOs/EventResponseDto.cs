@@ -2,7 +2,6 @@
 {
     public class EventResponseDto
     {
-        public int EventId { get; set; }
 
         public int? OrganizerId { get; set; }
 
@@ -26,9 +25,9 @@
 
         public string? Status { get; set; }
 
-        public DateTime CreatedDate { get; set; }
+        public DateTime? CreatedDate { get; set; }
 
-        public DateTime LastUpdated { get; set; }
+        public DateTime? LastUpdated { get; set; }
 
         public IFormFile? CoverImageURL { get; set; }
 

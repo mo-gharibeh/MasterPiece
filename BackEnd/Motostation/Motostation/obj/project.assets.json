@@ -653,10 +653,10 @@
           }
         }
       },
-      "MailKit/4.7.1.1": {
+      "MailKit/4.8.0": {
         "type": "package",
         "dependencies": {
-          "MimeKit": "4.7.1",
+          "MimeKit": "4.8.0",
           "System.Formats.Asn1": "8.0.1"
         },
         "compile": {
@@ -1951,7 +1951,7 @@
           }
         }
       },
-      "MimeKit/4.7.1": {
+      "MimeKit/4.8.0": {
         "type": "package",
         "dependencies": {
           "BouncyCastle.Cryptography": "2.4.0",
@@ -2101,6 +2101,48 @@
         },
         "runtime": {
           "lib/netstandard2.0/NuGet.Versioning.dll": {}
+        }
+      },
+      "SendGrid/9.29.3": {
+        "type": "package",
+        "dependencies": {
+          "Newtonsoft.Json": "13.0.1",
+          "starkbank-ecdsa": "[1.3.3, 2.0.0)"
+        },
+        "compile": {
+          "lib/netstandard2.0/SendGrid.dll": {
+            "related": ".pdb;.xml"
+          }
+        },
+        "runtime": {
+          "lib/netstandard2.0/SendGrid.dll": {
+            "related": ".pdb;.xml"
+          }
+        }
+      },
+      "SmtpServer/10.0.1": {
+        "type": "package",
+        "dependencies": {
+          "System.IO.Pipelines": "4.7.2"
+        },
+        "compile": {
+          "lib/netstandard2.0/SmtpServer.dll": {
+            "related": ".xml"
+          }
+        },
+        "runtime": {
+          "lib/netstandard2.0/SmtpServer.dll": {
+            "related": ".xml"
+          }
+        }
+      },
+      "starkbank-ecdsa/1.3.3": {
+        "type": "package",
+        "compile": {
+          "lib/netstandard2.1/StarkbankEcdsa.dll": {}
+        },
+        "runtime": {
+          "lib/netstandard2.1/StarkbankEcdsa.dll": {}
         }
       },
       "Swashbuckle.AspNetCore/6.4.0": {
@@ -3691,10 +3733,10 @@
         "logo.png"
       ]
     },
-    "MailKit/4.7.1.1": {
-      "sha512": "Y3okmIxu8g/ZcoJiE2i+dCeKgnNyddsXmcJslZnCPGVPP0aRyeVINHV1h97V+OVMdqjQI6O12J2p8Duwq5UEqQ==",
+    "MailKit/4.8.0": {
+      "sha512": "zZ1UoM4FUnSFUJ9fTl5CEEaejR0DNP6+FDt1OfXnjg4igZntcir1tg/8Ufd6WY5vrpmvToAjluYqjVM24A+5lA==",
       "type": "package",
-      "path": "mailkit/4.7.1.1",
+      "path": "mailkit/4.8.0",
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
@@ -3731,7 +3773,7 @@
         "lib/netstandard2.1/MailKit.dll.config",
         "lib/netstandard2.1/MailKit.pdb",
         "lib/netstandard2.1/MailKit.xml",
-        "mailkit.4.7.1.1.nupkg.sha512",
+        "mailkit.4.8.0.nupkg.sha512",
         "mailkit.nuspec"
       ]
     },
@@ -6588,10 +6630,10 @@
         "useSharedDesignerContext.txt"
       ]
     },
-    "MimeKit/4.7.1": {
-      "sha512": "Qoj4aVvhX14A1FNvaJ33hzOP4VZI2j+Mr38I9wSGcjMq4BYDtWLJG89aJ9nRW2cNfH6Czjwyp7+Mh++xv3AZvg==",
+    "MimeKit/4.8.0": {
+      "sha512": "U24wp4LKED+sBRzyrWICE+3bSwptsTrPOcCIXbW5zfeThCNzQx5NCo8Wus+Rmi+EUkQrCwlI/3sVfejeq9tuxQ==",
       "type": "package",
-      "path": "mimekit/4.7.1",
+      "path": "mimekit/4.8.0",
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
@@ -6626,7 +6668,7 @@
         "lib/netstandard2.1/MimeKit.dll.config",
         "lib/netstandard2.1/MimeKit.pdb",
         "lib/netstandard2.1/MimeKit.xml",
-        "mimekit.4.7.1.nupkg.sha512",
+        "mimekit.4.8.0.nupkg.sha512",
         "mimekit.nuspec"
       ]
     },
@@ -6813,6 +6855,59 @@
         "lib/netstandard2.0/NuGet.Versioning.dll",
         "nuget.versioning.6.11.0.nupkg.sha512",
         "nuget.versioning.nuspec"
+      ]
+    },
+    "SendGrid/9.29.3": {
+      "sha512": "nb/zHePecN9U4/Bmct+O+lpgK994JklbCCNMIgGPOone/DngjQoMCHeTvkl+m0Nglvm0dqMEshmvB4fO8eF3dA==",
+      "type": "package",
+      "path": "sendgrid/9.29.3",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "lib/net40/SendGrid.dll",
+        "lib/net40/SendGrid.pdb",
+        "lib/net40/SendGrid.xml",
+        "lib/net452/SendGrid.dll",
+        "lib/net452/SendGrid.pdb",
+        "lib/net452/SendGrid.xml",
+        "lib/netstandard1.3/SendGrid.dll",
+        "lib/netstandard1.3/SendGrid.pdb",
+        "lib/netstandard1.3/SendGrid.xml",
+        "lib/netstandard2.0/SendGrid.dll",
+        "lib/netstandard2.0/SendGrid.pdb",
+        "lib/netstandard2.0/SendGrid.xml",
+        "sendgrid.9.29.3.nupkg.sha512",
+        "sendgrid.nuspec"
+      ]
+    },
+    "SmtpServer/10.0.1": {
+      "sha512": "WqSuBsfKGftrioGzC9dPfPFmuRGR1BEH7SX+5+VW3sH/iDHwUSL7eLJiVwYP8OEgEbPSBx27F9J3uDv3zJ+VHw==",
+      "type": "package",
+      "path": "smtpserver/10.0.1",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "LICENSE",
+        "lib/netstandard2.0/SmtpServer.dll",
+        "lib/netstandard2.0/SmtpServer.xml",
+        "smtpserver.10.0.1.nupkg.sha512",
+        "smtpserver.nuspec"
+      ]
+    },
+    "starkbank-ecdsa/1.3.3": {
+      "sha512": "OblOaKb1enXn+dSp7tsx9yjwV+/BEKM9jFhshIkZTwCk7LuTFTp+wSon6rFzuPiIiTGtvVWQNUw2slHjGktJog==",
+      "type": "package",
+      "path": "starkbank-ecdsa/1.3.3",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "lib/net40/StarkbankEcdsa.dll",
+        "lib/net452/StarkbankEcdsa.dll",
+        "lib/netstandard1.3/StarkbankEcdsa.dll",
+        "lib/netstandard2.0/StarkbankEcdsa.dll",
+        "lib/netstandard2.1/StarkbankEcdsa.dll",
+        "starkbank-ecdsa.1.3.3.nupkg.sha512",
+        "starkbank-ecdsa.nuspec"
       ]
     },
     "Swashbuckle.AspNetCore/6.4.0": {
@@ -8287,11 +8382,14 @@
   },
   "projectFileDependencyGroups": {
     "net8.0": [
-      "MailKit >= 4.7.1.1",
+      "MailKit >= 4.8.0",
       "Microsoft.EntityFrameworkCore.Design >= 8.0.8",
       "Microsoft.EntityFrameworkCore.SqlServer >= 8.0.8",
       "Microsoft.EntityFrameworkCore.Tools >= 8.0.8",
       "Microsoft.VisualStudio.Web.CodeGeneration.Design >= 8.0.5",
+      "MimeKit >= 4.8.0",
+      "SendGrid >= 9.29.3",
+      "SmtpServer >= 10.0.1",
       "Swashbuckle.AspNetCore >= 6.4.0"
     ]
   },
@@ -8347,7 +8445,7 @@
         "dependencies": {
           "MailKit": {
             "target": "Package",
-            "version": "[4.7.1.1, )"
+            "version": "[4.8.0, )"
           },
           "Microsoft.EntityFrameworkCore.Design": {
             "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
@@ -8368,6 +8466,18 @@
           "Microsoft.VisualStudio.Web.CodeGeneration.Design": {
             "target": "Package",
             "version": "[8.0.5, )"
+          },
+          "MimeKit": {
+            "target": "Package",
+            "version": "[4.8.0, )"
+          },
+          "SendGrid": {
+            "target": "Package",
+            "version": "[9.29.3, )"
+          },
+          "SmtpServer": {
+            "target": "Package",
+            "version": "[10.0.1, )"
           },
           "Swashbuckle.AspNetCore": {
             "target": "Package",

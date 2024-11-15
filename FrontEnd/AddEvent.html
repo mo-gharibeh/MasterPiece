@@ -138,15 +138,15 @@
             <div class="row mb-3">
                 <div class="col-md-6">
                     <label for="title" class="form-label fw-bold">Event Title</label>
-                    <input type="text" class="form-control " id="title" name="title" placeholder="Enter event title" required>
+                    <input type="text" class="form-control" id="title" name="title" placeholder="Enter event title" required>
                 </div>
                 <div class="col-md-3">
                     <label for="startDate" class="form-label fw-bold">Start Date</label>
-                    <input type="datetime-local" class="form-control " id="startDate" name="startDate" required>
+                    <input type="datetime-local" class="form-control" id="startDate" name="startDate" required>
                 </div>
                 <div class="col-md-3">
                     <label for="endDate" class="form-label fw-bold">End Date</label>
-                    <input type="datetime-local" class="form-control " id="endDate" name="endDate" required>
+                    <input type="datetime-local" class="form-control" id="endDate" name="endDate" required>
                 </div>
             </div>
             <div class="mb-3">
@@ -156,33 +156,64 @@
             <div class="row mb-3">
                 <div class="col-md-6">
                     <label for="location" class="form-label fw-bold">Location</label>
-                    <input type="text" class="form-control " id="location" name="location" placeholder="Enter location" required>
+                    <input type="text" class="form-control" id="location" name="location" placeholder="Enter location" required>
                 </div>
                 <div class="col-md-6">
                     <label for="capacity" class="form-label fw-bold">Capacity</label>
-                    <input type="number" class="form-control " id="capacity" name="capacity" placeholder="Enter capacity" required>
+                    <input type="number" class="form-control" id="capacity" name="capacity" placeholder="Enter capacity" required>
                 </div>
             </div>
             <div class="row mb-3">
                 <div class="col-md-6">
                     <label for="registrationFee" class="form-label fw-bold">Registration Fee</label>
-                    <input type="number" class="form-control " id="registrationFee" name="registrationFee" placeholder="Enter registration fee" step="0.01" required>
+                    <input type="number" class="form-control" id="registrationFee" name="registrationFee" placeholder="Enter registration fee" step="0.01" required>
                 </div>
                 <div class="col-md-6">
                     <label for="eventType" class="form-label fw-bold">Event Type</label>
-                    <input type="text" class="form-control " id="eventType" name="eventType" placeholder="Enter event type" required>
+                    <select class="form-control" id="eventType" name="eventType" required>
+                        <option value="" disabled selected>Select event type</option>
+                        <option value="Event">Event</option>
+                        <option value="Route">Route</option>
+                    </select>
+                </div>                
+            </div>
+            <div class="row mb-3">
+                <div class="col-md-6">
+                    <label for="startLocation" class="form-label fw-bold">Start Location</label>
+                    <input type="text" class="form-control" id="startLocation" name="startLocation" placeholder="Enter start location" required>
+                </div>
+                <div class="col-md-6">
+                    <label for="endLocation" class="form-label fw-bold">End Location</label>
+                    <input type="text" class="form-control" id="endLocation" name="endLocation" placeholder="Enter end location" required>
                 </div>
             </div>
             <div class="mb-3">
-                <label for="coverImageURL" class="form-label fw-bold">Cover Image</label>
-                <input type="file" class="form-control " id="coverImageURL" name="coverImageURL" accept="image/*">
+                <label for="freeActivities" class="form-label fw-bold">Free Activities</label>
+                <div id="freeActivitiesContainer">
+                    <input type="text" class="form-control mb-2" placeholder="Enter activity and press Add" id="freeActivityInput">
+                    <button type="button" onclick="addFreeActivity()" class="btn btn-secondary">Add Activity</button>
+                </div>
+                <ul id="freeActivitiesList"></ul>
             </div>
-
-            <button type="submit" onclick="addEventDetails()" class="btn btn-primary w-100 ">Submit Event</button>
+            
+            <div class="mb-3">
+                <label for="restStops" class="form-label fw-bold">Rest Stops</label>
+                <div id="restStopsContainer">
+                    <input type="text" class="form-control mb-2" placeholder="Enter rest stop and press Add" id="restStopInput">
+                    <button type="button" onclick="addRestStop()" class="btn btn-secondary">Add Rest Stop</button>
+                </div>
+                <ul id="restStopsList"></ul>
+            </div>
+                        <div class="mb-3">
+                <label for="coverImageURL" class="form-label fw-bold">Cover Image</label>
+                <input type="file" class="form-control" id="coverImageURL" name="coverImageURL" accept="image/*">
+            </div>
+            <button type="submit" onclick="addEventDetails(event)" class="btn btn-primary w-100">Submit Event</button>
         </form>
     </div>
 </div>
 <!-- Event Form End -->
+
 
 <!-- CSS for styling -->
 <style>

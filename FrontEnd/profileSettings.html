@@ -29,6 +29,11 @@
 
     <!-- Template Stylesheet -->
     <link href="css/style.css" rel="stylesheet">
+    <style>
+        /* Add your custom styles here */
+        .error { color: red; }
+        .success { color: green; }
+    </style>
 
 </head>
 
@@ -76,12 +81,11 @@
                             </div>
                         </div> -->
                         <a href="contact.html" class="nav-item nav-link">Contact Us</a>
-                        <a href="messages.html" class="nav-item nav-link">Messages</a>
                         <div class="nav-item dropdown">
                             <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Profile</a>
                             <div class="dropdown-menu rounded-0 m-0">
                                 <a href="profile.html" class="dropdown-item active">Profile</a>
-                                <a href="index.html" class="dropdown-item">LOG OUT</a>
+                                <a href="register.html" onclick="logout()" class="dropdown-item">LOG OUT</a>
                                 <!-- <a href="property-agent.html" class="dropdown-item">Property Agent</a> -->
                             </div>
                         </div>
@@ -97,6 +101,8 @@
         <div class="container-fluid header bg-white p-0">
             <div class="row g-0 align-items-center flex-column-reverse flex-md-row">
                 <div class="col-md-6 p-5 mt-lg-5">
+                    <br>
+                    <br>
                     <h1 class="display-5 animated fadeIn mb-4">My profile Settings</h1> 
                         <nav aria-label="breadcrumb animated fadeIn">
                         <ol class="breadcrumb text-uppercase">
@@ -107,7 +113,7 @@
                     </nav>
                 </div>
                 <div class="col-md-6 animated fadeIn">
-                    <img class="img-fluid" src="https://dn3bmh8yk8vvw.cloudfront.net/8jk3m6ZQN2eXhF0UzTfR7NSCdWI=/production-163219-Ho0jHjfPPjtN-harleydavidsonrEPAjhzt7TYunsplash.jpg" alt="">
+                    <img class="img-fluid" src="../BackEnd/Motostation/Motostation/Uploads/3.jpg" alt="">
                 </div>
             </div>
         </div>
@@ -135,11 +141,11 @@
                     </div>
                     <hr>
                     <ul class="list-unstyled">
-                        <li class="mb-2"><a href="#" class="text-dark"><i class="bi bi-person me-2"></i> My Profile</a></li>
+                        <li class="mb-2"><a href="profile.html" class="text-dark"><i class="bi bi-person me-2"></i> My Profile</a></li>
                         <li class="mb-2"><a href="Services.html" class="text-dark"><i class="bi bi-tools me-2"></i> Services</a></li>
-                        <li class="mb-2"><a href="#" class="text-dark"><i class="bi bi-gear me-2"></i> My Service Settings</a></li>
-                        <li class="mb-2"><a href="#" class="text-dark"><i class="bi bi-envelope me-2"></i> Messages</a></li>
-                        <li><a href="index.html" class="text-danger"><i class="bi bi-box-arrow-right me-2"></i> Log Out</a></li>
+                        <!-- <li class="mb-2"><a href="#" class="text-dark"><i class="bi bi-gear me-2"></i> My Service Settings</a></li> -->
+                        <!-- <li class="mb-2"><a href="#" class="text-dark"><i class="bi bi-envelope me-2"></i> Messages</a></li> -->
+                        <li><a href="register.html" onclick="logout()" class="text-danger"><i class="bi bi-box-arrow-right me-2"></i> Log Out</a></li>
                     </ul>
                 </div>
             </div>
@@ -201,12 +207,15 @@
                             <div class="col-md-6">
                                 <label for="newPassword" class="form-label">New Password</label>
                                 <input type="password" class="form-control" id="newPassword" required>
+
                             </div>
                             <div class="col-md-6">
                                 <label for="confirmPassword" class="form-label">Confirm Password</label>
                                 <input type="password" class="form-control" id="confirmPassword" required>
                             </div>
                         </div>
+                        <p id="message" class="error"></p>
+
                         <button type="submit" class="btn btn-primary">Change Password</button>
                     </form>
                     
@@ -330,6 +339,7 @@
             <!-- Template Javascript -->
             <script src="js/main.js"></script>
             <script src="profileSettings.js"></script>
+
             
         </body>
         

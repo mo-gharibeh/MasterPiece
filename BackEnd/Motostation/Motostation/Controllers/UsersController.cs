@@ -61,8 +61,14 @@ namespace Motostation.Controllers
 
         }
 
+        [HttpGet("getPost/{postId}")]
+        public IActionResult GetPost(int postId)
+        {
+            var post = _db.Posts.Find(postId);
+            return Ok(post);
+        }
 
-        [HttpGet("posts/userId/{id}")]
+            [HttpGet("posts/userId/{id}")]
         public IActionResult grtPost(int id)
         {
             var userPosts = _db.Posts.Where(s => s.UserId == id ).ToList();
@@ -107,6 +113,8 @@ namespace Motostation.Controllers
 
         }
 
+
+
         // Edit Post 
         [HttpPut("editPost/{id}")]
         public IActionResult PutPost(int id, [FromForm] EditPostDto editDto)
@@ -122,22 +130,28 @@ namespace Motostation.Controllers
                 return NotFound(new { message = "Post not found" });
             }
 
-            // Handle file upload
+            // Define the uploads folder path
             var uploadsFolderPath = Path.Combine(Directory.GetCurrentDirectory(), "Uploads");
             if (!Directory.Exists(uploadsFolderPath))
             {
                 Directory.CreateDirectory(uploadsFolderPath);
             }
 
-            var filePath = Path.Combine(uploadsFolderPath, editDto.ImageUrl.FileName);
-            using (var stream = new FileStream(filePath, FileMode.Create))
+            // Handle file upload only if a new image was uploaded
+            if (editDto.ImageUrl != null)
             {
-                editDto.ImageUrl.CopyTo(stream); // Synchronous file copy
+                var filePath = Path.Combine(uploadsFolderPath, editDto.ImageUrl.FileName);
+                using (var stream = new FileStream(filePath, FileMode.Create))
+                {
+                    editDto.ImageUrl.CopyTo(stream); // Synchronous file copy
+                }
+
+                // Update the post's image URL to the new file name
+                post.ImageUrl = editDto.ImageUrl.FileName;
             }
 
-            // Update the existing post
+            // Update the post's content
             post.Content = editDto.Content ?? post.Content;
-            post.ImageUrl = editDto.ImageUrl.FileName ?? post.ImageUrl; // Save only the file name in the database
 
             _db.Posts.Update(post);
             _db.SaveChanges();
@@ -147,6 +161,7 @@ namespace Motostation.Controllers
                 message = "Post edited successfully"
             });
         }
+
 
 
 
@@ -236,12 +251,12 @@ namespace Motostation.Controllers
             // حفظ التغييرات في قاعدة البيانات
             _db.SaveChanges();
 
-            return Ok(new { message = "User role updated to Manager successfully!" });
+            return Ok(new { success = false, message = "User role updated to Manager successfully!" });
         }
 
 
         [HttpPost("register")]
-        public IActionResult Register([FromForm] RegisterDto model) // Using FromForm to map form data
+        public async Task<IActionResult> Register([FromForm] RegisterDto model) // Using FromForm to map form data
         {
             if (ModelState.IsValid)
             {
@@ -275,7 +290,8 @@ namespace Motostation.Controllers
 
                 // Send OTP email synchronously
 
-                //_emailService.SendOtpEmail(user.Email, otp); // Synchronous OTP email sending
+                // _emailService.SendOtpEmail(user.Email, otp); // Synchronous OTP email sending
+
 
                 // Save the user in the database
                 _db.Users.Add(user);

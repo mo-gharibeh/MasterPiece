@@ -1,36 +1,56 @@
-
-
 const organizerId = 6;
+let freeActivities = [];
+let restStops = [];
 
-function addEventDetails() {    
-    debugger
-    // Prevent the default form submission
+function addFreeActivity() {
+    const activityInput = document.getElementById('freeActivityInput');
+    const activity = activityInput.value.trim();
+    if (activity) {
+        freeActivities.push(activity);
+        const li = document.createElement('li');
+        li.textContent = activity;
+        document.getElementById('freeActivitiesList').appendChild(li);
+        activityInput.value = ""; // Clear input
+    }
+}
+
+function addRestStop() {
+    const restStopInput = document.getElementById('restStopInput');
+    const restStop = restStopInput.value.trim();
+    if (restStop) {
+        restStops.push(restStop);
+        const li = document.createElement('li');
+        li.textContent = restStop;
+        document.getElementById('restStopsList').appendChild(li);
+        restStopInput.value = ""; // Clear input
+    }
+}
+
+function addEventDetails(event) {    
     event.preventDefault();
 
-    // Create a new FormData object
     const formData = new FormData(document.getElementById('eventForm'));
+    formData.append('OrganizerId', organizerId);
+    formData.append('FreeActivities', JSON.stringify(freeActivities)); // Save as JSON array
+    formData.append('RestStops', JSON.stringify(restStops));           // Save as JSON array
 
-    formData.append('OrganizerId', organizerId); 
-
-    // Send the data to the API
-    fetch('https://localhost:44398/api/Events', { // Update with the correct API endpoint
+    fetch('https://localhost:44398/api/Events', {
         method: 'POST',
         body: formData,
     })
     .then(response => {
-        if (!response.ok) {
-            throw new Error('Network response was not ok ' + response.statusText);
-        }
+        if (!response.ok) throw new Error('Network response was not ok ' + response.statusText);
         return response.json();
     })
     .then(data => {
-        // Handle success - show a message or redirect
-        alert(data.message); // Display success message
-        // Optionally, clear the form or redirect the user
+        alert(data.message);
         document.getElementById('eventForm').reset();
+        freeActivities = []; // Reset arrays after submission
+        restStops = [];
+        document.getElementById('freeActivitiesList').innerHTML = '';
+        document.getElementById('restStopsList').innerHTML = '';
     })
     .catch(error => {
-        // Handle error - show an error message
         console.error('There has been a problem with your fetch operation:', error);
         alert('Error adding event: ' + error.message);
     });

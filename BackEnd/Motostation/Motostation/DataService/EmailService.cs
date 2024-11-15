@@ -13,8 +13,8 @@ public class EmailService : IEmailService
         _configuration = configuration;
     }
 
-     public void SendOtpEmail(string email, string otp)
-     {
+    public void SendOtpEmail(string email, string otp)
+    {
         MailMessage mail = new MailMessage();
         SmtpClient smtpServer = new SmtpClient("smtp.gmail.com");
 

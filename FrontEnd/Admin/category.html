@@ -57,7 +57,7 @@
                         <a class="nav-link" href="product.html">Products Management</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link " href="Store.html">Store Management</a>
+                        <a class="nav-link " href="Store.html">Maintenance shop Management</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="event.html">Event Management</a>
@@ -94,7 +94,6 @@
                             <th>Category Name</th>
                             <th>Description</th>
                             <th>Image URL</th>
-                            <th>Is Active</th>
                             <th>Actions</th>
                         </tr>
                     </thead>
@@ -166,7 +165,6 @@
                         <td>${category.categoryName}</td>
                         <td>${category.description}</td>
                         <td>${category.imageUrl}</td>
-                        <td>${category.isActive ? 'Yes' : 'No'}</td>
                         <td>
                             <button class="btn btn-sm btn-info" onclick="editCategory(${category.categoryId})">Edit</button>
                             <button class="btn btn-sm btn-danger" onclick="deleteCategory(${category.categoryId})">Delete</button>
@@ -214,8 +212,9 @@
                 const response = await fetch(`https://localhost:44398/api/Categories/edit/${editingCategoryId}`, {
                     method: 'PUT',
                     body: formData,
+                
                 });
-
+                debugger
                 if (response.ok) {
                     await response.json(); // Ensure response is processed
                     categoryModal.hide();

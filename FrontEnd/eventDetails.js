@@ -21,7 +21,7 @@ document.addEventListener("DOMContentLoaded", function() {
         document.getElementById("eventImage").src +=  event.coverImageUrl;
         document.getElementById("eventLocation").textContent = `Location: ${event.location}`;
         document.getElementById("eventDates").textContent = `From ${event.startDate} to ${event.endDate}`;
-        document.getElementById("eventCapacity").textContent = `Capacity: ${event.capacity}`;
+        // document.getElementById("eventCapacity").textContent = `Capacity: ${event.capacity}`;
         document.getElementById("eventFee").textContent = event.isPaid ? `Fee: $${event.registrationFee}` : "Free Event";
         document.getElementById("eventStatus").textContent = `Status: ${event.status}`;
         document.getElementById("eventDescription").textContent = event.description;

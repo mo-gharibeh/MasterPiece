@@ -22,13 +22,34 @@ namespace Motostation.Controllers
         }
 
         // GET: api/Stores
-        [HttpGet]
+        [HttpGet("GetAllStores")]
         public IActionResult GetStores()
         {
             var stors = _context.Stores.ToList();
             return Ok(stors);
         }
 
+        [HttpGet]
+        public IActionResult GetAllStores()
+        {
+            var stores = _context.Stores.Select(s => new
+            {
+                s.StoreId,
+                s.Address,
+                s.Phone,
+                s.Email,
+                s.WorkingHours,
+                Manager = s.Manager.UserName
+
+            }
+            ).ToList();
+            return Ok(stores);
+        }
+
+                
+        
+        
+        
         // GET: api/Stores/5
         [HttpGet("{id}")]
         public async Task<ActionResult<Store>> GetStore(int id)

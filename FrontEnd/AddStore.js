@@ -6,7 +6,7 @@ let phone = document.getElementById("phone");
 let email = document.getElementById("email");
 let workingHours = document.getElementById("workingHours");
 let storeImage = document.getElementById("storeImage"); // File input
-let storeLocation  = document.getElementById("storeLocation ");
+let storeLocation  = document.getElementById("storeLocation");
 
 
 // Store the store information including image in the database
@@ -19,7 +19,7 @@ async function getStoreDetails() {
     formData.append("Phone", phone.value);
     formData.append("Email", email.value);
     formData.append("WorkingHours", workingHours.value);
-    formData.append("Location", storeLocation .value);
+    formData.append("Location", storeLocation.value);
     formData.append("ManagerId", localStorage.getItem("managerId"));
 
     // Handle the file input (storeImage)

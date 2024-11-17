@@ -116,5 +116,49 @@ namespace Motostation.Controllers
             return Ok(payment);
 
         }
+
+
+        // API لحساب المدة المتبقية وتنبيه المستخدم
+        [HttpGet("checkSubscriptionStatus/{userId}")]
+        public IActionResult CheckSubscriptionStatus(int userId)
+        {
+            // البحث عن الاشتراك النشط للمستخدم
+            var subscription = _db.Subscriptions
+                                  .FirstOrDefault(s => s.UserId == userId && s.IsActive);
+
+            if (subscription == null)
+            {
+                return NotFound("No active subscription found for this user.");
+            }
+
+            // حساب المدة المتبقية
+            var remainingDays = (subscription.EndDate - DateTime.UtcNow).TotalDays;
+
+            if (remainingDays <= 0)
+            {
+                // انتهاء الاشتراك
+                subscription.IsActive = false;
+
+                // تحديث دور المستخدم إلى "User"
+                var user = _db.Users.Find(userId);
+                if (user != null)
+                {
+                    user.Role = "User";
+                }
+
+                _db.SaveChanges();
+
+                return Ok(new { message = "Subscription has ended ." });
+            }
+            else if (remainingDays <= 5)
+            {
+                // تنبيه قرب انتهاء الاشتراك
+                return Ok(new { message = $"Your subscription will end in {Math.Ceiling(remainingDays)} days. Please renew soon." });
+            }
+
+            // الاشتراك ما زال نشطًا
+            return Ok(new { message = $"Your subscription is active. {Math.Ceiling(remainingDays)} days remaining." });
+        }
+
     }
 }

@@ -8,31 +8,36 @@
 let userId = localStorage.getItem('userId');
 
 document.getElementById('postForm').addEventListener('submit', async function(event) {
-    event.preventDefault(); // Prevent the default form submission
+    event.preventDefault(); 
 
     const form = document.getElementById('postForm');
-    const formData = new FormData(form); // Automatically handles both text and file inputs
-    // Add the userId to the formData object
+    const formData = new FormData(form);
+
+    const userId = localStorage.getItem('userId');
+    if (!userId) {
+        alert('Please login first.');
+        return;
+    }
     formData.append('UserId', userId);
-    const url = "https://localhost:44398/api/Users/addPost";
 
     try {
-        const response = await fetch(url, {
+       
+        const response = await fetch('https://localhost:44398/api/Users/addPost', {
             method: 'POST',
-            body: formData
+            body: formData,
         });
 
         if (!response.ok) {
-            throw new Error('Failed to create post');
+            const errorMessage = await response.text();
+            alert(`Failed to add post: ${errorMessage}`);
+            return;
         }
 
-        alert('Post created successfully!');
-        form.reset(); // Reset the form after successful submission
-
-        // Redirect to the user's profile page
-        window.location.href = "profile.html";
+        const result = await response.json();
+        alert(result.message); 
+        form.reset(); 
+        location.href = "profile.html"; 
     } catch (error) {
-        console.error('Error creating post:', error);
-        alert('Failed to create post.');
+        alert(`An error occurred: ${error.message}`);
     }
 });

@@ -3,7 +3,7 @@
 
 async function GetAllStores(){
     debugger
-    const response = await fetch('https://localhost:44398/api/Stores');
+    const response = await fetch('https://localhost:44398/api/Stores/GetAllStores');
     if (!response.ok) {
         console.error("Failed to fetch stores");
         return;

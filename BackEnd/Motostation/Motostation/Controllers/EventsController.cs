@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Motostation.DTOs;
 using Motostation.Models;
+using SendGrid.Helpers.Mail;
 
 namespace Motostation.Controllers
 {
@@ -175,6 +176,29 @@ namespace Motostation.Controllers
             return Ok(new { message = "Event deleted successfully" });
 
         }
+
+        // GET: api/Events/upcoming
+        [HttpGet("upcoming")]
+        public async Task<IActionResult> GetUpcomingEvents()
+        {
+            var upcomingEvents = await _db.Events
+                .Where(e => e.StartDate >= DateTime.Now) 
+                .OrderBy(e => e.StartDate)  
+                .Take(2)  
+                .Select(e => new
+                {
+                    e.EventId,
+                    e.Title,
+                    e.Description,
+                    e.StartDate,
+                    e.Location,
+                    e.CoverImageUrl  
+                })
+                .ToListAsync();
+
+            return Ok(upcomingEvents);
+        }
+
     }
 }
 

@@ -111,7 +111,7 @@ namespace Motostation.Controllers
             category.CategoryName = categoryDto.CategoryName;
             category.Description = categoryDto.Description;
             category.IsActive = categoryDto.IsActive;
-            category.ImageUrl = categoryDto.ImageUrl.FileName;
+            category.ImageUrl = categoryDto.ImageUrl.FileName?? category.ImageUrl;
 
 
             _context.Categories.Update(category);

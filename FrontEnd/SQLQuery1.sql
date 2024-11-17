@@ -190,7 +190,8 @@ CREATE TABLE Posts (
 -- جدول التعليقات في المجتمع
 CREATE TABLE Comments (
     CommentID INT PRIMARY KEY IDENTITY(1,1),
-    PostID INT FOREIGN KEY REFERENCES Posts(PostID),
+	postId INT,  -- Foreign key to Posts table
+	FOREIGN KEY (PostId) REFERENCES Posts(PostID) ON DELETE CASCADE,
     UserID INT FOREIGN KEY REFERENCES Users(UserID),
     CommentText NVARCHAR(MAX) NOT NULL,
     CreatedDate DATETIME DEFAULT GETDATE()
@@ -208,7 +209,24 @@ CREATE TABLE Likes (
 );
 
 
-DROP TABLE Likes; 
+DROP TABLE Comments; 
+
+ALTER TABLE Likes
+DROP CONSTRAINT FK_Like_Post;
+
+ALTER TABLE Comments
+DROP CONSTRAINT FK_Comments_Post;
+
+
+ALTER TABLE Likes
+ADD CONSTRAINT FK_Like_Post
+FOREIGN KEY (PostId) REFERENCES Posts(PostID) ON DELETE CASCADE;
+
+ALTER TABLE Comments
+ADD CONSTRAINT FK_Comment_Post
+FOREIGN KEY (PostId) REFERENCES Posts(PostId) ON DELETE CASCADE;
+
+
 
 -- 3333 جدول المتابعين في المجتمع
 --CREATE TABLE Followers (

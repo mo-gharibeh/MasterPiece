@@ -30,6 +30,45 @@
     <!-- Template Stylesheet -->
     <link href="css/style.css" rel="stylesheet">
     <style>
+
+#subscription-status {
+    font-family: 'Arial', sans-serif;
+    text-align: center;
+    padding: 20px;
+    background: linear-gradient(135deg, #00b98e, #41f4ca);
+    border-radius: 15px;
+    color: #fff;
+    max-width: 400px;
+    margin: 20px auto;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+#subscription-status h3 {
+    font-size: 24px;
+    margin-bottom: 10px;
+}
+
+#subscription-status p {
+    font-size: 18px;
+    margin-bottom: 20px;
+}
+
+#countdown-container {
+    background: #fff;
+    color: #0E2E50;
+    font-size: 25px;
+    font-weight: bold;
+    padding: 10px 20px;
+    border-radius: 10px;
+    display: inline-block;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+#countdown-container span {
+    display: block;
+}
+
+
         /* Add your custom styles here */
         .error { color: red; }
         .success { color: green; }
@@ -138,6 +177,11 @@
                     <div class="text-center">
                         <img id="profileImage" class="rounded-circle mb-3" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRA5K6G_sHTcvx3n3-FVqr3rSpQBDN4HhW3JQ&s" alt="Profile Picture" style="width: 150px; height: 150px;">
                         <h4 id="name" class="mb-0">Mohammad Hussain</h4>
+                        <br>
+
+                        <p id="phone" class="text-muted mt-2">Phone : </p>
+
+                        <p id="location" class="text-muted mt-2">Address : </p>
                     </div>
                     <hr>
                     <ul class="list-unstyled">
@@ -147,6 +191,15 @@
                         <!-- <li class="mb-2"><a href="#" class="text-dark"><i class="bi bi-envelope me-2"></i> Messages</a></li> -->
                         <li><a href="register.html" onclick="logout()" class="text-danger"><i class="bi bi-box-arrow-right me-2"></i> Log Out</a></li>
                     </ul>
+                    <hr>
+                    <div id="subscription-status">
+                        <h3>Your Subscription Status</h3>
+                        <p id="message"></p>
+                        <div id="countdown-container">
+                            <span id="countdown"></span>
+                        </div>
+                    </div>
+                    
                 </div>
             </div>
             <!-- Profile Sidebar End -->
@@ -214,7 +267,7 @@
                                 <input type="password" class="form-control" id="confirmPassword" required>
                             </div>
                         </div>
-                        <p id="message" class="error"></p>
+                        <p id="messagePass" class="error"></p>
 
                         <button type="submit" class="btn btn-primary">Change Password</button>
                     </form>

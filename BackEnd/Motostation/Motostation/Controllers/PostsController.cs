@@ -20,6 +20,7 @@ namespace Motostation.Controllers
         public async Task<IActionResult> GetPosts()
         {
             var posts = await _db.Posts
+                .OrderByDescending(p => p.CreatedDate)
                 .Select(p => new
                 {
                     p.PostId,

@@ -5,6 +5,8 @@ using Microsoft.Extensions.Caching.Memory;
 using Motostation.DataService;
 using Motostation.DTOs;
 using Motostation.Models;
+using System.Net.Mail;
+using System.Net;
 
 namespace Motostation.Controllers
 {
@@ -292,6 +294,9 @@ namespace Motostation.Controllers
 
                 // _emailService.SendOtpEmail(user.Email, otp); // Synchronous OTP email sending
 
+                // Send OTP email asynchronously
+                //await SendOtpEmailAsync(model.Email, otp);
+
 
                 // Save the user in the database
                 _db.Users.Add(user);
@@ -302,6 +307,28 @@ namespace Motostation.Controllers
 
             return BadRequest(new { success = false, message = "Invalid data" });
         }
+
+        //private async Task SendOtpEmailAsync(string email, string otp)
+        //{
+        //    var smtpClient = new SmtpClient("smtp.gmail.com") // ضبط مزود SMTP
+        //    {
+        //        Port = 465,
+        //        Credentials = new NetworkCredential("motostation7@gmail.com", "nxiiebaqmnvfdtrq"),
+        //        EnableSsl = true,
+        //    };
+
+        //    var mailMessage = new MailMessage
+        //    {
+        //        From = new MailAddress("motostation7@gmail.com"),
+        //        Subject = "OTP for Registration",
+        //        Body = $"Your OTP is: {otp}",
+        //        IsBodyHtml = false,
+        //    };
+        //    mailMessage.To.Add(email);
+
+        //    await smtpClient.SendMailAsync(mailMessage);
+        //}
+
 
         [HttpPost("confirm-otp")]
         public IActionResult ConfirmOtp([FromBody] OtpConfirmationDto model)

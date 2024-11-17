@@ -21,6 +21,7 @@ async function loadPosts() {
                     <img src="../BackEnd/Motostation/Motostation/Uploads/${post.userImage}" alt="User Image" class="user-image" style="width: 50px; height: 50px; border-radius: 50%;">
                     <strong>${post.username}</strong>
                 </div>
+                
                 <img src="../BackEnd/Motostation/Motostation/Uploads/${post.imageUrl}" alt="Post Image">
                 <p>${post.content}</p>
                 <div class="like-comment">
@@ -101,6 +102,7 @@ async function likePost(postId) {
     const userId = localStorage.getItem('userId');
     if (!userId) {
         alert("User not logged in");
+        location.href = "register.html";
         return;
     }
 
@@ -118,6 +120,12 @@ async function likePost(postId) {
 
 // Show comment input box
 function showCommentInput(postId) {
+    if (!userId ) {
+        alert("User not logged in");
+        location.href = "register.html";
+
+        return;
+    }
     document.getElementById(`comment-input-${postId}`).style.display = 'block';
 }
 
@@ -161,3 +169,63 @@ async function addComment(event, postId) {
 
 // Initialize posts on page load
 document.addEventListener('DOMContentLoaded', loadPosts);
+
+
+async function loadUpcomingEvents() {
+    const url = 'https://localhost:44398/api/Events/upcoming';  // تغيير URL حسب المسار في API
+    try {
+        const response = await fetch(url);
+        if (!response.ok) {
+            console.error("Failed to fetch events");
+            return;
+        }
+
+        const events = await response.json();
+
+        // التأكد من أن الأحداث موجودة
+        if (events.length > 0) {
+            // تعبئة الحدث الأول
+            const event1 = events[0];
+            const eventItem1 = document.createElement('div');
+            eventItem1.innerHTML = `
+            <div class=" mb-4">
+            <div class="event-item">
+                <h3><a onclick="saveEventId(${event1.eventId})">${event1.title}</a></h3>
+                <p><strong>Date:</strong> ${new Date(event1.startDate).toLocaleDateString()}</p>
+                <p><strong>Location:</strong> ${event1.location}</p>
+                <p>${event1.description || 'No description available'}</p>
+            </div>
+            </div>
+            `;  
+            document.querySelector('.upcoming-events .row').appendChild(eventItem1);
+
+            // تعبئة الحدث الثاني
+            const event2 = events[1];
+            const eventItem2 = document.createElement('div');
+            eventItem2.innerHTML = `
+            <div class=" mb-4">
+            <div class="event-item">
+                <h3><a onclick="saveEventId(${event2.eventId})">${event2.title}</a></h3>
+                <p><strong>Date:</strong> ${new Date(event2.startDate).toLocaleDateString()}</p>
+                <p><strong>Location:</strong> ${event2.location}</p>
+                <p>${event2.description || 'No description available'}</p>
+            </div>
+            </div>
+            `;
+            document.querySelector('.upcoming-events .row').appendChild(eventItem2);
+        } else {
+            console.log("No upcoming events found.");
+        }
+    } catch (error) {
+        console.error("Error loading events:", error);
+    }
+}
+
+function saveEventId(eventId) {
+    localStorage.setItem("eventId", eventId); 
+    window.location.href = "eventDetails.html";
+}
+
+
+// استدعاء الدالة لعرض الأحداث عند تحميل الصفحة
+loadUpcomingEvents();

@@ -68,22 +68,23 @@ public partial class MyDbContext : DbContext
 
         modelBuilder.Entity<Comment>(entity =>
         {
-            entity.HasKey(e => e.CommentId).HasName("PK__Comments__C3B4DFAA0392C1FB");
+            entity.HasKey(e => e.CommentId).HasName("PK__Comments__C3B4DFAAFB7A9F82");
 
             entity.Property(e => e.CommentId).HasColumnName("CommentID");
             entity.Property(e => e.CreatedDate)
                 .HasDefaultValueSql("(getdate())")
                 .HasColumnType("datetime");
-            entity.Property(e => e.PostId).HasColumnName("PostID");
+            entity.Property(e => e.PostId).HasColumnName("postId");
             entity.Property(e => e.UserId).HasColumnName("UserID");
 
             entity.HasOne(d => d.Post).WithMany(p => p.Comments)
                 .HasForeignKey(d => d.PostId)
-                .HasConstraintName("FK__Comments__PostID__29221CFB");
+                .OnDelete(DeleteBehavior.Cascade)
+                .HasConstraintName("FK__Comments__postId__4D5F7D71");
 
             entity.HasOne(d => d.User).WithMany(p => p.Comments)
                 .HasForeignKey(d => d.UserId)
-                .HasConstraintName("FK__Comments__UserID__2A164134");
+                .HasConstraintName("FK__Comments__UserID__4E53A1AA");
         });
 
         modelBuilder.Entity<ContactMessage>(entity =>
@@ -165,6 +166,7 @@ public partial class MyDbContext : DbContext
 
             entity.HasOne(d => d.Post).WithMany(p => p.Likes)
                 .HasForeignKey(d => d.PostId)
+                .OnDelete(DeleteBehavior.Cascade)
                 .HasConstraintName("FK_Like_Post");
 
             entity.HasOne(d => d.User).WithMany(p => p.Likes)

@@ -33,6 +33,7 @@ namespace Motostation.Controllers
                     c.ImageUrl,
                     c.ProductType,
                     c.Price,
+                    c.Description,
                     userName = c.Seller.UserName,
                     categoryName = c.Category.CategoryName,
                 })
@@ -62,17 +63,60 @@ namespace Motostation.Controllers
 
         // GET: api/Products/5
         [HttpGet("{id}")]
-        public async Task<ActionResult<Product>> GetProduct(int id)
+
+        public async Task<IActionResult> GetProductDetails(int id)
         {
-            var product = await _context.Products.FindAsync(id);
+            var product = await _context.Products
+                .Where(p => p.ProductId == id)
+                .Select(p => new
+                {
+                    p.ProductId,
+                    p.ProductName,
+                    p.Description,
+                    p.Price,
+                    p.RentalPrice,
+                    p.RentalDuration,
+                    p.ProductType,
+                    p.IsCurrentlyRented,
+                    p.StockQuantity,
+                    p.ImageUrl,
+                    p.Brand,
+                    p.ProductCondition,
+                    p.IsSold,
+                    p.IsAvailable,
+                    CategoryName = p.Category.CategoryName, // Assuming the Categories table has a CategoryName column
+                    Seller = new
+                    {
+                        Name = p.Seller.UserName, // Assuming Users table has a UserName column
+                        Email = p.Seller.Email,
+                        PhoneNumber = p.Seller.PhoneNumber // Assuming Users table has a PhoneNumber column
+                    }
+                })
+                .FirstOrDefaultAsync();
 
             if (product == null)
             {
-                return NotFound();
+                return NotFound(new { message = "Product not found" });
             }
 
-            return product;
+            return Ok(product);
         }
+
+
+
+
+        //public async Task<ActionResult<Product>> GetProduct(int id)
+        //{
+        //    var product = await _context.Products.FindAsync(id);
+
+        //    if (product == null)
+        //    {
+        //        return NotFound();
+        //    }
+
+        //    return product;
+        //}
+
 
         // PUT: api/Products/5
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754

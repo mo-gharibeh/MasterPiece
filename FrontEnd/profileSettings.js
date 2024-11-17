@@ -36,6 +36,8 @@ async function viewProfile(){
     debugger
     let profileImage = document.getElementById("profileImage");
     let name = document.getElementById("name");
+    let phone = document.getElementById("phone");
+    let address = document.getElementById("location");
 
 
     let response = await fetch(`https://localhost:44398/api/Users/${userId}`);
@@ -48,6 +50,11 @@ async function viewProfile(){
     profileImage.src =  `../BackEnd/Motostation/Motostation/Uploads/${user.profileImageUrl}`;
     name.textContent = "";
     name.textContent = user.fullName;
+    // phone.textContent = "";
+    phone.textContent += user.phoneNumber;
+    // address.textContent = "";
+    address.textContent += user.location;
+
     console.log(user);
 
 }
@@ -113,7 +120,7 @@ function logout() {
 
 function validatePassword() {
     const password = document.getElementById("newPassword").value;
-    const message = document.getElementById("message");
+    const message = document.getElementById("messagePass");
     const requirements = {
         length: { regex: /.{8,}/, message: "At least 8 characters" },
         uppercase: { regex: /[A-Z]/, message: "One uppercase letter" },
@@ -139,3 +146,30 @@ function validatePassword() {
         return true; // Password is valid
     }
 }
+
+
+
+async function fetchSubscriptionStatus(userId) {
+    debugger
+    const response = await fetch(`https://localhost:44398/api/Subscription/checkSubscriptionStatus/${userId}`);
+    const data = await response.json();
+
+    const messageElement = document.getElementById("message");
+    const countdownElement = document.getElementById("countdown");
+
+    messageElement.innerText = data.message;
+    
+
+    if (data.message.includes("days remaining")) {
+        // عرض عداد تنازلي
+        const remainingDays = parseInt(data.message.match(/\d+/)[0], 10);
+        countdownElement.innerText = `${remainingDays} days left!`;
+    } else {
+        messageElement.innerText = "You don't have an active subscription.";
+
+        countdownElement.innerText = ""; // لا شيء
+    }
+}
+
+// استدعاء الدالة
+fetchSubscriptionStatus(userId); // استبدل 1 بـ userId

@@ -13,7 +13,7 @@ async function loadProductDetails() {
     // Populate product data into HTML elements
     document.getElementById("productImage").src = "../BackEnd/Motostation/Motostation/Uploads/" + product.imageUrl;
     document.getElementById("productName").textContent = product.productName;
-    document.getElementById("productCategory").textContent = categoryName ;  // Handle null category
+    document.getElementById("productCategory").textContent = product.categoryName ;  // Handle null category
     document.getElementById("productBrand").textContent = product.brand;
     document.getElementById("productCondition").textContent = product.productCondition;
     document.getElementById("productType").textContent = "For " + product.productType;
@@ -32,7 +32,7 @@ async function loadProductDetails() {
     // Handle seller info
     if (product.seller) {
         document.getElementById("sellerName").textContent = product.seller.name;
-        document.getElementById("sellerContact").textContent = `${product.seller.email} | ${product.seller.phoneNumber}`;
+        document.getElementById("sellerContact").textContent = ` ${product.seller.phoneNumber}`;
     } else {
         document.getElementById("sellerName").textContent = "Mohammad";
         document.getElementById("sellerContact").textContent = "0778945623";

@@ -70,7 +70,7 @@
                             <a class="nav-link" href="product.html">Products Management</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link " href="Store.html">Store Management</a>
+                            <a class="nav-link " href="Store.html">Maintenance shop Management</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="event.html">Event Management</a>
@@ -128,7 +128,7 @@
             // Fetch all posts
             async function fetchPosts() {
                 try {
-                    const response = await fetch('https://localhost:44398/api/Users/AllPost');
+                    const response = await fetch('https://localhost:44398/api/Posts/getAllPost');
                     const posts = await response.json();
                     postsTable.innerHTML = '';
                     posts.forEach(post => {
